@@ -229,13 +229,13 @@ a.btn-send:hover {
 }
 /*Navigation-stylesheets-include-here*/
 .navbar-default {
-	background:rgba(248, 248, 248, 0);
-	border:rgba(248, 248, 248, 0);
-	padding:5px 5px;
+	background:rgba(248, 248, 248, 100);
+	border:rgba(212, 43, 43, 100);
+	padding:30px 30px;
 }
 a.navbar-brand img {
 	position:relative;
-	top:9px;
+	top:1px;
 }
 #menu {
 	position:absolute;
@@ -246,11 +246,11 @@ a.navbar-brand img {
 }
 #menu ul.nav li a {
 	font-size:15px;
-	color:#fff;
+	color:#0e4502;
 }
 #menu .nav > li > a {
 	background:none;
-	color: #fff;
+	color: #208a12;
 }
 #menu ul.nav li a:hover, #menu ul.nav li a.active {
 	color:#e73131;
