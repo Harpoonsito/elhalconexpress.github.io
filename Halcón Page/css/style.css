@@ -130,6 +130,8 @@ p {
 	font-family: 'Poppins', sans-serif;
 	text-align: center;
 }
+
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   font-family: 'Open Sans', sans-serif;
 }
@@ -142,7 +144,7 @@ h2 {
 	color:#ecebeb;
 	font-size:35px;
 	text-transform:uppercase;
-	font-weight:bolder;
+	font-weight:bolder;	
 }
 h3 {
 	color:#333;
@@ -457,6 +459,24 @@ ul.nav li.active a:before {
 .bg-sec p {
 	color:#FFFFFF;
 }
+
+/*Seccion de servicios*/
+#service p {
+  color: #111;
+}
+
+#service h2 {
+  color: #4f4d49;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+#service h5 {
+  color: #5DC1B9;
+  font-weight: bold;
+}
+
 /*Service-stylesheets-include-here*/
 #service {
 	text-align:center;
