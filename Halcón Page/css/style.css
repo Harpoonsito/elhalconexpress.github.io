@@ -228,53 +228,126 @@ a.btn-send:hover {
 	-o-transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 }
-/*Navigation-stylesheets-include-here*/
+
+/* NAVIGATION STYLES */
 .navbar-default {
-	background:rgba(248, 248, 248, 100);
-	border:rgba(212, 43, 43, 100);
-	padding:30px 30px;
+  background: rgba(248, 248, 248, 0.95);
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
+
+/* Tamaño y centrado del logo */
 a.navbar-brand img {
-	position:relative;
-	top:1px;
+  height: 50px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
-#menu {
-	position:absolute;
-}
-#menu .nav {
-	left: 25%;
-	position: relative;
-}
-#menu ul.nav li a {
-	font-size:15px;
-	color:#0e4502;
-}
-#menu .nav > li > a {
-	background:none;
-	color: #208a12;
-}
-#menu ul.nav li a:hover, #menu ul.nav li a.active {
-	color:#5DC1B9;
-	transition:all 0.4s;
-}
-#menu .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color:#5DC1B9;
-	background:transparent;
-}
+
+/* Ajuste marca/logo */
 a.navbar-brand {
-	padding:0px;
-	margin-top:-3px;
+  padding: 0;
+  margin-top: -3px;
+  float: none !important;
+  display: block;
+  text-align: center;
 }
-ul.nav li.active a:before {
-	opacity:1;
+
+/* Contenedor del menú */
+#menu {
+  width: 100%;
+  text-align: center;
 }
+
+/* Menú centrado en escritorio */
+@media (min-width: 769px) {
+  #menu .nav {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+  }
+
+  #menu ul.nav li {
+    display: inline-block;
+    float: none;
+  }
+}
+
+/* Enlaces del menú */
+#menu ul.nav li a {
+  font-size: 15px;
+  color: #0e4502;
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+#menu .nav > li > a {
+  background: none;
+  color: #208a12;
+}
+
+#menu ul.nav li a:hover,
+#menu ul.nav li a.active {
+  color: #5DC1B9;
+  transition: all 0.3s ease;
+}
+
+/* Enlace activo */
+#menu .navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #5DC1B9;
+  background: transparent;
+}
+
+/* Efecto scroll */
 .on {
-	background:rgba(245, 243, 243, 0.8);
-	transition:all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	-webkit-transition: all 0.3s;
+  background: rgba(245, 243, 243, 0.8);
+  transition: all 0.3s ease;
 }
+
+/* Modo móvil (menú hamburguesa) */
+@media (max-width: 768px) {
+  .navbar-header {
+    text-align: center;
+    width: 100%;
+    float: none;
+  }
+
+  .navbar-toggle {
+    float: none;
+    margin: 10px auto;
+  }
+
+  .navbar-brand {
+    float: none;
+    display: block;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .navbar-nav {
+    float: none;
+    display: block;
+  }
+
+  .navbar-nav > li {
+    display: block;
+    float: none;
+  }
+
+  /* Quitamos el centrado con transform para evitar desplazamiento */
+  #menu .nav {
+    left: auto;
+    transform: none;
+  }
+}
+
+
 /*Slider-stylesheets-include-here*/
 
 	#home-carousel .item {
@@ -1370,7 +1443,7 @@ position:absolute;
     text-shadow: none;
 }
 
-
+/*Sobre Nostros anim*/
 .slide-sec-1{
 text-align:right;
 }
@@ -1398,4 +1471,32 @@ font-weight:bolder;
 color:#fff;
 }
 
-/*Basic-Stylesheets-End-Here*/
+.title {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.title:hover {
+  transform: scale(1.05);
+  color: #92fff6;
+}
+
+.column-title {
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.column-title:hover {
+  transform: translateY(-5px);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.column p {
+  transition: box-shadow 0.3s ease;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.column p:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
