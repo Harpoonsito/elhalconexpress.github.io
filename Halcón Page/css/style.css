@@ -357,6 +357,29 @@ ul.nav li.active a:before {
 #home-carousel:hover .home-carousel-right {
 	right:0;
 }
+
+/* Estilo general */
+.social-links i {
+  font-size: 50px;
+  margin: 0 20px;
+  color: white;
+  transition: color 0.3s;
+}
+
+/* Colores por red social al hacer hover */
+.social-links i.instagram:hover {
+  color: #E1306C; /* Instagram */
+}
+
+.social-links i.facebook:hover {
+  color: #1877F2; /* Facebook */
+}
+
+.social-links i.linkedin:hover {
+  color: #0077B5; /* LinkedIn */
+}
+
+
 /* ANimacion tipo carrusel */
 
 	#home-carousel .item h1, #home-carousel .item h2, #home-carousel .item p {
