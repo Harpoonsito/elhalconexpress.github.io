@@ -383,6 +383,10 @@ ul.nav li.active a:before {
   transition: color 0.2s ease-in-out;
 }
 
+.carousel-caption h2 {
+  white-space: nowrap;
+}
+
 .social-links a:hover {
   transform: scale(1.2);
 }
@@ -398,6 +402,10 @@ ul.nav li.active a:before {
 
 .social-links .linkedin:hover {
   color: #0077b5;
+}
+
+.whatsapp:hover {
+  color: #25D366;
 }
 	/* ANimacion tipo carrusel */
 
