@@ -383,7 +383,6 @@ ul.nav li.active a:before {
   transition: color 0.2s ease-in-out;
 }
 
-/* Cambios al hacer hover en el <a> (afecta al <i>) */
 .social-links a:hover {
   transform: scale(1.2);
 }
