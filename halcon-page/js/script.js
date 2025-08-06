@@ -277,6 +277,9 @@ $('#slider-parallax').stellar();
       // itemsMobile : false
  
   });
+  $(document).ready(function() {
+  $('body').css('overflow-x', 'hidden');
+});
  
 });
 	

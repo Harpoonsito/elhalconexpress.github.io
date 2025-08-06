@@ -814,7 +814,10 @@ ul.nav li.active a:before {
 		-ms-transition: none;
 		-o-transition: none;
 		transition: none;
+
+		
 	}
+
 	/*Pricing-stylesheets-include-here*/
 	#pricing {
 		padding: 4% 0% 0% 2%;
