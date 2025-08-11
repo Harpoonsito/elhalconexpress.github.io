@@ -493,10 +493,10 @@ Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo
             <h6><strong>Dirección:</strong> Cra. 31a #No. 7-26 Piso 2, Bogotá, Colombia</h6>
           </li>
           <li><i class="fa fa-envelope"></i>
-            <h6><strong>Correo:</strong> <a href="mailto:contacto@elhalconexpress.com">contacto@elhalconexpress.com</a></h6>
+            <h6><strong>Correo:</strong> <a href="mailto:contacto@elhalconexpress.com">comercial@elhalconexpress.com</a></h6>
           </li>
           <li><i class="fa fa-phone"></i>
-            <h6><strong>Teléfono:</strong> +57 322 856 2215</h6>
+            <h6><strong>Teléfono:</strong> +57 322 856 2215</h6>  
           </li>
           <li><i class="fa fa-globe"></i>
             <h6><strong>Sitio web:</strong> <a href="https://www.elhalconexpress.com">www.elhalconexpress.com</a></h6>
@@ -504,7 +504,7 @@ Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo
         </ul>
       </div>
       <div class="col-md-6 col-sm-6">
-        <form id="main-contact-form" name="contact-form" method="post" action="#">
+          <form id="main-contact-form" name="contact-form" method="post" action="https://formsubmit.co/comercial@elhalconexpress.com">
           <div class="row wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="col-sm-6">
               <div class="form-group">
@@ -523,7 +523,13 @@ Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo
           <div class="form-group">
             <textarea name="message" id="message" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí" required="required"></textarea>
           </div>
-          <a class="btn-send col-md-12 col-sm-12 col-xs-12" href="#">Enviar mensaje</a>
+           <!-- Configuración oculta -->
+    <input type="hidden" name="_next" value="URL_DE_GRACIAS.html">
+    <input type="hidden" name="_captcha" value="false">
+
+           <a class="btn-send col-md-12 col-sm-12 col-xs-12" href="#" onclick="document.getElementById('main-contact-form').submit();">
+      Enviar mensaje
+    </a>
         </form>
       </div>
     </div>
@@ -534,7 +540,7 @@ Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo
 <footer id="footer">
   <div class="bg-sec">
     <div class="container">
-      <h2>¡ESPERAMOS <strong>TENER NOTICIAS</strong> DE TI!</h2>
+      <h2>¡ESPERAMOS <strong>LLEVAR TU PRÓXIMA</strong> TU PRÓXIMAENTREGA!</h2>
     </div>
   </div>
 </footer>
@@ -542,10 +548,21 @@ Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo
 <footer id="footer-down">
   <h2>Síguenos en</h2>
   <ul class="social-icon">
-    <li class="facebook hvr-pulse"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-    <li class="linkedin hvr-pulse"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-    <li class="instagram hvr-pulse"><a href="#"><i class="fa fa-instagram"></i></a></li>
-    
+    <li class="facebook hvr-pulse">
+      <a href="https://www.facebook.com/elhalconexpresscargo" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-facebook-f"></i>
+      </a>
+    </li>
+    <li class="linkedin hvr-pulse">
+      <a href="https://www.linkedin.com/company/elhalconexpresscargosas" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li class="instagram hvr-pulse">
+      <a href="https://www.instagram.com/elhalconexpress" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </li>
   </ul>
   <p>&copy; 2025 El Halcón Express - Todos los derechos reservados</p>
 </footer>
