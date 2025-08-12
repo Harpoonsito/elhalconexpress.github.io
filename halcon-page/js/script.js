@@ -161,7 +161,28 @@ $(document).ready(function() {
        autoPlay: 3000, //Set AutoPlay to 3 seconds
 
     });
-	
+	document.addEventListener("DOMContentLoaded", () => {
+  const mapa = document.getElementById("mapaColombia");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Aparece → reproducir animación
+        mapa.classList.remove("animar");
+        void mapa.offsetWidth; // Forzar reflow
+        mapa.classList.add("animar");
+      } else {
+        // Desaparece → quitar clase para que se pueda volver a animar
+        mapa.classList.remove("animar");
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(mapa);
+});
+
+
+
 
 	/*====================================
     Portfolio Isotope Filter
