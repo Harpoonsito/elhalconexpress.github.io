@@ -136,6 +136,8 @@ $(document).ready(function() {
 			$(this).unbind('inview');
 		}
 	});
+
+  
 	
 	
 	/* ==============================================
@@ -303,4 +305,55 @@ $('#slider-parallax').stellar();
 });
  
 });
-	
+
+(function () {
+    function ajustarAlturaMapa() {
+        let alturaTexto = document.getElementById("info-contacto").offsetHeight;
+        document.getElementById("mapa").style.height = alturaTexto + "px";
+    }
+
+    // Ajustar cuando la página carga
+    window.addEventListener("load", ajustarAlturaMapa);
+
+    // Ajustar también si el usuario cambia el tamaño de la ventana
+    window.addEventListener("resize", ajustarAlturaMapa);
+})();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const trackBtn = document.getElementById("trackBtn");
+    const trackingNumberInput = document.getElementById("trackingNumber");
+    const trackingResult = document.getElementById("trackingResult");
+
+    trackBtn.addEventListener("click", function () {
+        const number = trackingNumberInput.value.trim();
+
+        if (!number) {
+            trackingResult.innerHTML = "Por favor, ingresa un número de guía.";
+            trackingResult.style.color = "red";
+            return;
+        }
+
+        // Simular fecha de creación de la guía (0 a 5 días atrás)
+        const creationDaysAgo = Math.floor(Math.random() * 5);
+        const today = new Date();
+        const creationDate = new Date(today);
+        creationDate.setDate(today.getDate() - creationDaysAgo);
+
+        // Calcular días transcurridos
+        const diffDays = Math.floor((today - creationDate) / (1000 * 60 * 60 * 24));
+
+        // Estados progresivos
+        let status = "";
+        if (diffDays === 0) status = "Pedido recibido en nuestras oficinas.";
+        else if (diffDays === 1) status = "En preparación para despacho.";
+        else if (diffDays === 2) status = "En tránsito hacia la ciudad de destino.";
+        else if (diffDays === 3) status = "En proceso de entrega.";
+        else status = "Pedido entregado. ¡Gracias por confiar en nosotros!";
+
+        trackingResult.innerHTML = `
+            Estado del envío <strong>#${number}</strong>: ${status} <br>
+            <small>Fecha de registro: ${creationDate.toLocaleDateString()}</small>
+        `;
+        trackingResult.style.color = "#333";
+    });
+});
