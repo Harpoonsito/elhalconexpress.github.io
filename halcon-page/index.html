@@ -9,6 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" type="image/png" href="images/Logo/Favicon 2.png">
   <title>El Halcón Express Cargo SAS</title>
+  
   <!--Bootstrap-->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <!--Font-Awesome-->
@@ -17,23 +18,16 @@
   <link rel="stylesheet" href="css/style.css">
   <!--Responsive-->
   <link rel="stylesheet" type="text/css" href="css/responsive.css">
-  <!--Animation-->
-  <link rel="stylesheet" type="text/css" href="css/animate.css">
-  <!--Prettyphoto-->
-  <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
-  <!--Scroll-->
-  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.min.css" />
-
+  <!--Animation (sustituye animate.css / wow)-->
+  <link rel="stylesheet" href="./dist_migrado/minimal-anim.css">
 
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 
-  <!--Owl-Slider-->
+  <!--Slider-->
   <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-  <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
-  <link rel="stylesheet" type="text/css" href="css/owl.transitions.css">
 
 </head>
 
@@ -57,7 +51,7 @@
                 class="icon-bar"></span> </button>
             <a class="navbar-brand" href="#menu"><img src="images/Logo/Logo Halcón pequeño.png" alt=""></a>
           </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
+          <!-- Recopila los enlaces de navegación, formularios y otros contenidos para alternar -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a class="scroll" href="#menu">Inicio</a></li>
@@ -66,22 +60,19 @@
               <li><a class="scroll" href="#cobertura">Cobertura</a></li>
               <li><a class="scroll" href="#tracking">Rastrear Envio</a></li>
               <li><a class="scroll" href="#features">Features</a></li>
-              <li><a class="scroll" href="#blog">Blog</a></li>
               <li><a class="scroll" href="#contact">Contacto</a></li>
             </ul>
           </div>
-          <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
       </div>
     </div>
   </header>
-  <!--Slider-Start-->
+  <!--Slider-Inicio-->
   <section id="slider">
     <div id="home-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
 
-        <!-- Primer Slide -->
+        <!-- PRIMER SLIDE -->
         <div class="item active" style="background-image:url(images/Slider/Siguenos.png)">
           <div class="carousel-caption container">
             <div class="row">
@@ -142,8 +133,6 @@
     </div>
   </section>
 
-  <!--carrucel-->
-  </section>
   <!--Sobre Nosotros-->
   <section id="about" class="about-section">
     <div class="container">
@@ -423,38 +412,6 @@
       </div>
     </div>
   </section>
-  </section>
-  <!--Testimonials-Section-Start-->
-  <section id="testimonials" class="parallex">
-    <div class="container">
-      <div class="quote"> <i class="fa fa-quote-left"></i> </div>
-      <div class="clearfix"></div>
-      <div class="slider-text">
-        <div id="owl-testi" class="owl-carousel owl-theme">
-          <div class="item">
-            <div class="col-md-10 col-md-offset-1"> <img src="images/Testimonials/02.jpg" class="img-circle" alt="">
-              <h5>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                non numquam eius modi.</h5>
-              <h6>EMA JOHNSON</h6>
-              <p>Web Developer</p>
-            </div>
-          </div>
-          <div class="col-md-10 col-md-offset-1"> <img src="images/Testimonials/03.jpg" class="img-circle" alt="">
-            <h5>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain,
-              but because occasionally circumstances occur</h5>
-            <h6>SAM DEEN</h6>
-            <p>Web Designer</p>
-          </div>
-          <div class="col-md-10 col-md-offset-1"> <img src="images/Testimonials/04.jpg" class="img-circle" alt="">
-            <h5>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-              placeat facere possimus, omnis voluptas</h5>
-            <h6>JOHN DOE</h6>
-            <p>CEO</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
   <!--Fun-Facts-Section-Start-->
   <section id="fun-facts">
     <div class="container">
@@ -481,93 +438,6 @@
           <div class="fun-fact text-center">
             <h3><i class="fa fa-code"></i> <span class="timer">9823686</span></h3>
             <h6>Lines of Code</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--Blog-Section-Start-->
-  <section id="blog">
-    <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="heading">
-          <h2>LATEST BL<span>OG</span></h2>
-          <div class="line"></div>
-          <p><span><strong>L</strong></span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut
-            et dolore magna aliqua. Ut enim ad minim veniam</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="col-md-4 blog-sec">
-            <div class="blog-info"> <img src="images/Blog/1.jpg" class="img-responsive" alt="">
-              <div class="data-meta">
-                <h4>Jan</h4>
-                <strong>10</strong><br>
-                2016
-              </div>
-              <a href="#">
-                <h5>Sed ut perspiciatis unde omnis</h5>
-              </a>
-              <ul class="blog-icon">
-                <li><i class="fa fa-pencil"></i><a href="#">
-                    <h6>John</h6>
-                  </a></li>
-                <li class="comment"><i class="fa fa-comment"></i><a href="#">
-                    <h6>13</h6>
-                  </a></li>
-              </ul>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.</p>
-              <a href="#" class="btn-blg">Read More</a>
-            </div>
-          </div>
-          <div class="col-md-4 blog-sec">
-            <div class="blog-info"> <img src="images/Blog/2.jpg" class="img-responsive" alt="">
-              <div class="data-meta">
-                <h4>Jan</h4>
-                <strong>20</strong><br>
-                2016
-              </div>
-              <a href="#">
-                <h5>Sed ut perspiciatis unde omnis</h5>
-              </a>
-              <ul class="blog-icon">
-                <li><i class="fa fa-pencil"></i><a href="#">
-                    <h6>Maria</h6>
-                  </a></li>
-                <li class="comment"><i class="fa fa-comment"></i><a href="#">
-                    <h6>04</h6>
-                  </a></li>
-              </ul>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.</p>
-              <a href="#" class="btn-blg">Read More</a>
-            </div>
-          </div>
-          <div class="col-md-4 blog-sec">
-            <div class="blog-info"> <img src="images/Blog/3.jpg" class="img-responsive" alt="">
-              <div class="data-meta">
-                <h4>Jan</h4>
-                <strong>31</strong><br>
-                2016
-              </div>
-              <a href="#">
-                <h5>Sed ut perspiciatis unde omnis</h5>
-              </a>
-              <ul class="blog-icon">
-                <li><i class="fa fa-pencil"></i><a href="#">
-                    <h6>Bear</h6>
-                  </a></li>
-                <li class="comment"><i class="fa fa-comment"></i><a href="#">
-                    <h6>05</h6>
-                  </a></li>
-              </ul>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.</p>
-              <a href="#" class="btn-blg">Read More</a>
-            </div>
           </div>
         </div>
       </div>
@@ -686,32 +556,16 @@
     </div>
   </footer>
 
-
   <!--Jquery-->
   <script type="text/javascript" src="js/jquery.min.js"></script>
-
-  <!-- Stellar.js desde CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js"></script>
-
   <!--Boostrap-Jquery-->
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <!--Preetyphoto-Jquery-->
-  <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-  <!--NiceScroll-Jquery-->
-  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-
-  <!--Isotopes-->
-  <script type="text/javascript" src="js/jquery.isotope.js"></script>
-  <!--Wow-Jquery-->
-  <script type="text/javascript" src="js/wow.js"></script>
-  <!--Count-Jquey-->
-  <script type="text/javascript" src="js/jquery.countTo.js"></script>
-  <script type="text/javascript" src="js/jquery.inview.min.js"></script>
   <!--Owl-Crousels-Jqury-->
   <script type="text/javascript" src="js/owl.carousel.js"></script>
   <!--Main-Scripts-->
   <script type="text/javascript" src="js/script.js"></script>
+  <!--Anim-->
+  <script src="./dist_migrado/io-anim.js"></script>
 </body>
 
 </html>

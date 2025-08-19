@@ -1,359 +1,131 @@
+(function ($) {
+  'use strict';
 
- /* ==============================================
-  	 Main-Slider
-  	=============================================== */ 
-$(document).ready(function() {
- 
-  var owl = $("#owl-slider");
- 
-  owl.owlCarousel({
- autoPlay: 3000, //Set AutoPlay to 3 seconds
-    singleItem : true,
-    transitionStyle : "fade"
+  /* ===================== Preloader ===================== */
+  $(window).on('load', function () {
+    if ($('#pre-status').length)  $('#pre-status').fadeOut();
+    if ($('#preloader').length)   $('#preloader').delay(350).fadeOut('slow');
   });
- 
-});
 
+  $(function () {
 
- /* ==============================================
-  	  Progress Bar
-  	=============================================== */ 
-		$('.experience').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-		if (visible) {
-			$.each($('div.progress-bar'),function(){
-				$(this).css('width', $(this).attr('aria-valuemax')+'%');
-			});
-			$(this).unbind('inview');
-		}
-	});
-
-	
- /* ==============================================
-  	 Preloader
-  	=============================================== */ 
-
-	(function () {
-	    $(window).load(function() {
-	        $('#pre-status').fadeOut();
-	        $('#preloader').delay(350).fadeOut('slow');
-	    });
-	}());
-
-/* ==============================================
-  	 Pretty Photo
-  	=============================================== */
-
-     $("a[rel^='prettyPhoto']").prettyPhoto({
-		social_tools: false
-	});
- 
- /* ==============================================
-  	  WOW Javascripts 
-  	=============================================== */ 
-
- new WOW().init();
-
- /* ==============================================
-  	  Testimonials
-  	=============================================== */ 
-
-
-$(document).ready(function() {
- 
-  var owl = $("#owl-testi");
- 
-  owl.owlCarousel({
-    autoPlay: 3000, //Set AutoPlay to 3 seconds
-    singleItem : true,
-    transitionStyle : "fade"
-  });
- 
-});
- 
- 
- /* ==============================================
-  	  Smooth Scroll
-  	=============================================== */ 
-	
-	
-    $(function() {
-      $('a.scroll').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top -50
-            }, 1000);
-            return false;
-          }
-        }
-      });
-    });
-	
-
-
- /* ==============================================
-  	  Navbar-Fixed-Top
-  	=============================================== */ 
-	
-	
- $(window).bind('scroll', function() {
-        var navHeight = $(window).height() - 100;
-        if ($(window).scrollTop() > navHeight) {
-            $('.navbar').addClass('on');
-        } else {
-            $('.navbar').removeClass('on');
-        }
-    });
-
-
- /* ==============================================
-  	 ToolTip
-  	=============================================== */ 
-	
-	$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-	
-
-/* ==============================================
-  	  Count
-  	=============================================== */ 
-
-    $('#fun-facts').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-		if (visible) {
-			$(this).find('.timer').each(function () {
-				var $this = $(this);
-				$({ Counter: 0 }).animate({ Counter: $this.text() }, {
-					duration: 2000,
-					easing: 'swing',
-					step: function () {
-						$this.text(Math.ceil(this.Counter));
-					}
-				});
-			});
-			$(this).unbind('inview');
-		}
-	});
-
-  
-	
-	
-	/* ==============================================
-  	  Clients
-  	=============================================== */
-	
-	
-    var owl = $("#client-slider");
-
-    owl.owlCarousel({
-
-        itemsCustom: [
-            [0, 2],
-            [450, 3],
-            [600, 3],
-            [700, 4],
-            [1000, 5],
-            [1200, 5],
-            [1400, 5],
-            [1600, 5]
-        ],
-        pagination: false,
-       autoPlay: 3000, //Set AutoPlay to 3 seconds
-
-    });
-	document.addEventListener("DOMContentLoaded", () => {
-  const mapa = document.getElementById("mapaColombia");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Aparece → reproducir animación
-        mapa.classList.remove("animar");
-        void mapa.offsetWidth; // Forzar reflow
-        mapa.classList.add("animar");
-      } else {
-        // Desaparece → quitar clase para que se pueda volver a animar
-        mapa.classList.remove("animar");
+    /* ===================== Smooth Scroll ===================== */
+    $('a.scroll').on('click', function (e) {
+      var samePath = location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '');
+      var sameHost = location.hostname === this.hostname;
+      if (!(samePath && sameHost)) return;
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        e.preventDefault();
+        $('html,body').animate({ scrollTop: target.offset().top - 50 }, 1000);
       }
     });
-  }, { threshold: 0.5 });
 
-  observer.observe(mapa);
-});
-
-
-
-
-	/*====================================
-    Portfolio Isotope Filter
-    ======================================*/
-	
-	$(window).load(function(){'use strict';
-		var $portfolio_selectors = $('.portfolio-filter >li>a');
-		var $portfolio = $('.portfolio-items');
-		$portfolio.isotope({
-			itemSelector : '.portfolio-item',
-			layoutMode : 'fitRows'
-		});
-		
-		$portfolio_selectors.on('click', function(){
-			$portfolio_selectors.removeClass('active');
-			$(this).addClass('active');
-			var selector = $(this).attr('data-filter');
-			$portfolio.isotope({ filter: selector });
-			return false;
-		});
-	});
-	
-	
-/*====================================
-    Fullscreen burger menu
- ======================================*/
-	  $(".menu-trigger, .mobilenav").click(function () {
-    $(".mobilenav").fadeToggle(500);
-  });
-  $(".menu-trigger, .mobilenav").click(function () {
-    $(".top-menu").toggleClass("top-animate");
-    $(".mid-menu").toggleClass("mid-animate");
-    $(".bottom-menu").toggleClass("bottom-animate");
-  });
-
-
-  /* ========================================================================
-     On click menu item animate to the section
-   ========================================================================== */
-  $(".mobilenav li, .back-to-top").on('click', function() {
-    var target = $(this).data('rel');
-    var $target = $(target);
-    $('html, body').stop().animate({
-        'scrollTop': $target.offset().top
-    }, 900, 'swing');
-  });
-
-
-	/*====================================
-       Index-03-Main-Slider
-    ======================================*/
-	
-$(document).ready(function() {
- 
-  $("#owl-main-slider").owlCarousel({
- 
-       autoPlay: 3000, //Set AutoPlay to 3 seconds
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
- 
-      // "singleItem:true" is a shortcut for:
-      // items : 1, 
-      // itemsDesktop : false,
-      // itemsDesktopSmall : false,
-      // itemsTablet: false,
-      // itemsMobile : false
- 
-  });
- 
-});
-	
-	
-	
-	 /* ==============================================
-  	     Parallex-javascript
-  	=============================================== */
-	
-	$('#testimonials').stellar();
-$('#slider-parallax').stellar();
-
-
-    $(function(){
-
-      $.stellar({
-
-        horizontalScrolling: false,
-
-        verticalOffset: 40
-
-      });
-
+    /* ===================== Navbar fija ===================== */
+    $(window).on('scroll', function () {
+      var navHeight = $(window).height() - 100;
+      if ($(window).scrollTop() > navHeight) $('.navbar').addClass('on');
+      else $('.navbar').removeClass('on');
     });
 
+    /* ===================== Tooltips (Bootstrap) ===================== */
+    if ($.fn.tooltip) $('[data-toggle="tooltip"]').tooltip();
 
-	 /* ==============================================
-  	      Index-05-text-Slider
-  	=============================================== */
-	$(document).ready(function() {
- 
-  $("#owl-text-slider").owlCarousel({
- 
-      autoPlay: 3000, //Set AutoPlay to 3 seconds
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
- 
-      // "singleItem:true" is a shortcut for:
-      // items : 1, 
-      // itemsDesktop : false,
-      // itemsDesktopSmall : false,
-      // itemsTablet: false,
-      // itemsMobile : false
- 
-  });
-  $(document).ready(function() {
-  $('body').css('overflow-x', 'hidden');
-});
- 
-});
-
-(function () {
-    function ajustarAlturaMapa() {
-        let alturaTexto = document.getElementById("info-contacto").offsetHeight;
-        document.getElementById("mapa").style.height = alturaTexto + "px";
+    /* ===================== Owl — SOLO logos de clientes ===================== */
+    if ($.fn.owlCarousel && $('#client-slider').length) {
+      $('#client-slider').owlCarousel({
+        itemsCustom: [
+          [0, 2], [450, 3], [600, 3], [700, 4],
+          [1000, 5], [1200, 5], [1400, 5], [1600, 5]
+        ],
+        autoPlay: 3000,
+        pagination: false,   // sin dots (no hace falta owl.theme.css)
+        navigation: false    // sin flechas del theme
+      });
     }
 
-    // Ajustar cuando la página carga
-    window.addEventListener("load", ajustarAlturaMapa);
+    /* ===== Contadores de #fun-facts (sin inview/waypoints) ===== */
+    if ('IntersectionObserver' in window) {
+      var funFacts = document.querySelector('#fun-facts');
+      if (funFacts) {
+        var obsCounters = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            funFacts.querySelectorAll('.timer').forEach(function (el) {
+              var target = parseInt((el.textContent || '0').replace(/[^\d]/g, ''), 10) || 0;
+              var startTime = null, duration = 2000;
+              el.textContent = '0';
+              function step(ts) {
+                if (!startTime) startTime = ts;
+                var p = Math.min((ts - startTime) / duration, 1);
+                el.textContent = String(Math.ceil(p * target));
+                if (p < 1) requestAnimationFrame(step);
+              }
+              requestAnimationFrame(step);
+            });
+            obsCounters.disconnect();
+          });
+        }, { threshold: 0.3 });
+        obsCounters.observe(funFacts);
+      }
+    } else {
+      // Fallback simple
+      document.querySelectorAll('#fun-facts .timer').forEach(function (el) {
+        el.textContent = (el.textContent || '0').replace(/[^\d]/g, '');
+      });
+    }
 
-    // Ajustar también si el usuario cambia el tamaño de la ventana
-    window.addEventListener("resize", ajustarAlturaMapa);
+    /* ===================== Animación del mapa por IO ===================== */
+    (function () {
+      var mapa = document.getElementById('mapaColombia');
+      if (!mapa || !('IntersectionObserver' in window)) return;
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            mapa.classList.remove('animar'); void mapa.offsetWidth; mapa.classList.add('animar');
+          } else {
+            mapa.classList.remove('animar');
+          }
+        });
+      }, { threshold: 0.5 });
+      obs.observe(mapa);
+    })();
+
+    /* ===================== Menú móvil ===================== */
+    if ($('.menu-trigger').length && $('.mobilenav').length) {
+      $('.menu-trigger, .mobilenav').on('click', function () {
+        $('.mobilenav').fadeToggle(500);
+        $('.top-menu').toggleClass('top-animate');
+        $('.mid-menu').toggleClass('mid-animate');
+        $('.bottom-menu').toggleClass('bottom-animate');
+      });
+      $('.mobilenav li, .back-to-top').on('click', function () {
+        var target = $(this).data('rel'); var $t = $(target);
+        if ($t.length) $('html, body').stop().animate({ scrollTop: $t.offset().top }, 900, 'swing');
+      });
+    }
+
+    /* ===================== Evitar scroll horizontal ===================== */
+    $('body').css('overflow-x', 'hidden');
+  });
+
+})(jQuery);
+
+/* ===================== Altura del iframe del mapa ===================== */
+(function () {
+  function ajustarAlturaMapa() {
+    var info = document.getElementById("info-contacto");
+    var mapa = document.getElementById("mapa");
+    if (!info || !mapa) return;
+    var h = info.offsetHeight;
+    mapa.style.height = (h > 320 ? h : 320) + "px";
+  }
+  window.addEventListener("load", ajustarAlturaMapa);
+  window.addEventListener("resize", ajustarAlturaMapa);
+  if ("ResizeObserver" in window) {
+    var info = document.getElementById("info-contacto");
+    var ro = new ResizeObserver(ajustarAlturaMapa);
+    if (info) ro.observe(info);
+  }
 })();
-
-document.addEventListener("DOMContentLoaded", function () {
-    const trackBtn = document.getElementById("trackBtn");
-    const trackingNumberInput = document.getElementById("trackingNumber");
-    const trackingResult = document.getElementById("trackingResult");
-
-    trackBtn.addEventListener("click", function () {
-        const number = trackingNumberInput.value.trim();
-
-        if (!number) {
-            trackingResult.innerHTML = "Por favor, ingresa un número de guía.";
-            trackingResult.style.color = "red";
-            return;
-        }
-
-        // Simular fecha de creación de la guía (0 a 5 días atrás)
-        const creationDaysAgo = Math.floor(Math.random() * 5);
-        const today = new Date();
-        const creationDate = new Date(today);
-        creationDate.setDate(today.getDate() - creationDaysAgo);
-
-        // Calcular días transcurridos
-        const diffDays = Math.floor((today - creationDate) / (1000 * 60 * 60 * 24));
-
-        // Estados progresivos
-        let status = "";
-        if (diffDays === 0) status = "Pedido recibido en nuestras oficinas.";
-        else if (diffDays === 1) status = "En preparación para despacho.";
-        else if (diffDays === 2) status = "En tránsito hacia la ciudad de destino.";
-        else if (diffDays === 3) status = "En proceso de entrega.";
-        else status = "Pedido entregado. ¡Gracias por confiar en nosotros!";
-
-        trackingResult.innerHTML = `
-            Estado del envío <strong>#${number}</strong>: ${status} <br>
-            <small>Fecha de registro: ${creationDate.toLocaleDateString()}</small>
-        `;
-        trackingResult.style.color = "#333";
-    });
-});
