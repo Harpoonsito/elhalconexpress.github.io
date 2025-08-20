@@ -680,3 +680,64 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
 .footer-right .social-icon {   /* ul de íconos */
   margin-top: 14px;
 }
+
+/* --- Footer: misma altura en las 3 columnas y bloque central centrado --- */
+.footer-container{
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 28px;
+
+  /* Alinea TODO a la misma altura dentro de la franja del footer */
+  align-items: center;            /* si los quisieras pegados arriba: start */
+  min-height: 140px;              /* altura uniforme de la franja (ajústala) */
+}
+
+/* Evita el efecto del * { margin:auto } dentro del footer */
+.footer-container > *{ margin: 0; }
+
+/* Bloque central: título + horarios + botón centrados */
+.footer-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;            /* centra horizontalmente */
+  justify-content: center;        /* centra verticalmente en la franja */
+  text-align: center;
+}
+
+.footer-center .hours{
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 18px;
+  text-align: left;               /* pon 'center' si quieres los textos centrados también */
+}
+.footer-center .btn-outline{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 2px solid #4cc5c1;
+  color: #4cc5c1;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-center .btn-outline:hover{
+  background: #4cc5c1; color: #fff;
+}
+
+/* Logo e iconos, centrados verticalmente en la misma línea verde */
+.footer-left,
+.footer-right{ align-self: center; }
+
+/* Título “Síguenos en” + iconos agrupados y centrados */
+.footer-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.social-icon{
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+}
