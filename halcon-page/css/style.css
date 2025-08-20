@@ -1,26 +1,52 @@
 /* =========================
+   Config tipografía global
+   ========================= */
+:root{
+  --font-body: 'Open Sans', Arial, sans-serif;
+  --font-headings: 'Poppins', 'Open Sans', Arial, sans-serif;
+
+  /* Tamaños globales de h1..h6 */
+  --fs-h1: 51px;
+  --fs-h2: 35px;
+  --fs-h3: 23px;
+  --fs-h4: 21px;
+  --fs-h5: 18px;
+  --fs-h6: 16px;
+
+  /* Grosor global de todos los títulos */
+  --fw-headings: 600; /* cambia a 400/500/700 según necesites */
+}
+
+/* =========================
    Base & Tipografía
    ========================= */
-* {
-  margin: 0 auto;
-}
+* { margin: 0 auto; }
 
 /* Texto base en Open Sans */
 body, p, li, input, textarea, button, label, small {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: var(--font-body);
 }
 
-/* Títulos en Poppins (peso 600) */
+/* Títulos en Poppins: SOLO h1..h6 + títulos de secciones
+   (NO incluimos nav ni h2 específicos de secciones) */
 h1, h2, h3, h4, h5, h6,
-.title, .column-title,
-#service h2, .cobertura h2 {
-  font-family: 'Poppins', 'Open Sans', Arial, sans-serif;
-  font-weight: 400;
+.title, .column-title {
+  font-family: var(--font-headings);
+  font-weight: var(--fw-headings);
+  line-height: 1.2;
 }
+
+/* Tamaños por nivel, controlados por variables */
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-h6); }
 
 /* Enlaces del menú: forzar Open Sans para que no hereden Poppins */
 .navbar-default .navbar-nav > li > a {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
 }
 
@@ -108,13 +134,24 @@ p {
   line-height: 25px;
   text-align: center;
 }
-h1 { color: #fff; font-size: 51px; text-transform: uppercase; }
-h2 { color: #4f4d49; font-size: 35px; text-transform: uppercase; font-weight: bolder; }
-h3 { color: #333; font-size: 23px; }
-h4 { color: #555; font-size: 21px; text-transform: uppercase; }
-h5 { color: #333; font-size: 18px; }
-h6 { font-size: 16px; }
-strong { font-weight: bolder; }
+
+h1 {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #4f4d49;
+  text-transform: uppercase;
+  /* sin font-weight aquí: hereda de var(--fw-headings) */
+}
+
+h3 { color: #333; }
+h4 { color: #555; text-transform: uppercase; }
+h5 { color: #333; }
+
+
+
 span { color: #5DC1B9; }
 
 .line {
@@ -285,7 +322,13 @@ ul.nav li.active a:before { opacity: 1; }
    Servicios
    ========================= */
 #service p { color: #111; }
-#service h2 { color: #4f4d49; font-size: 35px; text-transform: uppercase; font-weight: bolder; }
+
+/* SIN font-size / font-weight: hereda del h2 global */
+#service h2 {
+  color: #4f4d49;
+  text-transform: uppercase;
+}
+
 #service h5 { color: #5DC1B9; font-weight: bold; }
 #service { text-align: center; padding: 2% 0%; }
 
@@ -322,13 +365,14 @@ ul.nav li.active a:before { opacity: 1; }
    Cobertura
    ========================= */
 .cobertura { text-align: center; padding: 50px 20px; }
+
+/* SIN font-size / font-weight: hereda del h2 global */
 .cobertura h2 {
   color: #4f4d49;
-  font-size: 35px;
   text-transform: uppercase;
-  font-weight: bolder;
   margin-bottom: 10px;
 }
+
 .cobertura p {
   font-size: 15px;
   color: #111;
@@ -460,16 +504,6 @@ ul.nav li.active a:before { opacity: 1; }
 .isotope.infinite-scrolling { transition: none; }
 
 /* =========================
-   Team social
-   ========================= */
-.team-desc ul.team-social-icon li a i.fa { font-size: 20px; color: #999; }
-.team-desc ul.team-social-icon li a i.fa:hover.fa-facebook-f { color: #3b5998; }
-.team-desc ul.team-social-icon li a i.fa:hover.fa-twitter { color: #55acee; }
-.team-desc ul.team-social-icon li a i.fa:hover.fa-pinterest-p { color: #5DC1B9; }
-.team-desc ul.team-social-icon li a i.fa:hover.fa-instagram { color: #3f729b; }
-.team-desc ul.team-social-icon li a i.fa:hover.fa-google-plus { color: #5DC1B9; }
-
-/* =========================
    Owl testi
    ========================= */
 #owl-testi { position: relative; top: 65px; }
@@ -516,7 +550,7 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
 #footer .bg-sec h2 {
   color: #FFFFFF;
   font-size: 25px;
-  font-weight: normal;
+  font-weight: normal; /* este h2 del footer es una excepción, queda en 400 */
   animation: agrandarTexto 1.5s ease-in-out infinite;
 }
 @keyframes agrandarTexto {
@@ -557,7 +591,7 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
 }
 .footer-right { position: relative; top: 0px; left: 80px; }
 .footer-center h3, .footer-right h3 { color: #4cc5c1; }
-.footer-center p { margin: 5px 0; }
+.footer-center p { margin: 6px 0; }
 .footer-center i { color: #4cc5c1; margin-right: 8px; }
 .social-icon { list-style: none; display: flex; gap: 15px; padding: 0; }
 .social-icon li a {
@@ -635,4 +669,14 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
 }
 @media (max-width: 767px) {
   .features-sec > [class*="col-"]:nth-child(2n+1) { clear: both; }
+}
+
+/* En el footer */
+.footer-right h3 {             /* “Síguenos en” */
+  margin-bottom: 14px;         /* súbelo a 16–24px si quieres más */
+}
+
+/* (opcional o en vez de lo anterior) */
+.footer-right .social-icon {   /* ul de íconos */
+  margin-top: 14px;
 }
