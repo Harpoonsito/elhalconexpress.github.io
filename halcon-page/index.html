@@ -277,23 +277,21 @@
     </div>
   </section>
 
-  <!-- Rastrear Pedido -->
-  <section id="tracking" style="padding: 50px 0; background: #f8f8f8;">
-    <div class="container text-center">
-      <h2>RASTREA TU ENV<span>IO</span></h2>
-      <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
+ <!-- Rastrear Pedido -->
+<section id="tracking" class="tracking">
+  <div class="container text-center">
+    <h2>RASTREA TU ENV<span>ÍO</span></h2>
+    <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
 
-      <div style="max-width: 400px; margin: auto;">
-        <input type="text" id="trackingNumber" placeholder="Número de guía"
-          style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc;">
-        <button id="trackBtn" style="width: 100%; padding: 10px; background: #5DC1B9; color: white; border: none;">
-          Rastrear
-        </button>
-      </div>
+    <form id="tracking-form" class="tracking__form" autocomplete="off">
+      <input id="trackingNumber" name="guia" class="tracking__input" type="text"
+             placeholder="Número de guía" required />
+      <button class="tracking__btn" type="submit">Rastrear</button>
+    </form>
 
-      <div id="trackingResult" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
-    </div>
-  </section>
+    <div id="trackingResult" class="tracking__result" aria-live="polite"></div>
+  </div>
+</section>
 
   <!-- Features -->
   <section id="features">

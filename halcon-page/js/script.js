@@ -129,3 +129,101 @@
     if (info) ro.observe(info);
   }
 })();
+
+// === Rastreo de envíos ===
+document.addEventListener('DOMContentLoaded', () => {
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec';
+  const TOKEN    = 'x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
+
+  const form   = document.getElementById('tracking-form');
+  const input  = document.getElementById('trackingNumber');
+  const result = document.getElementById('trackingResult');
+  if (!form || !input || !result) return;
+
+  const btn = form.querySelector('button[type="submit"]');
+
+  // Formatea ISO 8601 -> "dd/mm/aaaa HH:mm:ss" en America/Bogota
+  const TZ = 'America/Bogota';
+  function formatearFechaLocal(iso) {
+    if (!iso) return '-';
+    const d = new Date(iso);
+    if (isNaN(d)) return String(iso); // por si ya viene como texto
+    return new Intl.DateTimeFormat('es-CO', {
+      timeZone: TZ,
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    }).format(d);
+  }
+
+  function msg(html) {
+    result.innerHTML = `<div class="track-msg">${html}</div>`;
+  }
+
+  function card(r) {
+    const estado = (r.estado || '').toString().trim().toUpperCase();
+    const fecha  = formatearFechaLocal(r.fecha);
+
+    // WhatsApp dinámico con la guía
+    const waPhone = '573006965535'; // sin + ni espacios
+    const waText  = encodeURIComponent(
+      `Hola, quiero más información sobre mi envío con número de guía ${r.guia || ''}.`
+    );
+    const waLink  = `https://wa.me/${waPhone}?text=${waText}`;
+
+    result.innerHTML = `
+      <div class="track-card">
+        <h3>Estado de tu envío</h3>
+        <p><strong>Guía:</strong> ${r.guia || '-'}</p>
+        <p><strong>Cliente:</strong> ${r.nombre || '-'}</p>
+        <p><strong>Estado:</strong> <span class="estado">${estado || '-'}</span></p>
+        <p><strong>Actualizado:</strong> ${fecha}</p>
+        <p style="margin-top:12px">
+          <a class="btn-whatsapp" href="${waLink}" target="_blank" rel="noopener">
+            Más información por WhatsApp
+          </a>
+        </p>
+      </div>`;
+  }
+
+  async function rastrear(guia) {
+    if (!guia) {
+      msg('<span style="color:#a00">Ingresa un número de guía.</span>');
+      input.focus();
+      return;
+    }
+    msg('Buscando…');
+    if (btn) btn.disabled = true;
+    input.readOnly = true;
+
+    try {
+      const url = `${ENDPOINT}?guia=${encodeURIComponent(guia)}&token=${TOKEN}`;
+      const r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
+      if (!r.ok) throw new Error('http ' + r.status);
+      const data = await r.json();
+
+      if (!data.ok) {
+        msg(
+          data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
+          data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
+                                          'No se pudo consultar. Intenta de nuevo.'
+        );
+        return;
+      }
+      card(data.resultado || {});
+    } catch (e) {
+      console.error(e);
+      msg('Error de red. Intenta de nuevo.');
+    } finally {
+      if (btn) btn.disabled = false;
+      input.readOnly = false;
+    }
+  }
+
+  // Envío del formulario (incluye Enter)
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    rastrear((input.value || '').trim());
+  });
+});
+

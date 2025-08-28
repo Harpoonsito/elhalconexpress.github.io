@@ -741,3 +741,58 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
   gap: 18px;
   margin-top: 10px;
 }
+/* ===== RASTREO ===== */
+.tracking{ padding:50px 0; background:#f8f8f8; }
+
+.tracking__form{
+  max-width:420px;
+  margin:16px auto 0;
+  display:flex; gap:10px;
+}
+
+.tracking__input{
+  flex:1 1 auto;
+  padding:10px 12px;
+  border:1px solid #cfe7e6;
+  border-radius:10px;
+}
+
+.tracking__btn{
+  padding:10px 16px;
+  background:#5DC1B9; color:#fff;
+  border:none; border-radius:10px;
+  font-weight:600; cursor:pointer;
+}
+.tracking__btn:hover{ filter:brightness(.95); }
+
+.tracking__result{ max-width:760px; margin:22px auto 0; text-align:left; }
+.tracking__card{ border:1px solid #e6f2f1; padding:16px; border-radius:12px; }
+
+.tracking__timeline{ list-style:none; padding:0; margin:14px 0 0; }
+.tracking__timeline li{ padding:8px 0; border-bottom:1px dashed #e5e5e5; }
+.tracking__timeline li:last-child{ border-bottom:0; }
+
+.tracking__loading,.tracking__error,.tracking__notfound{
+  text-align:center; margin-top:12px;
+}
+.track-card{
+  max-width: 680px;
+  margin: 16px auto;
+  padding: 16px;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  text-align: left;
+}
+.track-card .btn-whatsapp{
+  display:inline-block;
+  padding:10px 16px;
+  border:2px solid #25D366;
+  border-radius:999px;
+  color:#25D366;
+  text-decoration:none;
+  font-weight:600;
+}
+.track-card .btn-whatsapp:hover{
+  background:#25D366;
+  color:#fff;
+}
