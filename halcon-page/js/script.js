@@ -225,5 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     rastrear((input.value || '').trim());
   });
+
+  
 });
 
