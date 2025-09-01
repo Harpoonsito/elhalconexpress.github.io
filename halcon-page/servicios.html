@@ -8,23 +8,42 @@
   <meta name="theme-color" content="#5DC1B9">
   <link rel="icon" type="image/png" href="images/Logo/Favicon 2.png">
 
-  <!-- Bootstrap + estilos del sitio -->
+  <!-- Bootstrap + estilos -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 
-  <!-- Font Awesome 4.7 + fuentes -->
+  <!-- Font Awesome + fuentes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Mini ajuste para el CTA lateral + modal -->
+  <style>
+    .svc-cta-card{padding:16px;background:#f8f8f8;border:1px solid #eee;border-radius:12px;margin-top:16px}
+    .svc-cta-card .btn-primary-brand{display:block;width:100%;text-align:center}
+    /* Modal: botones de proveedor */
+    .provider-list{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0;padding:0;list-style:none}
+    .provider-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid #dfeeee;border-radius:10px;padding:10px 12px;
+      background:#fff; cursor:pointer;
+    }
+    .provider-btn:hover{border-color:#5DC1B9;color:#2E8F88}
+    .provider-btn .fa{width:18px;text-align:center}
+    /* Color marca para acciones primarias */
+    .btn-brand{
+      background:#5DC1B9;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:600;
+    }
+    .btn-brand:hover{filter:brightness(.95)}
+  </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar-default" data-offset="100">
-  <!-- Header / navbar (alineado con index) -->
+  <!-- Header (igual al index) -->
   <header id="menu">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="container-fluid">
-          <!-- Brand + mobile toggle -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -37,16 +56,15 @@
             </a>
           </div>
 
-          <!-- Links -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li><a class="scroll" href="index.html#menu">Inicio</a></li>
               <li><a class="scroll" href="index.html#about">Nosotros</a></li>
 
-              <!-- Dropdown de Servicios (activa en esta página) -->
+              <!-- Dropdown Servicios activo -->
               <li class="dropdown dropdown-services active">
-                <a href="#" class="dropdown-toggle nav-svc" data-toggle="dropdown"
-                   role="button" aria-haspopup="true" aria-expanded="false" aria-current="page">
+                <a href="#" class="dropdown-toggle nav-svc" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false" aria-current="page">
                   Servicios <span class="nav-plus">+</span> <span class="caret" aria-hidden="true"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-services-menu">
@@ -71,361 +89,205 @@
   </header>
 
   <main id="svc-top" tabindex="-1">
-    <!-- HERO -->
+    <!-- Hero chico -->
     <section class="svc-hero">
       <div class="container">
         <h1 style="color:#4f4d49;text-transform:none;">Servicios de El Halcón Express</h1>
-        <p class="lead">
-          Soluciones confiables de transporte y logística en Colombia. Explora cada servicio y encuentra la opción ideal para tu negocio.
-        </p>
-        <div class="cta-row" role="group" aria-label="Acciones principales">
-          <a href="https://wa.me/573006965535" class="btn-wa" target="_blank" rel="noopener">
-            <i class="fa fa-whatsapp" aria-hidden="true"></i> Escríbenos por WhatsApp
-          </a>
-          <a href="mailto:comercial@elhalconexpress.com" class="btn-primary-brand">
-            <i class="fa fa-envelope-o" aria-hidden="true"></i> Solicitar cotización
-          </a>
-        </div>
+        <p class="lead">Soluciones confiables de transporte y logística en Colombia.</p>
       </div>
     </section>
 
-    <!-- SUB-NAV STICKY -->
-    <nav class="svc-subnav" id="services-nav" aria-label="Navegación por servicios">
+    <!-- ===== Layout: sidebar + contenido ===== -->
+    <section class="svc-layout">
       <div class="container">
-        <a class="svc-chip" href="#transporte-urbano">Urbano</a>
-        <a class="svc-chip" href="#transporte-nacional">Nacional</a>
-        <a class="svc-chip" href="#logistica-empresarial">Logística</a>
-        <a class="svc-chip" href="#servicios-programados">Programados</a>
-        <a class="svc-chip" href="#envios-asegurados">Asegurados</a>
-        <a class="svc-chip" href="#atencion-inmediata">Atención</a>
-      </div>
-    </nav>
-
-     <!-- ====== NUESTROS SERVICIOS (HOME) ====== -->
-  <section id="service" aria-labelledby="svc-title">
-    <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="heading">
-          <h2 id="svc-title">NUESTROS SERVI<span>CIOS</span></h2>
-          <div class="line"></div>
-          <p>
-            <span><strong>A</strong></span> continuación, te presentamos nuestros servicios, diseñados para brindarte
-            eficiencia, seguridad y confianza en cada envío.
-          </p>
-        </div>
-      </div>
-
-      <div class="row features-sec svc-grid">
-        <!-- 1 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box" itemscope itemtype="http://schema.org/Service">
-            <div class="pull-left"><i class="fa fa-truck" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading" itemprop="name">Transporte urbano de carga</h5>
-              <p itemprop="description">Recolecciones y entregas dentro de la ciudad con puntualidad y cuidado.</p>
-              <ul class="svc-points">
-                <li>Rutas intraurbanas</li>
-                <li>Prueba de entrega</li>
-                <li>Coordinación por WhatsApp</li>
+        <div class="row">
+          <!-- Sidebar -->
+          <aside class="col-md-4 col-lg-3">
+            <div class="svc-card">
+              <h3 class="svc-title">Servicios</h3>
+              <ul class="svc-menu nav" role="tablist" id="svc-menu">
+                <li class="active">
+                  <a href="#transporte-urbano" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Transporte urbano de carga
+                  </a>
+                </li>
+                <li>
+                  <a href="#transporte-nacional" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Transporte nacional
+                  </a>
+                </li>
+                <li>
+                  <a href="#logistica-empresarial" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Logística empresarial
+                  </a>
+                </li>
+                <li>
+                  <a href="#servicios-programados" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Servicios programados
+                  </a>
+                </li>
+                <li>
+                  <a href="#envios-asegurados" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Envíos asegurados
+                  </a>
+                </li>
+                <li>
+                  <a href="#atencion-inmediata" data-toggle="tab" role="tab">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Atención inmediata
+                  </a>
+                </li>
               </ul>
-              <a class="svc-link" href="servicios.html#transporte-urbano" aria-label="Ver más sobre transporte urbano">Ver más</a>
             </div>
-          </article>
-        </div>
 
-        <!-- 2 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box" itemscope itemtype="http://schema.org/Service">
-            <div class="pull-left"><i class="fa fa-road" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading" itemprop="name">Transporte nacional</h5>
-              <p itemprop="description">Cobertura a nivel país con seguimiento y soporte a cada paso.</p>
-              <ul class="svc-points">
-                <li>Red de aliados</li>
-                <li>Tracking del envío</li>
-                <li>Entrega verificada</li>
-              </ul>
-              <a class="svc-link" href="servicios.html#transporte-nacional">Ver más</a>
+            <!-- CTA único: Cotizar (abre modal de selector) -->
+            <div class="svc-card svc-cta-card">
+              <button id="quote-btn" class="btn-brand" type="button">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> Cotizar ahora
+              </button>
             </div>
-          </article>
-        </div>
+          </aside>
 
-        <!-- 3 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box">
-            <div class="pull-left"><i class="fa fa-cogs" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading">Logística empresarial</h5>
-              <p>Soluciones a la medida para optimizar tus procesos de distribución y entrega.</p>
-              <ul class="svc-points">
-                <li>Rutas dedicadas</li>
-                <li>Pickup &amp; pack</li>
-                <li>Optimización de costos</li>
-              </ul>
-              <a class="svc-link" href="servicios.html#logistica-empresarial">Ver más</a>
+          <!-- Contenido -->
+          <div class="col-md-8 col-lg-9">
+            <div id="svc-tabs-top"></div>
+            <div class="tab-content svc-content">
+              <!-- Urbano -->
+              <div role="tabpanel" class="tab-pane fade in active" id="transporte-urbano">
+                <article class="svc-article">
+                  <h2>Transporte urbano de carga</h2>
+                  <p>Recolecciones y entregas dentro de la ciudad con puntualidad, coordinación directa y trazabilidad básica.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Rutas intraurbanas y ventanas horarias.</li>
+                    <li>Prueba de entrega (POD) y confirmación por canal acordado.</li>
+                    <li>Atención por WhatsApp para ajustes y novedades.</li>
+                  </ul>
+
+                  <h4>Cómo funciona</h4>
+                  <ol class="svc-steps">
+                    <li>Agenda tu servicio (direcciones, horarios y contacto).</li>
+                    <li>Recolección del paquete/mercancía en el punto indicado.</li>
+                    <li>Entrega y confirmación con evidencia.</li>
+                  </ol>
+
+                  <div class="svc-spacer"><!-- espacio libre para ampliar luego --></div>
+                </article>
+              </div>
+
+              <!-- Nacional -->
+              <div role="tabpanel" class="tab-pane fade" id="transporte-nacional">
+                <article class="svc-article">
+                  <h2>Transporte nacional</h2>
+                  <p>Cubrimos rutas a nivel país a través de nuestra red de aliados y planificación de despachos.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Rutas optimizadas y seguimiento del envío.</li>
+                    <li>Coordinación de entregas en destino con confirmación.</li>
+                    <li>Asesoría en embalaje y requisitos del remitente.</li>
+                  </ul>
+
+                  <h4>Cómo funciona</h4>
+                  <ol class="svc-steps">
+                    <li>Validación de ruta y tiempos estimados.</li>
+                    <li>Despacho y rastreo del estado de tu guía.</li>
+                    <li>Entrega en destino y cierre con evidencia.</li>
+                  </ol>
+
+                  <div class="svc-spacer"></div>
+                </article>
+              </div>
+
+              <!-- Logística -->
+              <div role="tabpanel" class="tab-pane fade" id="logistica-empresarial">
+                <article class="svc-article">
+                  <h2>Logística empresarial</h2>
+                  <p>Soluciones a la medida: rutas dedicadas, cross-dock y SLA definidos.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Modelación de rutas y ventanas horarias.</li>
+                    <li>Integraciones simples de pedido (planilla o API ligera).</li>
+                    <li>KPIs y reportes de cumplimiento.</li>
+                  </ul>
+
+                  <h4>Cómo funciona</h4>
+                  <ol class="svc-steps">
+                    <li>Levantamiento de requerimientos y base de direcciones.</li>
+                    <li>Piloto controlado y ajuste de operación.</li>
+                    <li>Despliegue con mejora continua.</li>
+                  </ol>
+
+                  <div class="svc-spacer"></div>
+                </article>
+              </div>
+
+              <!-- Programados -->
+              <div role="tabpanel" class="tab-pane fade" id="servicios-programados">
+                <article class="svc-article">
+                  <h2>Servicios programados</h2>
+                  <p>Calendarios de recolección y entrega para operaciones con frecuencia semanal o mensual.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Slots fijos por día/semana.</li>
+                    <li>Recordatorios y confirmaciones.</li>
+                    <li>Optimización por zonas y franjas.</li>
+                  </ul>
+
+                  <h4>Cómo funciona</h4>
+                  <ol class="svc-steps">
+                    <li>Definimos puntos y ventanas horarias.</li>
+                    <li>Agendamos rutas recurrentes.</li>
+                    <li>Monitoreo y ajustes por demanda.</li>
+                  </ol>
+
+                  <div class="svc-spacer"></div>
+                </article>
+              </div>
+
+              <!-- Asegurados -->
+              <div role="tabpanel" class="tab-pane fade" id="envios-asegurados">
+                <article class="svc-article">
+                  <h2>Envíos asegurados</h2>
+                  <p>Protege tu mercancía con pólizas según valor declarado y tipo de carga.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Opciones de cobertura por tramo o envío.</li>
+                    <li>Acompañamiento en caso de siniestro.</li>
+                    <li>Soporte documental y tiempos claros.</li>
+                  </ul>
+
+                  <div class="svc-spacer"></div>
+                </article>
+              </div>
+
+              <!-- Atención inmediata -->
+              <div role="tabpanel" class="tab-pane fade" id="atencion-inmediata">
+                <article class="svc-article">
+                  <h2>Atención inmediata</h2>
+                  <p>Resuelve tus solicitudes por WhatsApp de forma ágil y con seguimiento.</p>
+
+                  <h4>Beneficios</h4>
+                  <ul class="svc-list">
+                    <li>Dos líneas disponibles para atención.</li>
+                    <li>Escalamiento según prioridad.</li>
+                    <li>Confirmaciones rápidas.</li>
+                  </ul>
+
+                  <div class="svc-spacer"></div>
+                </article>
+              </div>
             </div>
-          </article>
+          </div><!-- /contenido -->
         </div>
-
-        <!-- 4 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box">
-            <div class="pull-left"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading">Servicios programados</h5>
-              <p>Agendamiento recurrente para negocios con entregas frecuentes.</p>
-              <ul class="svc-points">
-                <li>Calendario de recolecciones</li>
-                <li>Ventanas horarias</li>
-                <li>Puntos de entrega fijos</li>
-              </ul>
-              <a class="svc-link" href="servicios.html#servicios-programados">Ver más</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- 5 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box">
-            <div class="pull-left"><i class="fa fa-shield" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading">Envíos asegurados</h5>
-              <p>Opciones de seguro para proteger tu carga ante imprevistos.</p>
-              <ul class="svc-points">
-                <li>Cobertura por pérdida o daño</li>
-                <li>Asistencia en siniestros</li>
-                <li>Respaldo documental</li>
-              </ul>
-              <a class="svc-link" href="servicios.html#envios-asegurados">Ver más</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- 6 -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <article class="media service-box">
-            <div class="pull-left"><i class="fa fa-whatsapp" aria-hidden="true"></i></div>
-            <div class="media-body">
-              <h5 class="media-heading">Atención inmediata</h5>
-              <p>Comunicación directa por WhatsApp para gestionar tus solicitudes con agilidad.</p>
-              <ul class="svc-points">
-                <li>Respuesta rápida</li>
-                <li>Gestión centralizada</li>
-                <li>Dos líneas disponibles</li>
-              </ul>
-              <a class="svc-link" href="servicios.html#atencion-inmediata">Ver más</a>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="text-center">
-        <a class="btn btn-default btn-svc-all" href="servicios.html" title="Se abrirá una página independiente">Ver todos los servicios</a>
-      </div>
-    </div>
-  </section>
-
-
-    <!-- ===== BLOQUES DE SERVICIO ===== -->
-
-    <!-- Transporte urbano -->
-    <section id="transporte-urbano" class="svc-block">
-      <div class="container">
-        <h2>Transporte urbano de carga</h2>
-        <p>Recolecciones y entregas dentro de la ciudad con puntualidad, coordinación directa y trazabilidad básica.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Programación de recolección en horarios definidos.</li>
-          <li>Prueba de entrega (POD) y confirmación por canal acordado.</li>
-          <li>Atención por WhatsApp para ajustes y novedades.</li>
-        </ul>
-
-        <h4>Cómo funciona</h4>
-        <ol class="svc-steps">
-          <li>Agenda tu servicio (direcciones, horarios y contacto).</li>
-          <li>Recolección del paquete/mercancía en el punto indicado.</li>
-          <li>Entrega y confirmación con evidencia.</li>
-        </ol>
-
-        <div class="svc-cta">
-          <a class="btn-primary-brand" href="mailto:comercial@elhalconexpress.com">Cotizar este servicio</a>
-          <a class="btn-wa" href="https://wa.me/573006965535" target="_blank" rel="noopener">WhatsApp 1</a>
-          <a class="btn-wa" href="https://wa.me/573006965541" target="_blank" rel="noopener">WhatsApp 2</a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿En qué ciudades operan?</dt>
-          <dd>Brindamos cobertura urbana en las principales ciudades; confirma disponibilidad según tu zona.</dd>
-          <dt>¿Manejan recolecciones el mismo día?</dt>
-          <dd>Según agenda y disponibilidad. Cuéntanos tu urgencia y te proponemos la mejor opción.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Transporte nacional -->
-    <section id="transporte-nacional" class="svc-block">
-      <div class="container">
-        <h2>Transporte nacional</h2>
-        <p>Cubrimos rutas a nivel país a través de nuestra red de aliados y planificación de despachos.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Rutas optimizadas y seguimiento del envío.</li>
-          <li>Coordinación de entregas en destino con confirmación.</li>
-          <li>Asesoría en embalaje y requisitos del remitente.</li>
-        </ul>
-
-        <h4>Cómo funciona</h4>
-        <ol class="svc-steps">
-          <li>Validación de ruta y tiempos estimados.</li>
-          <li>Despacho y rastreo del estado de tu guía.</li>
-          <li>Entrega en destino y cierre con evidencia.</li>
-        </ol>
-
-        <div class="svc-cta">
-          <a class="btn-primary-brand" href="mailto:comercial@elhalconexpress.com">Cotizar este servicio</a>
-          <a class="btn-wa" href="https://wa.me/573006965535" target="_blank" rel="noopener">WhatsApp 1</a>
-          <a class="btn-wa" href="https://wa.me/573006965541" target="_blank" rel="noopener">WhatsApp 2</a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿Qué tiempos de entrega manejan?</dt>
-          <dd>Dependen del origen/destino y condiciones de vía; te confirmamos al cotizar.</dd>
-          <dt>¿Puedo rastrear mi envío?</dt>
-          <dd>Sí, contamos con consulta del estado y soporte de actualizaciones.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Logística empresarial -->
-    <section id="logistica-empresarial" class="svc-block">
-      <div class="container">
-        <h2>Logística empresarial</h2>
-        <p>Diseño de soluciones logísticas a la medida: rutas dedicadas, puntos de cross-dock y SLA definidos.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Modelación de rutas y ventanas horarias.</li>
-          <li>Integraciones simples de pedido (por planilla o API ligera).</li>
-          <li>KPIs y reportes de cumplimiento.</li>
-        </ul>
-
-        <h4>Cómo funciona</h4>
-        <ol class="svc-steps">
-          <li>Levantamiento de requerimientos y base de direcciones.</li>
-          <li>Piloto controlado y ajuste de operación.</li>
-          <li>Despliegue con seguimiento y mejora continua.</li>
-        </ol>
-
-        <div class="svc-cta">
-          <a class="btn-primary-brand" href="mailto:comercial@elhalconexpress.com">Solicitar propuesta</a>
-          <a class="btn-wa" href="https://wa.me/573006965535" target="_blank" rel="noopener">Hablar por WhatsApp</a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿Tienen mínimos de volumen?</dt>
-          <dd>Podemos ajustar la operación a tu demanda; definimos condiciones en la propuesta.</dd>
-          <dt>¿Ofrecen rutas dedicadas?</dt>
-          <dd>Sí, según disponibilidad y ciudad. Ideal para picos y campañas.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Servicios programados -->
-    <section id="servicios-programados" class="svc-block">
-      <div class="container">
-        <h2>Servicios programados</h2>
-        <p>Calendarios de recolección y entrega para operaciones con frecuencia semanal o mensual.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Slots fijos por día/semana.</li>
-          <li>Recordatorios y confirmaciones.</li>
-          <li>Optimización por zonas y franjas.</li>
-        </ul>
-
-        <h4>Cómo funciona</h4>
-        <ol class="svc-steps">
-          <li>Definimos tus puntos y ventanas horarias.</li>
-          <li>Agendamos las rutas recurrentes.</li>
-          <li>Monitoreo y ajustes por demanda.</li>
-        </ol>
-
-        <div class="svc-cta">
-          <a class="btn-primary-brand" href="mailto:comercial@elhalconexpress.com">Agendar servicio</a>
-          <a class="btn-wa" href="https://wa.me/573006965541" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿Pueden cambiarse los días asignados?</dt>
-          <dd>Sí, con aviso previo para ajustar rutas y disponibilidad.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Envíos asegurados -->
-    <section id="envios-asegurados" class="svc-block">
-      <div class="container">
-        <h2>Envíos asegurados</h2>
-        <p>Protege tu mercancía con pólizas según valor declarado y tipo de carga.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Opciones de cobertura por tramo o envío.</li>
-          <li>Acompañamiento en caso de siniestro.</li>
-          <li>Soporte documental y tiempos claros.</li>
-        </ul>
-
-        <h4>Cómo funciona</h4>
-        <ol class="svc-steps">
-          <li>Declara el valor y la naturaleza de tu envío.</li>
-          <li>Emitimos cobertura y registramos tu guía.</li>
-          <li>Respaldo durante todo el trayecto.</li>
-        </ol>
-
-        <div class="svc-cta">
-          <a class="btn-primary-brand" href="mailto:comercial@elhalconexpress.com">Solicitar cobertura</a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿Qué no cubre el seguro?</dt>
-          <dd>Las exclusiones dependen del plan; te compartimos condiciones al cotizar.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Atención inmediata -->
-    <section id="atencion-inmediata" class="svc-block">
-      <div class="container">
-        <h2>Atención inmediata</h2>
-        <p>Resuelve tus solicitudes por WhatsApp de forma ágil y con seguimiento.</p>
-
-        <h4>Cómo te ayudamos</h4>
-        <ul class="svc-benefits">
-          <li>Dos líneas disponibles para atención.</li>
-          <li>Escalamiento según prioridad.</li>
-          <li>Confirmaciones rápidas.</li>
-        </ul>
-
-        <div class="svc-cta">
-          <a class="btn-wa" href="https://wa.me/573006965535" target="_blank" rel="noopener">
-            <i class="fa fa-whatsapp" aria-hidden="true"></i> +57 300 696 5535
-          </a>
-          <a class="btn-wa" href="https://wa.me/573006965541" target="_blank" rel="noopener">
-            <i class="fa fa-whatsapp" aria-hidden="true"></i> +57 300 696 5541
-          </a>
-        </div>
-
-        <dl class="svc-faqs">
-          <dt>¿Tienen horario de atención?</dt>
-          <dd>Lunes a viernes 8:00–18:00 y sábados 8:00–14:00.</dd>
-        </dl>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (igual al index) -->
   <footer id="footer">
     <div class="bg-sec">
       <div class="container">
@@ -472,42 +334,32 @@
   <script src="js/owl.carousel.js"></script>
   <script src="js/script.js"></script>
 
-  <!-- JSON-LD: Organización -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"El Halcón Express Cargo SAS",
-    "address":{
-      "@type":"PostalAddress",
-      "streetAddress":"Cra. 31a #No. 7-26 Piso 2",
-      "addressLocality":"Bogotá",
-      "addressCountry":"CO"
-    },
-    "contactPoint":[
-      {"@type":"ContactPoint","telephone":"+57 322 856 2215","contactType":"customer service","areaServed":"CO","availableLanguage":["es"]}
-    ],
-    "sameAs":[
-      "https://www.instagram.com/elhalconexpress",
-      "https://www.facebook.com/elhalconexpresscargo",
-      "https://www.linkedin.com/company/elhalconexpresscargosas/"
-    ]
-  }
-  </script>
-
-  <!-- JSON-LD: Servicios -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"Service","name":"Transporte urbano de carga","serviceType":"Transporte de carga","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Recolecciones y entregas dentro de la ciudad con puntualidad y cuidado."},
-      {"@type":"Service","name":"Transporte nacional","serviceType":"Transporte de carga","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Cobertura a nivel país con seguimiento y confirmación de entrega."},
-      {"@type":"Service","name":"Logística empresarial","serviceType":"Logística","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Soluciones a la medida para distribución, rutas dedicadas y KPIs."},
-      {"@type":"Service","name":"Servicios programados","serviceType":"Logística programada","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Calendarios de recolección y entrega con ventanas horarias."},
-      {"@type":"Service","name":"Envíos asegurados","serviceType":"Seguro de carga","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Coberturas de protección ante pérdida o daño."},
-      {"@type":"Service","name":"Atención inmediata","serviceType":"Soporte al cliente","provider":{"@type":"Organization","name":"El Halcón Express Cargo SAS"},"areaServed":"CO","description":"Atención por WhatsApp para gestión ágil de solicitudes."}
-    ]
-  }
-  </script>
-</body>
-</html>
+  <!-- Modal: Elegir cómo enviar la cotización -->
+  <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" role="document">
+        <div class="modal-header" style="border-bottom:1px solid #eee">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="quoteModalLabel">Enviar solicitud de cotización</h4>
+        </div>
+        <div class="modal-body">
+          <p>Elige cómo quieres redactar y enviar tu correo:</p>
+          <ul class="provider-list">
+            <li><button class="provider-btn" data-provider="gmail"><i class="fa fa-google"></i> Gmail</button></li>
+            <li><button class="provider-btn" data-provider="outlook"><i class="fa fa-windows"></i> Outlook</button></li>
+            <li><button class="provider-btn" data-provider="yahoo"><i class="fa fa-yahoo"></i> Yahoo Mail</button></li>
+            <li><button class="provider-btn" data-provider="mailto"><i class="fa fa-envelope"></i> App de correo</button></li>
+            <li><button class="provider-btn" data-provider="copy"><i class="fa fa-clipboard"></i> Copiar texto</button></li>
+          </ul>
+          <small style="display:block;margin-top:8px;color:#666">
+            * Gmail/Outlook/Yahoo abren una pestaña con tu correo ya redactado. “App de correo” requiere tener un cliente de correo configurado en el sistema.
+          </small>
+        </div>
+        <div class="modal-footer" style="border-top:1px solid #eee">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>

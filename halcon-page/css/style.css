@@ -317,52 +317,47 @@ ul.nav li.active a:before { opacity: 1; }
 @media (min-width: 768px) and (max-width: 991px){ .features-sec > [class*="col-"]:nth-child(2n+1){ clear: both; } }
 @media (max-width: 767px){ .features-sec > [class*="col-"]:nth-child(2n+1){ clear: both; } }
 
-/* =========================
-   Servicios (página completa)
-   ========================= */
-/* Tarjetas del home (grilla con call-to-action) */
-.svc-grid .media.service-box{
-  min-height:260px; background:#fff; border:1px solid #eee;
-  border-radius:12px; padding:16px; box-shadow:0 2px 12px rgba(0,0,0,.04);
+/* ===== Página Servicios: sidebar + contenido ===== */
+.svc-hero{ padding:60px 20px 20px; text-align:center; background:#f8f8f8; }
+.svc-hero .lead{ max-width:820px; margin:8px auto 0; color:#111; }
+
+.svc-layout{ padding:32px 0 56px; }
+.svc-card{ background:#f6f8fa; border:1px solid #e6edf3; border-radius:12px; padding:16px; }
+.svc-card + .svc-card{ margin-top:18px; }
+.svc-title{ font-size:22px; font-weight:700; margin:0 0 12px; padding-bottom:8px; border-bottom:3px solid #5DC1B9; display:inline-block; }
+
+.svc-menu{ list-style:none; padding:0; margin:0; }
+.svc-menu li{ border-top:1px solid #e6ecef; }
+.svc-menu li:first-child{ border-top:0; }
+.svc-menu a{ display:flex; align-items:center; gap:10px; padding:13px 8px; text-decoration:none; color:#222; font-weight:600; }
+.svc-menu a .ico{ width:22px; text-align:center; }
+.svc-menu li.active a, .svc-menu a:hover{ background:#fff; border-radius:10px; color:#2E8F88; }
+
+.svc-contact{ background:#e55325; color:#fff; border:0; }
+.svc-contact a{ color:#fff; text-decoration:none; }
+.svc-contact .btn-wa{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+  border:2px solid #fff; border-radius:999px; font-weight:700;
 }
-.svc-points{ margin:8px 0 10px; padding-left:18px; text-align:left; }
-.svc-points li{ font-size:14px; line-height:20px; color:#444; }
+.svc-contact .btn-wa:hover{ background:#fff; color:#e55325; }
 
-.svc-link{
-  display:inline-block; margin-top:6px; padding:6px 10px;
-  border:2px solid #5DC1B9; color:#5DC1B9; border-radius:999px; font-weight:600;
+@media (min-width: 992px){
+  .svc-card{ position:relative; }
+  aside .svc-card:first-child{ position:sticky; top:90px; } /* Menú fijo */
 }
-.svc-link:hover,.svc-link:focus{ background:#5DC1B9; color:#fff; outline:none; }
 
-.btn-svc-all{
-  margin-top:10px; border:2px solid #5DC1B9; color:#5DC1B9;
-  background:#fff; border-radius:999px; padding:10px 18px; font-weight:600;
+.svc-content h2{ color:#4f4d49; text-transform:none; text-align:left; margin-top:0; }
+.svc-content p{ text-align:left; }
+.svc-list{ list-style:none; padding:0; margin:8px 0 18px; }
+.svc-list li{ position:relative; padding-left:28px; margin-bottom:8px; }
+.svc-list li:before{
+  content:"\f058"; font-family:FontAwesome; position:absolute; left:0; top:2px; color:#5DC1B9;
 }
-.btn-svc-all:hover{ background:#5DC1B9; color:#fff; }
+.svc-steps{ counter-reset:step; list-style:none; padding:0; margin:8px 0 18px; }
+.svc-steps li{ position:relative; padding-left:34px; margin-bottom:8px; }
+.svc-steps li:before{ counter-increment:step; content:counter(step) "."; position:absolute; left:0; top:0; font-weight:700; color:#4f4d49; }
 
-/* Página /servicios */
-.svc-hero{ padding:80px 20px 30px; text-align:center; background:#f8f8f8; }
-.svc-hero h1{ color:#4f4d49; text-transform:none; }
-.svc-hero .lead{ max-width:820px; margin:10px auto 0; color:#111; }
-.svc-hero .cta-row{ margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-.btn-primary-brand{ background:#5DC1B9; color:#fff; border:none; border-radius:10px; padding:10px 16px; font-weight:600; }
-.btn-primary-brand:hover{ filter:brightness(.95); }
-.btn-wa{ border:2px solid #25D366; color:#25D366; border-radius:999px; padding:8px 14px; font-weight:600; }
-.btn-wa:hover{ background:#25D366; color:#fff; }
-
-.svc-subnav{ position:sticky; top:70px; z-index:5; background:#fff; border-bottom:1px solid #eee; }
-.svc-subnav .container{ display:flex; gap:12px; overflow:auto; white-space:nowrap; padding:10px 0; }
-.svc-chip{ display:inline-block; padding:8px 12px; border-radius:999px; border:1px solid #dfeeee; color:#111; }
-.svc-chip.active, .svc-chip:hover{ border-color:#5DC1B9; color:#2E8F88; }
-
-.svc-block{ padding:40px 0 20px; border-bottom:1px solid #f0f0f0; }
-.svc-block h2{ color:#4f4d49; text-transform:none; text-align:left; }
-.svc-block p{ text-align:left; }
-.svc-benefits, .svc-steps, .svc-faqs{ text-align:left; margin-top:10px; }
-.svc-benefits li, .svc-steps li{ margin-bottom:6px; }
-.svc-faqs dt{ font-weight:600; margin-top:8px; color:#4f4d49; }
-.svc-faqs dd{ margin:0 0 10px 0; color:#333; }
-.svc-cta{ margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
+.svc-spacer{ height:160px; } /* espacio libre para completar luego */
 
 /* =========================
    Experience
@@ -589,3 +584,5 @@ label { font-size: 15px; font-weight: normal; float: left; margin: 0px 0px 20px 
   border-radius:999px; color:#25D366; text-decoration:none; font-weight:600;
 }
 .track-card .btn-whatsapp:hover{ background:#25D366; color:#fff; }
+
+
