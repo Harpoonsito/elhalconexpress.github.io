@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, window, document) {
   'use strict';
 
   /* ===================== Preloader ===================== */
@@ -7,9 +7,10 @@
     if ($('#preloader').length)   $('#preloader').delay(350).fadeOut('slow');
   });
 
+  /* ===================== DOM Ready ===================== */
   $(function () {
 
-    /* ===================== Smooth Scroll ===================== */
+    /* ===================== Smooth Scroll (solo .scroll) ===================== */
     $('a.scroll').on('click', function (e) {
       var samePath = location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '');
       var sameHost = location.hostname === this.hostname;
@@ -40,15 +41,17 @@
           [1000, 5], [1200, 5], [1400, 5], [1600, 5]
         ],
         autoPlay: 3000,
-        pagination: false,   // sin dots (no hace falta owl.theme.css)
-        navigation: false    // sin flechas del theme
+        pagination: false,
+        navigation: false
       });
     }
 
-    /* ===== Contadores de #fun-facts (sin inview/waypoints) ===== */
-    if ('IntersectionObserver' in window) {
+    /* ===================== Contadores #fun-facts ===================== */
+    (function () {
       var funFacts = document.querySelector('#fun-facts');
-      if (funFacts) {
+      if (!funFacts) return;
+
+      if ('IntersectionObserver' in window) {
         var obsCounters = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
@@ -68,13 +71,12 @@
           });
         }, { threshold: 0.3 });
         obsCounters.observe(funFacts);
+      } else {
+        funFacts.querySelectorAll('.timer').forEach(function (el) {
+          el.textContent = (el.textContent || '0').replace(/[^\d]/g, '');
+        });
       }
-    } else {
-      // Fallback simple
-      document.querySelectorAll('#fun-facts .timer').forEach(function (el) {
-        el.textContent = (el.textContent || '0').replace(/[^\d]/g, '');
-      });
-    }
+    })();
 
     /* ===================== Animación del mapa por IO ===================== */
     (function () {
@@ -106,126 +108,173 @@
       });
     }
 
+    /* Cerrar menú colapsado tras elegir una opción (móvil) */
+    $('.navbar-collapse').on('click', 'a:not(.dropdown-toggle)', function(){
+      var $collapse = $(this).closest('.navbar-collapse');
+      if ($collapse.hasClass('in')) $collapse.collapse('hide');
+    });
+
     /* ===================== Evitar scroll horizontal ===================== */
     $('body').css('overflow-x', 'hidden');
-  });
 
-})(jQuery);
-
-/* ===================== Altura del iframe del mapa ===================== */
-(function () {
-  function ajustarAlturaMapa() {
-    var info = document.getElementById("info-contacto");
-    var mapa = document.getElementById("mapa");
-    if (!info || !mapa) return;
-    var h = info.offsetHeight;
-    mapa.style.height = (h > 320 ? h : 320) + "px";
-  }
-  window.addEventListener("load", ajustarAlturaMapa);
-  window.addEventListener("resize", ajustarAlturaMapa);
-  if ("ResizeObserver" in window) {
-    var info = document.getElementById("info-contacto");
-    var ro = new ResizeObserver(ajustarAlturaMapa);
-    if (info) ro.observe(info);
-  }
-})();
-
-// === Rastreo de envíos ===
-document.addEventListener('DOMContentLoaded', () => {
-  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec';
-  const TOKEN    = 'x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
-
-  const form   = document.getElementById('tracking-form');
-  const input  = document.getElementById('trackingNumber');
-  const result = document.getElementById('trackingResult');
-  if (!form || !input || !result) return;
-
-  const btn = form.querySelector('button[type="submit"]');
-
-  // Formatea ISO 8601 -> "dd/mm/aaaa HH:mm:ss" en America/Bogota
-  const TZ = 'America/Bogota';
-  function formatearFechaLocal(iso) {
-    if (!iso) return '-';
-    const d = new Date(iso);
-    if (isNaN(d)) return String(iso); // por si ya viene como texto
-    return new Intl.DateTimeFormat('es-CO', {
-      timeZone: TZ,
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-      hour12: false
-    }).format(d);
-  }
-
-  function msg(html) {
-    result.innerHTML = `<div class="track-msg">${html}</div>`;
-  }
-
-  function card(r) {
-    const estado = (r.estado || '').toString().trim().toUpperCase();
-    const fecha  = formatearFechaLocal(r.fecha);
-
-    // WhatsApp dinámico con la guía
-    const waPhone = '573006965535'; // sin + ni espacios
-    const waText  = encodeURIComponent(
-      `Hola, quiero más información sobre mi envío con número de guía ${r.guia || ''}.`
-    );
-    const waLink  = `https://wa.me/${waPhone}?text=${waText}`;
-
-    result.innerHTML = `
-      <div class="track-card">
-        <h3>Estado de tu envío</h3>
-        <p><strong>Guía:</strong> ${r.guia || '-'}</p>
-        <p><strong>Cliente:</strong> ${r.nombre || '-'}</p>
-        <p><strong>Estado:</strong> <span class="estado">${estado || '-'}</span></p>
-        <p><strong>Actualizado:</strong> ${fecha}</p>
-        <p style="margin-top:12px">
-          <a class="btn-whatsapp" href="${waLink}" target="_blank" rel="noopener">
-            Más información por WhatsApp
-          </a>
-        </p>
-      </div>`;
-  }
-
-  async function rastrear(guia) {
-    if (!guia) {
-      msg('<span style="color:#a00">Ingresa un número de guía.</span>');
-      input.focus();
-      return;
+    /* ===================== Altura del iframe del mapa ===================== */
+    function ajustarAlturaMapa() {
+      var info = document.getElementById("info-contacto");
+      var mapa = document.getElementById("mapa");
+      if (!info || !mapa) return;
+      var h = info.offsetHeight;
+      mapa.style.height = (h > 320 ? h : 320) + "px";
     }
-    msg('Buscando…');
-    if (btn) btn.disabled = true;
-    input.readOnly = true;
+    $(window).on('load resize', ajustarAlturaMapa);
+    if ('ResizeObserver' in window) {
+      var infoRO = document.getElementById("info-contacto");
+      if (infoRO) new ResizeObserver(ajustarAlturaMapa).observe(infoRO);
+    }
 
-    try {
-      const url = `${ENDPOINT}?guia=${encodeURIComponent(guia)}&token=${TOKEN}`;
-      const r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
-      if (!r.ok) throw new Error('http ' + r.status);
-      const data = await r.json();
+    /* ===================== Rastreo de envíos ===================== */
+    (function(){
+      var ENDPOINT = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec';
+      var TOKEN    = 'x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
 
-      if (!data.ok) {
-        msg(
-          data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
-          data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
-                                          'No se pudo consultar. Intenta de nuevo.'
-        );
-        return;
+      var $form  = $('#tracking-form');
+      var $input = $('#trackingNumber');
+      var $res   = $('#trackingResult');
+      if (!$form.length || !$input.length || !$res.length) return;
+
+      var $btn = $form.find('button[type="submit"]');
+      var TZ   = 'America/Bogota';
+
+      function formatearFechaLocal(iso) {
+        if (!iso) return '-';
+        var d = new Date(iso);
+        if (isNaN(d)) return String(iso);
+        return new Intl.DateTimeFormat('es-CO', {
+          timeZone: TZ,
+          year: 'numeric', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          hour12: false
+        }).format(d);
       }
-      card(data.resultado || {});
-    } catch (e) {
-      console.error(e);
-      msg('Error de red. Intenta de nuevo.');
-    } finally {
-      if (btn) btn.disabled = false;
-      input.readOnly = false;
-    }
-  }
 
-  // Envío del formulario (incluye Enter)
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    rastrear((input.value || '').trim());
-  });
+      function msg(html) { $res.html('<div class="track-msg">' + html + '</div>'); }
 
-  
-});
+      function card(r) {
+        var estado = (r.estado || '').toString().trim().toUpperCase();
+        var fecha  = formatearFechaLocal(r.fecha);
+        var waPhone = '573006965535';
+        var waText  = encodeURIComponent('Hola, quiero más información sobre mi envío con número de guía ' + (r.guia || '') + '.');
+        var waLink  = 'https://wa.me/' + waPhone + '?text=' + waText;
+
+        $res.html(
+          '<div class="track-card">' +
+            '<h3>Estado de tu envío</h3>' +
+            '<p><strong>Guía:</strong> ' + (r.guia || '-') + '</p>' +
+            '<p><strong>Cliente:</strong> ' + (r.nombre || '-') + '</p>' +
+            '<p><strong>Estado:</strong> <span class="estado">' + (estado || '-') + '</span></p>' +
+            '<p><strong>Actualizado:</strong> ' + fecha + '</p>' +
+            '<p style="margin-top:12px">' +
+              '<a class="btn-whatsapp" href="' + waLink + '" target="_blank" rel="noopener">Más información por WhatsApp</a>' +
+            '</p>' +
+          '</div>'
+        );
+      }
+
+      async function rastrear(guia) {
+        if (!guia) { msg('<span style="color:#a00">Ingresa un número de guía.</span>'); $input.focus(); return; }
+        msg('Buscando…');
+        if ($btn.length) $btn.prop('disabled', true);
+        $input.prop('readOnly', true);
+
+        try {
+          var url = ENDPOINT + '?guia=' + encodeURIComponent(guia) + '&token=' + TOKEN;
+          var r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
+          if (!r.ok) throw new Error('http ' + r.status);
+          var data = await r.json();
+
+          if (!data.ok) {
+            msg(
+              data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
+              data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
+                                              'No se pudo consultar. Intenta de nuevo.'
+            );
+            return;
+          }
+          card(data.resultado || {});
+        } catch (e) {
+          console.error(e);
+          msg('Error de red. Intenta de nuevo.');
+        } finally {
+          if ($btn.length) $btn.prop('disabled', false);
+          $input.prop('readOnly', false);
+        }
+      }
+
+      // Submit (incluye Enter)
+      $form.on('submit', function(e){
+        e.preventDefault();
+        rastrear(($input.val() || '').trim());
+      });
+    })();
+
+    /* ===================== /servicios: subnav chips + scroll con offset ===================== */
+    (function(){
+      var nav = document.getElementById('services-nav');
+      if (!nav) return;
+
+      function headerOffset() {
+        var $nb = $('.navbar.navbar-fixed-top');
+        return ($nb.length ? $nb.outerHeight() : 70) || 70;
+      }
+      function offsetTop(el){ var y=0; while(el){ y += el.offsetTop; el = el.offsetParent; } return y; }
+      function goTo(hash){
+        var t = document.getElementById(hash.replace('#',''));
+        if(!t) return;
+        var y = offsetTop(t) - headerOffset();
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      function setActive(a){
+        nav.querySelectorAll('.svc-chip').forEach(function(ch){ ch.classList.remove('active'); });
+        a.classList.add('active');
+      }
+
+      // Click en chips
+      nav.addEventListener('click', function(e){
+        var a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+        e.preventDefault();
+        goTo(a.getAttribute('href'));
+        setActive(a);
+        history.replaceState(null,'',a.getAttribute('href'));
+      });
+
+      // Actualizar chip activo al hacer scroll
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.svc-block'));
+      window.addEventListener('scroll', function(){
+        var pos = window.scrollY + headerOffset() + 10;
+        var current = sections[0];
+        for (var i=0;i<sections.length;i++){
+          if (sections[i].offsetTop <= pos) current = sections[i];
+        }
+        if (current){
+          var link = nav.querySelector('a[href="#'+current.id+'"]');
+          if (link) setActive(link);
+        }
+      });
+
+      // Si llega con hash, hacer scroll con offset
+      if (location.hash) setTimeout(function(){ goTo(location.hash); }, 50);
+    })();
+
+    /* ===================== Marcar activo “Servicios” si estamos en servicios.html ===================== */
+    (function(){
+      var isServicios = /(^|\/)servicios\.html(\?|#|$)/i.test(location.href);
+      if (isServicios){
+        $('.navbar-nav > li').removeClass('active');
+        $('.navbar-nav > li.dropdown-services').addClass('active');
+      }
+    })();
+
+  }); // DOM Ready
+
+})(jQuery, window, document);
 

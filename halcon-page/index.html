@@ -1,31 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es-CO" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" type="image/png" href="images/Logo/Favicon 2.png">
+  <meta name="description" content="El Halcón Express Cargo SAS: transporte urbano y nacional de carga en Colombia, logística empresarial, servicios programados, envíos asegurados y atención inmediata por WhatsApp. Bogotá.">
+  <meta name="author" content="El Halcón Express Cargo SAS">
+  <meta name="theme-color" content="#5DC1B9">
+
+  <!-- Canonical (ajústalo si usas dominio) -->
+  <link rel="canonical" href="https://www.elhalconexpress.com/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/Logo/Favicon%202.png">
+
   <title>El Halcón Express Cargo SAS</title>
+
+  <!-- Preconnect fuentes (mejor rendimiento) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
   <!-- Font Awesome 4.7 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Owl Carousel-->
+  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/responsive.css">
 
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Owl Carousel-->
-  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+  <!-- SEO Local: Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "El Halcón Express Cargo SAS",
+    "image": "https://www.elhalconexpress.com/images/Logo/Logo%20Halc%C3%B3n%20peque%C3%B1o.png",
+    "url": "https://www.elhalconexpress.com/",
+    "telephone": "+57 322 856 2215",
+    "email": "comercial@elhalconexpress.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cra. 31a #No. 7-26 Piso 2",
+      "addressLocality": "Bogotá",
+      "addressCountry": "CO"
+    },
+    "areaServed": "CO",
+    "sameAs": [
+      "https://www.facebook.com/elhalconexpresscargo",
+      "https://www.linkedin.com/company/elhalconexpresscargosas/",
+      "https://www.instagram.com/elhalconexpress"
+    ],
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+    ]
+  }
+  </script>
 </head>
 
-<body data-spy="scroll" data-target=".navbar-default" data-offset="100">
+<body>
   <!-- Preloader -->
   <div id="preloader">
     <div id="pre-status">
@@ -35,34 +75,62 @@
 
   <!-- Navigation -->
   <header id="menu">
-    <div class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" aria-label="Navegación principal">
       <div class="container">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#menu"><img src="images/Logo/Logo Halcón pequeño.png" alt=""></a>
-          </div>
+        <!-- Brand + mobile toggle -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                  aria-expanded="false" aria-label="Abrir navegación">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#menu" aria-label="Inicio">
+            <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
+          </a>
+        </div>
 
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a class="scroll" href="#menu">Inicio</a></li>
-              <li><a class="scroll" href="#about">Nosotros</a></li>
-              <li><a class="scroll" href="#service">Servicios</a></li>
-              <li><a class="scroll" href="#cobertura">Cobertura</a></li>
-              <li><a class="scroll" href="#tracking">Rastrear Envio</a></li>
-              <li><a class="scroll" href="#features">Features</a></li>
-              <li><a class="scroll" href="#contact">Contacto</a></li>
-            </ul>
-          </div>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a class="scroll" href="#menu" aria-current="page">Inicio</a></li>
+            <li><a class="scroll" href="#about">Nosotros</a></li>
+
+            <!-- ▼ Dropdown de Servicios -->
+            <li class="dropdown dropdown-services">
+              <a href="#" class="dropdown-toggle nav-svc" data-toggle="dropdown"
+                 role="button" aria-haspopup="true" aria-expanded="false">
+                Servicios <span class="nav-plus" aria-hidden="true">+</span> <span class="caret" aria-hidden="true"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right dropdown-services-menu">
+                <li class="dropdown-header">Explora nuestros servicios</li>
+                <li><a href="servicios.html#transporte-urbano">Transporte urbano de carga</a></li>
+                <li><a href="servicios.html#transporte-nacional">Transporte nacional</a></li>
+                <li><a href="servicios.html#logistica-empresarial">Logística empresarial</a></li>
+                <li><a href="servicios.html#servicios-programados">Servicios programados</a></li>
+                <li><a href="servicios.html#envios-asegurados">Envíos asegurados</a></li>
+                <li><a href="servicios.html#atencion-inmediata">Atención inmediata</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-cta">
+                  <a href="servicios.html">
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                    Ver página completa de servicios
+                  </a>
+                  <small>Se abrirá una página independiente</small>
+                </li>
+              </ul>
+            </li>
+            <!-- ▲ Fin dropdown -->
+
+            <li><a class="scroll" href="#cobertura">Cobertura</a></li>
+            <li><a class="scroll" href="#tracking">Rastrear Envío</a></li>
+            <li><a class="scroll" href="#contact">Contacto</a></li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   </header>
 
   <!-- Slider -->
@@ -78,13 +146,13 @@
                 <h2>@elhalconexpress</h2>
 
                 <div class="social-links">
-                  <a href="https://www.instagram.com/elhalconexpress" target="_blank">
+                  <a href="https://www.instagram.com/elhalconexpress" target="_blank" rel="noopener noreferrer">
                     <i class="fa fa-instagram social-icon instagram anim-icon"></i>
                   </a>
-                  <a href="http://facebook.com/elhalconexpresscargo" target="_blank">
+                  <a href="http://facebook.com/elhalconexpresscargo" target="_blank" rel="noopener noreferrer">
                     <i class="fa fa-facebook social-icon facebook anim-icon"></i>
                   </a>
-                  <a href="https://www.linkedin.com/company/elhalconexpresscargosas/" target="_blank">
+                  <a href="https://www.linkedin.com/company/elhalconexpresscargosas/" target="_blank" rel="noopener noreferrer">
                     <i class="fa fa-linkedin social-icon linkedin anim-icon"></i>
                   </a>
                 </div>
@@ -101,7 +169,7 @@
                 <h1>Te atendemos vía WhatsApp</h1>
                 <h2>Habla con nosotros</h2>
                 <div class="social-links">
-                  <a href="https://wa.me/573006965535" target="_blank">
+                  <a href="https://wa.me/573006965535" target="_blank" rel="noopener noreferrer">
                     <i class="fa fa-whatsapp social-icon whatsapp anim-icon"></i>
                   </a>
                 </div>
@@ -156,141 +224,57 @@
       </div>
     </div>
   </section>
-  
+
   <!--Facts (Transporte de carga) -->
-<section id="fun-facts">
-  <div class="container">
-    <div class="row">
-
-      <!-- Transportes cumplidos (reemplaza 'Empresas atendidas') -->
-      <div class="col-sm-6 col-md-3">
-        <div class="fun-fact text-center">
-          <h3><i class="fa fa-check-circle"></i> <span class="timer">20.000</span></h3>
-          <h6>Transportes cumplidos</h6>
-        </div>
-      </div>
-
-      <!-- Toneladas transportadas (igual) -->
-      <div class="col-sm-6 col-md-3">
-        <div class="fun-fact text-center">
-          <h3><i class="fa fa-truck"></i> <span class="timer">18000</span></h3>
-          <h6>Toneladas transportadas</h6>
-        </div>
-      </div>
-
-      <!-- Kilómetros recorridos (reemplaza 'Rutas operadas') -->
-      <div class="col-sm-6 col-md-3">
-        <div class="fun-fact text-center">
-          <h3><i class="fa fa-tachometer"></i> <span class="timer">1200000</span></h3>
-          <h6>Kilómetros recorridos</h6>
-        </div>
-      </div>
-
-      <!-- Años de experiencia (último) -->
-      <div class="col-sm-6 col-md-3">
-        <div class="fun-fact text-center">
-          <h3><i class="fa fa-clock-o"></i> <span class="timer no-plus">10</span></h3>
-          <h6>Años de experiencia</h6>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-  <!-- Nuestros Servicios -->
-  <section id="service">
+  <section id="fun-facts">
     <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="heading">
-          <h2>NUESTROS SERVI<span>CIOS</span></h2>
-          <div class="line"></div>
-          <p><span><strong>A</strong></span> continuación, te presentamos los servicios disponibles, pensados para
-            brindarte eficiencia, seguridad y confianza en cada envío.
-            Nuestro compromiso es acompañarte en cada etapa del proceso, adaptándonos a lo que tú y tu negocio
-            necesitan.</p>
-        </div>
-      </div>
-
       <div class="row">
-        <div class="features-sec">
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-truck"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Transporte urbano de carga</h5>
-                <p>Soluciones rápidas y eficientes para envíos dentro de la ciudad, cumpliendo con puntualidad y
-                  cuidado.</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-road"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Transporte nacional</h5>
-                <p>Llegamos a cada rincón del país con cobertura nacional y seguimiento de tu carga en tiempo real.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-cogs"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Logística empresarial</h5>
-                <p>Diseñamos soluciones logísticas adaptadas a empresas, optimizando procesos de entrega y distribución.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-calendar-check-o"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Servicios programados</h5>
-                <p>Agendamiento de envíos para mayor organización, ideal para negocios con entregas frecuentes.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-shield"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Envíos asegurados</h5>
-                <p>Tu carga protegida con opciones de seguro que brindan tranquilidad ante cualquier imprevisto.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <div class="media service-box">
-              <div class="pull-left"><i class="fa fa-whatsapp"></i></div>
-              <div class="media-body">
-                <h5 class="media-heading">Atención inmediata</h5>
-                <p>Comunicación directa y rápida por WhatsApp para gestionar tus pedidos con agilidad.</p>
-              </div>
-            </div>
+        <!-- Transportes cumplidos (reemplaza 'Empresas atendidas') -->
+        <div class="col-sm-6 col-md-3">
+          <div class="fun-fact text-center">
+            <h3><i class="fa fa-check-circle"></i> <span class="timer">20.000</span></h3>
+            <h6>Transportes cumplidos</h6>
           </div>
         </div>
+
+        <!-- Toneladas transportadas (igual) -->
+        <div class="col-sm-6 col-md-3">
+          <div class="fun-fact text-center">
+            <h3><i class="fa fa-truck"></i> <span class="timer">18000</span></h3>
+            <h6>Toneladas transportadas</h6>
+          </div>
+        </div>
+
+        <!-- Kilómetros recorridos (reemplaza 'Rutas operadas') -->
+        <div class="col-sm-6 col-md-3">
+          <div class="fun-fact text-center">
+            <h3><i class="fa fa-tachometer"></i> <span class="timer">1200000</span></h3>
+            <h6>Kilómetros recorridos</h6>
+          </div>
+        </div>
+
+        <!-- Años de experiencia (último) -->
+        <div class="col-sm-6 col-md-3">
+          <div class="fun-fact text-center">
+            <h3><i class="fa fa-clock-o"></i> <span class="timer no-plus">10</span></h3>
+            <h6>Años de experiencia</h6>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
+ 
   <!-- Cobertura -->
   <section id="cobertura" class="cobertura">
     <h2>COBERTURA NACIO<span>NAL</span></h2>
-    <div class="line"></div>  
+    <div class="line"></div>
     <p><span><strong>O</strong></span>frecemos cobertura a nivel nacional en Colombia, conectando personas, negocios y
       regiones.</p>
     <div class="mapa-container">
-      <img id="mapaColombia" src="images/Service/COBERTURA.png" alt="Mapa de Colombia">
+      <img id="mapaColombia" src="images/Service/COBERTURA.png" alt="Mapa de Colombia" loading="lazy" decoding="async">
       <div class="aviso">
         <span class="icono">⚠️</span>
         <span class="texto"><strong>Algunos departamentos cuentan con acceso limitado o sin red vial activa para
@@ -299,100 +283,19 @@
     </div>
   </section>
 
- <!-- Rastrear Pedido -->
-<section id="tracking" class="tracking">
-  <div class="container text-center">
-    <h2>RASTREA TU ENV<span>ÍO</span></h2>
-    <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
+  <!-- Rastrear Pedido -->
+  <section id="tracking" class="tracking">
+    <div class="container text-center">
+      <h2>RASTREA TU ENV<span>ÍO</span></h2>
+      <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
 
-    <form id="tracking-form" class="tracking__form" autocomplete="off">
-      <input id="trackingNumber" name="guia" class="tracking__input" type="text"
-             placeholder="Número de guía" required />
-      <button class="tracking__btn" type="submit">Rastrear</button>
-    </form>
+      <form id="tracking-form" class="tracking__form" autocomplete="off">
+        <input id="trackingNumber" name="guia" class="tracking__input" type="text"
+               placeholder="Número de guía" required />
+        <button class="tracking__btn" type="submit">Rastrear</button>
+      </form>
 
-    <div id="trackingResult" class="tracking__result" aria-live="polite"></div>
-  </div>
-</section>
-
-  <!-- Features -->
-  <section id="features">
-    <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="heading">
-          <h2>AWESOME FEATUR<span>ES</span></h2>
-          <div class="line"></div>
-          <p><span><strong>L</strong></span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut et dolore magna aliqua. Ut enim ad minim veniam</p>
-        </div>
-      </div>
-
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#tab-1" role="tab" data-toggle="tab"><i
-              class="fa fa-paper-plane"></i></a></li>
-        <li role="presentation"><a href="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-laptop"></i></a></li>
-        <li role="presentation"><a href="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-code"></i></a></li>
-        <li role="presentation"><a href="#tab-4" role="tab" data-toggle="tab"><i class="fa fa-th-large"></i></a></li>
-        <li role="presentation"><a href="#tab-5" role="tab" data-toggle="tab"><i class="fa fa-file-image-o"></i></a>
-        </li>
-      </ul>
-
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active feat-sec" id="tab-1">
-          <div class="col-md-6 tab">
-            <h5>Web Design</h5>
-            <div class="line"></div>
-            <div class="clearfix"></div>
-            <p class="feat-sec">Lorem Ipsum is simply dummy text of the printing and typesetting industry…</p>
-            <p class="feat-sec-1">Lorem Ipsum passages, and more recently with desktop publishing software…</p>
-          </div>
-          <div class="col-md-6 tab-img"><img src="images/Features/01.jpg" class="img-responsive" alt=""></div>
-        </div>
-
-        <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-2">
-          <div class="col-md-6 tab">
-            <h5>Graphic Design</h5>
-            <div class="line"></div>
-            <div class="clearfix"></div>
-            <p class="feat-sec">Lorem Ipsum is simply dummy text of the printing and typesetting industry…</p>
-            <p class="feat-sec-1">Lorem Ipsum passages, and more recently with desktop publishing software…</p>
-          </div>
-          <div class="col-md-6 tab-img"><img src="images/Features/02.jpg" class="img-responsive" alt=""></div>
-        </div>
-
-        <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-3">
-          <div class="col-md-6 tab">
-            <h5>Web Development</h5>
-            <div class="line"></div>
-            <div class="clearfix"></div>
-            <p class="feat-sec">Lorem Ipsum is simply dummy text of the printing and typesetting industry…</p>
-            <p class="feat-sec-1">Lorem Ipsum passages, and more recently with desktop publishing software…</p>
-          </div>
-          <div class="col-md-6 tab-img"><img src="images/Features/03.jpg" class="img-responsive" alt=""></div>
-        </div>
-
-        <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-4">
-          <div class="col-md-6 tab">
-            <h5>Responsive Design</h5>
-            <div class="line"></div>
-            <div class="clearfix"></div>
-            <p class="feat-sec">Lorem Ipsum is simply dummy text of the printing and typesetting industry…</p>
-            <p class="feat-sec-1">Lorem Ipsum passages, and more recently with desktop publishing software…</p>
-          </div>
-          <div class="col-md-6 tab-img"><img src="images/Features/04.jpg" class="img-responsive" alt=""></div>
-        </div>
-
-        <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-5">
-          <div class="col-md-6 tab">
-            <h5>Creative Gallery</h5>
-            <div class="line"></div>
-            <div class="clearfix"></div>
-            <p class="feat-sec">Lorem Ipsum is simply dummy text of the printing and typesetting industry…</p>
-            <p class="feat-sec-1">Lorem Ipsum passages, and more recently with desktop publishing software…</p>
-          </div>
-          <div class="col-md-6 tab-img"><img src="images/Features/05.jpg" class="img-responsive" alt=""></div>
-        </div>
-      </div>
+      <div id="trackingResult" class="tracking__result" aria-live="polite"></div>
     </div>
   </section>
 
@@ -467,18 +370,18 @@
         </a>
       </div>
 
-    <div class="footer-center">
-      <h3><i class="fa fa-clock-o"></i> Horarios de atención</h3>
-      <ul class="hours">
-        <li><i class="fa fa-calendar"></i> Lunes a Viernes: <strong>8:00 AM – 6:00 PM</strong></li>
-        <li><i class="fa fa-calendar-o"></i> Sábados: <strong>8:00 AM – 2:00 PM</strong></li>
-      </ul>
-    
-      <!-- Botón que lleva a la nueva subpágina -->
-      <a class="btn-outline" href="contacto.html">
-        <i class="fa fa-envelope-o"></i> Formulario de Contacto
-      </a>
-    </div>
+      <div class="footer-center">
+        <h3><i class="fa fa-clock-o"></i> Horarios de atención</h3>
+        <ul class="hours">
+          <li><i class="fa fa-calendar"></i> Lunes a Viernes: <strong>8:00 AM – 6:00 PM</strong></li>
+          <li><i class="fa fa-calendar-o"></i> Sábados: <strong>8:00 AM – 2:00 PM</strong></li>
+        </ul>
+
+        <!-- Botón que lleva a la nueva subpágina -->
+        <a class="btn-outline" href="contacto.html">
+          <i class="fa fa-envelope-o"></i> Formulario de Contacto
+        </a>
+      </div>
 
       <div class="footer-right">
         <h3>Síguenos en</h3>
@@ -514,5 +417,4 @@
   <script src="js/owl.carousel.js"></script>
   <script src="js/script.js"></script>
 </body>
-
 </html>
