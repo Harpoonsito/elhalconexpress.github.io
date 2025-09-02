@@ -34,35 +34,6 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/responsive.css">
-
-  <!-- SEO Local: Datos estructurados -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "El Halcón Express Cargo SAS",
-    "image": "https://www.elhalconexpress.com/images/Logo/Logo%20Halc%C3%B3n%20peque%C3%B1o.png",
-    "url": "https://www.elhalconexpress.com/",
-    "telephone": "+57 322 856 2215",
-    "email": "comercial@elhalconexpress.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Cra. 31a #No. 7-26 Piso 2",
-      "addressLocality": "Bogotá",
-      "addressCountry": "CO"
-    },
-    "areaServed": "CO",
-    "sameAs": [
-      "https://www.facebook.com/elhalconexpresscargo",
-      "https://www.linkedin.com/company/elhalconexpresscargosas/",
-      "https://www.instagram.com/elhalconexpress"
-    ],
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
-    ]
-  }
-  </script>
 </head>
 
 <body>
@@ -98,7 +69,7 @@
             <li class="active"><a class="scroll" href="#menu" aria-current="page">Inicio</a></li>
             <li><a class="scroll" href="#about">Nosotros</a></li>
 
-            <!-- ▼ Dropdown de Servicios -->
+            <!-- ▼ Dropdown de Servicios (ACTUALIZADO) -->
             <li class="dropdown dropdown-services">
               <a href="#" class="dropdown-toggle nav-svc" data-toggle="dropdown"
                  role="button" aria-haspopup="true" aria-expanded="false">
@@ -106,12 +77,14 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-right dropdown-services-menu">
                 <li class="dropdown-header">Explora nuestros servicios</li>
-                <li><a href="servicios.html#transporte-urbano">Transporte urbano de carga</a></li>
-                <li><a href="servicios.html#transporte-nacional">Transporte nacional</a></li>
-                <li><a href="servicios.html#logistica-empresarial">Logística empresarial</a></li>
-                <li><a href="servicios.html#servicios-programados">Servicios programados</a></li>
-                <li><a href="servicios.html#envios-asegurados">Envíos asegurados</a></li>
-                <li><a href="servicios.html#atencion-inmediata">Atención inmediata</a></li>
+
+                <!-- Los enlaces van a servicios.html y, si ya estás allí, el JS activará la pestaña SIN bajar la página -->
+                <li><a href="servicios.html" class="svc-trigger" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
+                <li><a href="servicios.html" class="svc-trigger" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
+                <li><a href="servicios.html" class="svc-trigger" data-target="#distribucion-urbana">Distribución Urbana</a></li>
+                <li><a href="servicios.html" class="svc-trigger" data-target="#comercio-exterior">Comercio Exterior</a></li>
+                <li><a href="servicios.html" class="svc-trigger" data-target="#servicios-complementarios">Servicios Complementarios</a></li>
+
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-cta">
                   <a href="servicios.html">
@@ -230,7 +203,6 @@
     <div class="container">
       <div class="row">
 
-        <!-- Transportes cumplidos (reemplaza 'Empresas atendidas') -->
         <div class="col-sm-6 col-md-3">
           <div class="fun-fact text-center">
             <h3><i class="fa fa-check-circle"></i> <span class="timer">20.000</span></h3>
@@ -238,7 +210,6 @@
           </div>
         </div>
 
-        <!-- Toneladas transportadas (igual) -->
         <div class="col-sm-6 col-md-3">
           <div class="fun-fact text-center">
             <h3><i class="fa fa-truck"></i> <span class="timer">18000</span></h3>
@@ -246,7 +217,6 @@
           </div>
         </div>
 
-        <!-- Kilómetros recorridos (reemplaza 'Rutas operadas') -->
         <div class="col-sm-6 col-md-3">
           <div class="fun-fact text-center">
             <h3><i class="fa fa-tachometer"></i> <span class="timer">1200000</span></h3>
@@ -254,7 +224,6 @@
           </div>
         </div>
 
-        <!-- Años de experiencia (último) -->
         <div class="col-sm-6 col-md-3">
           <div class="fun-fact text-center">
             <h3><i class="fa fa-clock-o"></i> <span class="timer no-plus">10</span></h3>
@@ -266,7 +235,6 @@
     </div>
   </section>
 
- 
   <!-- Cobertura -->
   <section id="cobertura" class="cobertura">
     <h2>COBERTURA NACIO<span>NAL</span></h2>

@@ -4,42 +4,20 @@
   <meta charset="utf-8">
   <title>Servicios | El Halcón Express Cargo SAS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Conoce en detalle los servicios de El Halcón Express: transporte urbano, transporte nacional, logística empresarial, servicios programados, envíos asegurados y atención inmediata.">
+  <meta name="description" content="Conoce nuestros servicios: Masivos Nacionales, Carga Consolidada y Semimasiva, Distribución Urbana, Comercio Exterior y Servicios Complementarios.">
   <meta name="theme-color" content="#5DC1B9">
   <link rel="icon" type="image/png" href="images/Logo/Favicon 2.png">
 
-  <!-- Bootstrap + estilos -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-  <!-- Font Awesome + fuentes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Mini ajuste para el CTA lateral + modal -->
-  <style>
-    .svc-cta-card{padding:16px;background:#f8f8f8;border:1px solid #eee;border-radius:12px;margin-top:16px}
-    .svc-cta-card .btn-primary-brand{display:block;width:100%;text-align:center}
-    /* Modal: botones de proveedor */
-    .provider-list{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0;padding:0;list-style:none}
-    .provider-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      border:1px solid #dfeeee;border-radius:10px;padding:10px 12px;
-      background:#fff; cursor:pointer;
-    }
-    .provider-btn:hover{border-color:#5DC1B9;color:#2E8F88}
-    .provider-btn .fa{width:18px;text-align:center}
-    /* Color marca para acciones primarias */
-    .btn-brand{
-      background:#5DC1B9;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:600;
-    }
-    .btn-brand:hover{filter:brightness(.95)}
-  </style>
 </head>
 
-<body data-spy="scroll" data-target=".navbar-default" data-offset="100">
-  <!-- Header (igual al index) -->
+<body>
+  <!-- Header -->
   <header id="menu">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -61,7 +39,7 @@
               <li><a class="scroll" href="index.html#menu">Inicio</a></li>
               <li><a class="scroll" href="index.html#about">Nosotros</a></li>
 
-              <!-- Dropdown Servicios activo -->
+              <!-- Dropdown Servicios -->
               <li class="dropdown dropdown-services active">
                 <a href="#" class="dropdown-toggle nav-svc" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false" aria-current="page">
@@ -69,12 +47,11 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-services-menu">
                   <li class="dropdown-header">Explora nuestros servicios</li>
-                  <li><a href="#transporte-urbano">Transporte urbano de carga</a></li>
-                  <li><a href="#transporte-nacional">Transporte nacional</a></li>
-                  <li><a href="#logistica-empresarial">Logística empresarial</a></li>
-                  <li><a href="#servicios-programados">Servicios programados</a></li>
-                  <li><a href="#envios-asegurados">Envíos asegurados</a></li>
-                  <li><a href="#atencion-inmediata">Atención inmediata</a></li>
+                  <li><a href="#" class="svc-trigger" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
+                  <li><a href="#" class="svc-trigger" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
+                  <li><a href="#" class="svc-trigger" data-target="#distribucion-urbana">Distribución Urbana</a></li>
+                  <li><a href="#" class="svc-trigger" data-target="#comercio-exterior">Comercio Exterior</a></li>
+                  <li><a href="#" class="svc-trigger" data-target="#servicios-complementarios">Servicios Complementarios</a></li>
                 </ul>
               </li>
 
@@ -89,7 +66,7 @@
   </header>
 
   <main id="svc-top" tabindex="-1">
-    <!-- Hero chico -->
+    <!-- Hero -->
     <section class="svc-hero">
       <div class="container">
         <h1 style="color:#4f4d49;text-transform:none;">Servicios de El Halcón Express</h1>
@@ -97,7 +74,7 @@
       </div>
     </section>
 
-    <!-- ===== Layout: sidebar + contenido ===== -->
+    <!-- Layout: sidebar + contenido -->
     <section class="svc-layout">
       <div class="container">
         <div class="row">
@@ -105,41 +82,45 @@
           <aside class="col-md-4 col-lg-3">
             <div class="svc-card">
               <h3 class="svc-title">Servicios</h3>
-              <ul class="svc-menu nav" role="tablist" id="svc-menu">
+              <ul class="svc-menu nav" role="tablist" id="svc-menu" aria-orientation="vertical">
                 <li class="active">
-                  <a href="#transporte-urbano" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Transporte urbano de carga
-                  </a>
+                  <button type="button" role="tab" class="is-active"
+                          aria-selected="true" aria-controls="masivos-nacionales"
+                          data-target="#masivos-nacionales" id="tab-masivos">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Masivos Nacionales
+                  </button>
                 </li>
                 <li>
-                  <a href="#transporte-nacional" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Transporte nacional
-                  </a>
+                  <button type="button" role="tab"
+                          aria-selected="false" aria-controls="carga-consolidada"
+                          data-target="#carga-consolidada" id="tab-consolidada">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Carga Consolidada y Semimasiva
+                  </button>
                 </li>
                 <li>
-                  <a href="#logistica-empresarial" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Logística empresarial
-                  </a>
+                  <button type="button" role="tab"
+                          aria-selected="false" aria-controls="distribucion-urbana"
+                          data-target="#distribucion-urbana" id="tab-distribucion">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Distribución Urbana
+                  </button>
                 </li>
                 <li>
-                  <a href="#servicios-programados" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Servicios programados
-                  </a>
+                  <button type="button" role="tab"
+                          aria-selected="false" aria-controls="comercio-exterior"
+                          data-target="#comercio-exterior" id="tab-comercio">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Comercio Exterior
+                  </button>
                 </li>
                 <li>
-                  <a href="#envios-asegurados" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Envíos asegurados
-                  </a>
-                </li>
-                <li>
-                  <a href="#atencion-inmediata" data-toggle="tab" role="tab">
-                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Atención inmediata
-                  </a>
+                  <button type="button" role="tab"
+                          aria-selected="false" aria-controls="servicios-complementarios"
+                          data-target="#servicios-complementarios" id="tab-complementarios">
+                    <span class="ico"><i class="fa fa-long-arrow-right"></i></span> Servicios Complementarios
+                  </button>
                 </li>
               </ul>
             </div>
 
-            <!-- CTA único: Cotizar (abre modal de selector) -->
             <div class="svc-card svc-cta-card">
               <button id="quote-btn" class="btn-brand" type="button">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i> Cotizar ahora
@@ -151,135 +132,81 @@
           <div class="col-md-8 col-lg-9">
             <div id="svc-tabs-top"></div>
             <div class="tab-content svc-content">
-              <!-- Urbano -->
-              <div role="tabpanel" class="tab-pane fade in active" id="transporte-urbano">
-                <article class="svc-article">
-                  <h2>Transporte urbano de carga</h2>
-                  <p>Recolecciones y entregas dentro de la ciudad con puntualidad, coordinación directa y trazabilidad básica.</p>
 
+              <div role="tabpanel" class="tab-pane fade in active" id="masivos-nacionales" aria-labelledby="tab-masivos" tabindex="0">
+                <article class="svc-article">
+                  <h2>Masivos Nacionales</h2>
+                  <p>Nuestro servicio de Transporte Masivo Nacional está diseñado para atender envíos de gran volumen con cobertura en todo el país.</p>
                   <h4>Beneficios</h4>
                   <ul class="svc-list">
-                    <li>Rutas intraurbanas y ventanas horarias.</li>
-                    <li>Prueba de entrega (POD) y confirmación por canal acordado.</li>
-                    <li>Atención por WhatsApp para ajustes y novedades.</li>
+                    <li><strong>Cobertura nacional confiable:</strong> llegamos a las principales regiones y ciudades con soluciones seguras y coordinadas.</li>
+                    <li><strong>Gestión eficiente:</strong> planificamos y coordinamos cada etapa del traslado, desde la recepción hasta la entrega final.</li>
+                    <li><strong>Seguimiento en cada envío:</strong> comunicación constante para que siempre sepas dónde está tu mercancía.</li>
                   </ul>
-
-                  <h4>Cómo funciona</h4>
-                  <ol class="svc-steps">
-                    <li>Agenda tu servicio (direcciones, horarios y contacto).</li>
-                    <li>Recolección del paquete/mercancía en el punto indicado.</li>
-                    <li>Entrega y confirmación con evidencia.</li>
-                  </ol>
-
-                  <div class="svc-spacer"><!-- espacio libre para ampliar luego --></div>
-                </article>
-              </div>
-
-              <!-- Nacional -->
-              <div role="tabpanel" class="tab-pane fade" id="transporte-nacional">
-                <article class="svc-article">
-                  <h2>Transporte nacional</h2>
-                  <p>Cubrimos rutas a nivel país a través de nuestra red de aliados y planificación de despachos.</p>
-
-                  <h4>Beneficios</h4>
-                  <ul class="svc-list">
-                    <li>Rutas optimizadas y seguimiento del envío.</li>
-                    <li>Coordinación de entregas en destino con confirmación.</li>
-                    <li>Asesoría en embalaje y requisitos del remitente.</li>
-                  </ul>
-
-                  <h4>Cómo funciona</h4>
-                  <ol class="svc-steps">
-                    <li>Validación de ruta y tiempos estimados.</li>
-                    <li>Despacho y rastreo del estado de tu guía.</li>
-                    <li>Entrega en destino y cierre con evidencia.</li>
-                  </ol>
-
+                  <p>Es la opción ideal para empresas que necesitan mover grandes volúmenes con eficiencia y puntualidad.</p>
                   <div class="svc-spacer"></div>
                 </article>
               </div>
 
-              <!-- Logística -->
-              <div role="tabpanel" class="tab-pane fade" id="logistica-empresarial">
+              <div role="tabpanel" class="tab-pane fade" id="carga-consolidada" aria-labelledby="tab-consolidada" tabindex="0">
                 <article class="svc-article">
-                  <h2>Logística empresarial</h2>
-                  <p>Soluciones a la medida: rutas dedicadas, cross-dock y SLA definidos.</p>
-
+                  <h2>Carga Consolidada y Semimasiva</h2>
+                  <p>La carga consolidada y semimasiva le permite optimizar sus envíos cuando no requiere un transporte exclusivo.</p>
                   <h4>Beneficios</h4>
                   <ul class="svc-list">
-                    <li>Modelación de rutas y ventanas horarias.</li>
-                    <li>Integraciones simples de pedido (planilla o API ligera).</li>
-                    <li>KPIs y reportes de cumplimiento.</li>
+                    <li><strong>Optimización de costos:</strong> compartimos espacio de carga de manera organizada, pagas solo por el volumen que necesitas.</li>
+                    <li><strong>Flexibilidad en cantidades:</strong> ajustamos el servicio a envíos medianos o de menor volumen sin comprometer el manejo.</li>
+                    <li><strong>Control y trazabilidad:</strong> coordinación y monitoreo de cada envío para cumplir los tiempos pactados.</li>
                   </ul>
-
-                  <h4>Cómo funciona</h4>
-                  <ol class="svc-steps">
-                    <li>Levantamiento de requerimientos y base de direcciones.</li>
-                    <li>Piloto controlado y ajuste de operación.</li>
-                    <li>Despliegue con mejora continua.</li>
-                  </ol>
-
+                  <p>Una alternativa práctica y económica para negocios en crecimiento o con volúmenes intermedios de mercancía.</p>
                   <div class="svc-spacer"></div>
                 </article>
               </div>
 
-              <!-- Programados -->
-              <div role="tabpanel" class="tab-pane fade" id="servicios-programados">
+              <div role="tabpanel" class="tab-pane fade" id="distribucion-urbana" aria-labelledby="tab-distribucion" tabindex="0">
                 <article class="svc-article">
-                  <h2>Servicios programados</h2>
-                  <p>Calendarios de recolección y entrega para operaciones con frecuencia semanal o mensual.</p>
-
+                  <h2>Distribución Urbana</h2>
+                  <p>Nuestro servicio de Distribución Urbana facilita el transporte y la entrega de mercancías dentro de las principales ciudades del país.</p>
                   <h4>Beneficios</h4>
                   <ul class="svc-list">
-                    <li>Slots fijos por día/semana.</li>
-                    <li>Recordatorios y confirmaciones.</li>
-                    <li>Optimización por zonas y franjas.</li>
+                    <li><strong>Cobertura amplia:</strong> operamos en las ciudades más importantes, con soluciones adaptadas a cada zona.</li>
+                    <li><strong>Entregas oportunas:</strong> rutas planificadas para garantizar puntualidad.</li>
+                    <li><strong>Atención personalizada:</strong> comunicación directa durante el proceso para un servicio ágil y confiable.</li>
                   </ul>
-
-                  <h4>Cómo funciona</h4>
-                  <ol class="svc-steps">
-                    <li>Definimos puntos y ventanas horarias.</li>
-                    <li>Agendamos rutas recurrentes.</li>
-                    <li>Monitoreo y ajustes por demanda.</li>
-                  </ol>
-
+                  <p>Ideal para empresas que requieren entregas de última milla, tiendas en línea o distribución local.</p>
                   <div class="svc-spacer"></div>
                 </article>
               </div>
 
-              <!-- Asegurados -->
-              <div role="tabpanel" class="tab-pane fade" id="envios-asegurados">
+              <div role="tabpanel" class="tab-pane fade" id="comercio-exterior" aria-labelledby="tab-comercio" tabindex="0">
                 <article class="svc-article">
-                  <h2>Envíos asegurados</h2>
-                  <p>Protege tu mercancía con pólizas según valor declarado y tipo de carga.</p>
-
+                  <h2>Comercio Exterior</h2>
+                  <p>En El Halcón Express apoyamos a las empresas que realizan operaciones de importación y exportación, gestionando el transporte terrestre de carga hacia y desde los principales puertos marítimos del país.</p>
                   <h4>Beneficios</h4>
                   <ul class="svc-list">
-                    <li>Opciones de cobertura por tramo o envío.</li>
-                    <li>Acompañamiento en caso de siniestro.</li>
-                    <li>Soporte documental y tiempos claros.</li>
+                    <li><strong>Traslados nacionales confiables:</strong> Movilizamos su mercancía desde su origen —bodegas, centros de distribución o plantas— hasta puertos estratégicos como Cartagena, Buenaventura, Santa Marta y Barranquilla, y viceversa.</li>
+                    <li><strong>Cumplimiento de tiempos:</strong> Coordinamos cada traslado para que su carga llegue al puerto en los plazos requeridos por las operaciones internacionales.</li>
+                    <li><strong>Atención personalizada:</strong> Nuestro equipo mantiene comunicación constante durante el proceso, brindando tranquilidad y control en cada etapa del traslado.</li>
                   </ul>
-
                   <div class="svc-spacer"></div>
                 </article>
               </div>
 
-              <!-- Atención inmediata -->
-              <div role="tabpanel" class="tab-pane fade" id="atencion-inmediata">
+              <div role="tabpanel" class="tab-pane fade" id="servicios-complementarios" aria-labelledby="tab-complementarios" tabindex="0">
                 <article class="svc-article">
-                  <h2>Atención inmediata</h2>
-                  <p>Resuelve tus solicitudes por WhatsApp de forma ágil y con seguimiento.</p>
-
+                  <h2>Servicios Complementarios</h2>
+                  <p>Entendemos que cada negocio tiene necesidades distintas; ofrecemos servicios que fortalecen la cadena logística.</p>
                   <h4>Beneficios</h4>
                   <ul class="svc-list">
-                    <li>Dos líneas disponibles para atención.</li>
-                    <li>Escalamiento según prioridad.</li>
-                    <li>Confirmaciones rápidas.</li>
+                    <li><strong>Bodegaje seguro:</strong> espacios adecuados para almacenamiento temporal.</li>
+                    <li><strong>Logística integral:</strong> coordinación e inventarios para mantener un flujo ordenado.</li>
+                    <li><strong>Soluciones personalizadas:</strong> ajustamos el servicio a tus requerimientos con atención dedicada.</li>
                   </ul>
-
+                  <p>Estos servicios adicionales brindan acompañamiento completo para que cada etapa del proceso esté bien gestionada.</p>
                   <div class="svc-spacer"></div>
                 </article>
               </div>
+
             </div>
           </div><!-- /contenido -->
         </div>
@@ -287,7 +214,7 @@
     </section>
   </main>
 
-  <!-- Footer (igual al index) -->
+  <!-- Footer -->
   <footer id="footer">
     <div class="bg-sec">
       <div class="container">
@@ -328,38 +255,10 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- JS -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/owl.carousel.js"></script>
   <script src="js/script.js"></script>
-
-  <!-- Modal: Elegir cómo enviar la cotización -->
-  <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content" role="document">
-        <div class="modal-header" style="border-bottom:1px solid #eee">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="quoteModalLabel">Enviar solicitud de cotización</h4>
-        </div>
-        <div class="modal-body">
-          <p>Elige cómo quieres redactar y enviar tu correo:</p>
-          <ul class="provider-list">
-            <li><button class="provider-btn" data-provider="gmail"><i class="fa fa-google"></i> Gmail</button></li>
-            <li><button class="provider-btn" data-provider="outlook"><i class="fa fa-windows"></i> Outlook</button></li>
-            <li><button class="provider-btn" data-provider="yahoo"><i class="fa fa-yahoo"></i> Yahoo Mail</button></li>
-            <li><button class="provider-btn" data-provider="mailto"><i class="fa fa-envelope"></i> App de correo</button></li>
-            <li><button class="provider-btn" data-provider="copy"><i class="fa fa-clipboard"></i> Copiar texto</button></li>
-          </ul>
-          <small style="display:block;margin-top:8px;color:#666">
-            * Gmail/Outlook/Yahoo abren una pestaña con tu correo ya redactado. “App de correo” requiere tener un cliente de correo configurado en el sistema.
-          </small>
-        </div>
-        <div class="modal-footer" style="border-top:1px solid #eee">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+</body>
+</html>
