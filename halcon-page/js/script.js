@@ -381,10 +381,14 @@
                    + '&body='    + encodeURIComponent(body);
 
         window.open(mailto, '_self');
+
+        
       });
     })();
+    
 
   }); // DOM Ready
 
 })(jQuery, window, document);
+
 

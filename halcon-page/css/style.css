@@ -384,3 +384,72 @@ label{ font-size:15px; font-weight:normal; float:left; margin:0 0 20px 0; }
    Extra
    ========================= */
 html{ scroll-behavior:auto; } /* evita smooth-scroll global */
+/* =========================
+   Sidebar Servicios (card + CTA)
+   ========================= */
+
+/* El card completo (menú + CTA) queda sticky bajo la navbar */
+@media (min-width: 992px){
+  #svc-menu-card{
+    position: sticky;
+    top: 90px;            /* ajusta si tu navbar tiene otra altura real */
+    z-index: 2;
+  }
+}
+
+/* Pie del card: separa visualmente el CTA */
+.svc-menu-footer{
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e6edf3;
+}
+
+/* Botón a todo el ancho, integrado al card */
+#svc-menu-card .btn-brand{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Desactivar cualquier sticky viejo del CTA suelto */
+.svc-cta-card{ position: static !important; }
+.svc-cta-fixed{ position: static !important; }
+
+/* =========================
+   Menú lateral: espaciado y foco
+   ========================= */
+
+/* Separación entre ítems del menú */
+.svc-menu li{
+  border-top: 1px solid #e6ecef;
+  margin-bottom: 6px;              /* más aire entre casillas */
+}
+
+/* Botones/tab accesibles del menú */
+.svc-menu [role="tab"]{
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 1px solid transparent;   /* base transparente para que el borde azul no “salte” */
+  border-radius: 8px;
+  padding: 12px 10px;              /* alto visual más cómodo */
+  color: #333;
+  cursor: pointer;
+  transition: box-shadow .2s ease, border-color .2s ease, color .1s ease;
+}
+
+/* Estado activo y hover: borde azul claro y resalte suave */
+.svc-menu [role="tab"].is-active,
+.svc-menu [role="tab"]:hover{
+  border-color: #5DC1B9;
+  background: #f8fdfd;
+  color: #2E8F88;
+  box-shadow: 0 0 6px rgba(93,193,185,.28);
+}
+
+/* Foco por teclado bien visible (sin mover la caja) */
+.svc-menu [role="tab"]:focus{
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(93,193,185,.35);
+}
