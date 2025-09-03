@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contáctanos | El Halcón Express Cargo SAS</title>
+  <meta name="description" content="Formulario de contacto de El Halcón Express Cargo SAS.">
+  <meta name="theme-color" content="#5DC1B9">
+  <link rel="icon" type="image/png" href="images/Logo/Favicon%202.png">
+
+  <!-- Globales del sitio (los mismos que ya cargas en index/servicios) -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">        <!-- tu hoja global -->
+  <link rel="stylesheet" href="css/responsive.css">   <!-- tu hoja global -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Específico de la página de contacto (nuevo) -->
+  <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body class="contact-page">
+
+  <!-- Header compacto reutilizando tu marca -->
+  <header class="cp-header">
+    <div class="container cp-container">
+    <a class="cp-brand" href="index.html" aria-label="Volver al inicio">
+        <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
+        <span>Inicio</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="cp-hero">
+    <div class="container cp-container">
+      <h1>Estamos listos para ayudarte</h1>
+      <p>Completa el formulario y te responderemos muy pronto.</p>
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <main class="container cp-container">
+    <div class="cp-grid">
+      <!-- Formulario -->
+      <section class="cp-card" aria-labelledby="cp-form-title">
+        <div class="cp-card-hd"><h2 id="cp-form-title">Formulario de contacto</h2></div>
+        <div class="cp-card-bd">
+          <form id="cp-form" novalidate autocomplete="off">
+            <!-- honeypot -->
+            <input class="cp-hp" type="text" name="website" tabindex="-1" autocomplete="off">
+
+            <div class="cp-form-grid">
+              <div class="cp-field">
+                <label for="cp-name" class="cp-label">Nombre completo <span class="cp-req">*</span></label>
+                <input id="cp-name" name="nombre" class="cp-control" required placeholder="Tu nombre y apellidos">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-company" class="cp-label">Empresa</label>
+                <input id="cp-company" name="empresa" class="cp-control" placeholder="Opcional">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-email" class="cp-label">Correo electrónico <span class="cp-req">*</span></label>
+                <input id="cp-email" name="email" type="email" class="cp-control" required placeholder="tunombre@empresa.com">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-phone" class="cp-label">Teléfono / WhatsApp <span class="cp-req">*</span></label>
+                <input id="cp-phone" name="telefono" type="tel" class="cp-control" required placeholder="+57 300 000 0000">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-service" class="cp-label">Tipo de servicio <span class="cp-req">*</span></label>
+                <select id="cp-service" name="servicio" class="cp-control" required>
+                  <option value="">Selecciona una opción…</option>
+                  <option>Masivos Nacionales</option>
+                  <option>Carga Consolidada y Semimasiva</option>
+                  <option>Distribución Urbana</option>
+                  <option>Comercio Exterior</option>
+                  <option>Servicios Complementarios</option>
+                </select>
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-from" class="cp-label">Origen <span class="cp-req">*</span></label>
+                <input id="cp-from" name="origen" class="cp-control" required placeholder="Ciudad / Dirección">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-to" class="cp-label">Destino <span class="cp-req">*</span></label>
+                <input id="cp-to" name="destino" class="cp-control" required placeholder="Ciudad / Dirección">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-weight" class="cp-label">Peso / Volumen <span class="cp-req">*</span></label>
+                <input id="cp-weight" name="peso_volumen" class="cp-control" required placeholder="Ej: 800 kg / 5 m³">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-dims" class="cp-label">Dimensiones</label>
+                <input id="cp-dims" name="dimensiones" class="cp-control" placeholder="Ej: 120x80x80 cm">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-declared" class="cp-label">Valor declarado</label>
+                <input id="cp-declared" name="valor_declarado" class="cp-control" placeholder="Ej: $15.000.000">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field">
+                <label for="cp-date" class="cp-label">Fecha estimada de despacho</label>
+                <input id="cp-date" name="fecha" type="date" class="cp-control">
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field cp-span-2">
+                <label for="cp-message" class="cp-label">Mensaje / Comentarios <span class="cp-req">*</span></label>
+                <textarea id="cp-message" name="mensaje" rows="5" class="cp-control" required placeholder="Cuéntanos los detalles…"></textarea>
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+
+              <div class="cp-field cp-span-2">
+                <label class="cp-consent">
+                  <input id="cp-consent" name="consent" type="checkbox" required>
+                  <span>Autorizo el tratamiento de mis datos personales para ser contactado(a).</span>
+                </label>
+                <div class="cp-error" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <div class="cp-actions">
+            <button type="submit" class="btn-brand">
+                <i class="fa fa-paper-plane"></i> Enviar
+            </button>
+              <button type="reset" class="cp-btn cp-btn-ghost"><i class="fa fa-undo"></i> Limpiar</button>
+              <a class="cp-btn cp-btn-link" href="index.html"><i class="fa fa-angle-left"></i> Volver</a>
+            </div>
+
+            <div id="cp-status" class="cp-span-2" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Aside -->
+      <aside class="cp-card">
+        <div class="cp-card-hd"><h2>También puedes escribirnos</h2></div>
+        <div class="cp-card-bd">
+          <ul class="cp-contact-list">
+            <li><i class="fa fa-envelope-o"></i> comercial@elhalconexpress.com</li>
+            <li><i class="fa fa-phone"></i> +57 322 856 2215</li>
+            <li><a class="cp-badge-wa" href="https://wa.me/573006965535" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i> WhatsApp 1</a></li>
+            <li><a class="cp-badge-wa" href="https://wa.me/573006965541" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i> WhatsApp 2</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="cp-mini-footer">© 2025 El Halcón Express Cargo SAS</div>
+  </main>
+
+  <!-- JS global del sitio -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <!-- JS específico de contacto -->
+  <script src="js/contacto.js"></script>
+</body>
+</html>
