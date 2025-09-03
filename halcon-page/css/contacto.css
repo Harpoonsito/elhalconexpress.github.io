@@ -96,3 +96,25 @@
 /* Footer mini */
 .contact-page .cp-mini-footer{ margin-top:32px; padding:20px 0; border-top:1px solid var(--cp-border); color:#666; font-size:14px; text-align:center }
 
+/* Caja de estado */
+#cp-status { margin-top: 14px; }
+
+.cp-alert{
+  display:flex; gap:10px; align-items:flex-start;
+  padding:12px 14px; border-radius:10px; border:1px solid transparent;
+  font-size:14px; line-height:1.4;
+}
+.cp-alert.ok{
+  background:#e8f8f5; border-color:#bfe8e2; color:#1b6b64;
+}
+.cp-alert.err{
+  background:#fdecea; border-color:#f5c2c0; color:#8a1c13;
+}
+.cp-alert i{ font-size:18px; margin-top:2px; }
+
+/* Botón con estado "cargando" */
+.btn-brand.is-loading{ position:relative; pointer-events:none; opacity:.9; }
+.btn-brand.is-loading::after{
+  content:" Enviando…";
+  font-weight:600;
+}

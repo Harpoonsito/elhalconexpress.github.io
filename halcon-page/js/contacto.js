@@ -5,7 +5,7 @@
   var BACKEND = 'apps_script'; // 'apps_script' | 'formspree'
 
   // Google Apps Script (tu Web App /exec)
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw4uIvT9xqlTylt9AtXMXcZJJAglcT0nTVRlDUkMIy2RUrmhQs6Ux4880BZR6sBMWjP/exec';
+  var ENDPOINT = 'https://halconexpress-contacto.elhalconexpress.workers.dev/';
   var TOKEN    = ''; // opcional. Si luego proteges con token, ponlo aquí y en Code.gs
 
   // Formspree (opcional, si lo usas más adelante)
