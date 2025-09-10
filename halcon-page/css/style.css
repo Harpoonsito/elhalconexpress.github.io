@@ -143,7 +143,7 @@ ul.nav li.active a:before{ opacity:1; }
   transition: none !important; /* Forzar sin transición en color */
 }
 
-.social-links a:hover {
+.social-links a:hover { 
   transform: scale(1.2);
 }
 
@@ -609,4 +609,14 @@ html { scroll-behavior: auto; }
 }
 .slide-volando {
   background-position: center 30% !important;
+}
+/* --- Ajuste mínimo de encuadre del slide --- */
+/* Escritorio: muestra más “piso” de la imagen */
+#home-carousel .item{
+  background-position: center 35% !important; /* antes: center top/center 20–30% */
+}
+
+/* Tablet/móvil: un poquito más abajo todavía */
+@media (max-width: 991px){
+  #home-carousel .item{ background-position: center 40% !important; }
 }
