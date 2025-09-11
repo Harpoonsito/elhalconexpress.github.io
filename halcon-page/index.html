@@ -17,7 +17,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,7 +31,6 @@
   <link rel="stylesheet" type="text/css" href="css/responsive.css">
 </head>
 
-<!-- ScrollSpy BS5 para resaltar sección activa -->
 <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100" tabindex="0" style="position: relative;">
   <!-- Preloader -->
   <div id="preloader">
@@ -43,8 +41,7 @@
 
   <!-- Navigation -->
   <header id="menu">
-    <!-- Mantengo .navbar-default para que tus estilos sigan aplicando -->
-    <nav class="navbar navbar-default navbar-light navbar-expand-lg bg-light navbar-fixed-top fixed-top" role="navigation" aria-label="Navegación principal">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation" aria-label="Navegación principal">
       <div class="container">
         <!-- Brand + mobile toggle -->
         <a class="navbar-brand" href="#menu" aria-label="Inicio">
@@ -60,31 +57,36 @@
         <!-- Links -->
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto">
-            <!-- Inicio -->
             <li class="nav-item">
               <a class="nav-link scroll active" href="#menu">Inicio</a>
             </li>
 
             <li class="nav-item"><a class="nav-link scroll" href="#about">Nosotros</a></li>
 
-            <!-- ▼ Dropdown de Servicios -->
+            <!-- ▼ Dropdown de Servicios (BS5) -->
             <li class="nav-item dropdown dropdown-services">
-              <a id="servicesDropdown" href="#" class="nav-link dropdown-toggle nav-svc" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" role="button" aria-haspopup="true" aria-expanded="false">
+              <a id="servicesDropdown"
+                 href="#"
+                 class="nav-link dropdown-toggle"
+                 data-bs-toggle="dropdown"
+                 data-bs-auto-close="outside"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
                 Servicios <span class="nav-plus" aria-hidden="true">+</span>
-                <span class="caret" aria-hidden="true"></span>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-services-menu">
-                <li class="dropdown-header">Explora nuestros servicios</li>
 
-                <!-- Van a servicios.html; si ya estás allí, el JS activa la pestaña -->
-                <li><a href="servicios.html" class="svc-trigger" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
-                <li><a href="servicios.html" class="svc-trigger" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
-                <li><a href="servicios.html" class="svc-trigger" data-target="#distribucion-urbana">Distribución Urbana</a></li>
-                <li><a href="servicios.html" class="svc-trigger" data-target="#comercio-exterior">Comercio Exterior</a></li>
-                <li><a href="servicios.html" class="svc-trigger" data-target="#servicios-complementarios">Servicios Complementarios</a></li>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-services-menu" aria-labelledby="servicesDropdown">
+                <h6 class="dropdown-header">Explora nuestros servicios</h6>
 
-                <li><hr class="divider"></li>
+                <!-- Enlaces: van a servicios.html; allí el JS activa la pestaña indicada -->
+                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
+                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
+                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#distribucion-urbana">Distribución Urbana</a></li>
+                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#comercio-exterior">Comercio Exterior</a></li>
+                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#servicios-complementarios">Servicios Complementarios</a></li>
+
+                <li><hr class="dropdown-divider"></li>
                 <li class="dropdown-cta">
                   <a href="servicios.html">
                     <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -107,7 +109,6 @@
 
   <!-- Slider -->
   <section id="slider">
-    <!-- BS5: data-bs-ride y .carousel-item -->
     <div id="home-carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
@@ -166,7 +167,7 @@
 
       </div>
 
-      <!-- Flechas personalizadas (BS5 necesita data-bs-target + data-bs-slide) -->
+      <!-- Flechas personalizadas -->
       <a class="home-carousel-left" href="#home-carousel" data-bs-target="#home-carousel" data-bs-slide="prev" aria-label="Anterior">
         <i class="fa fa-angle-left"></i>
       </a>
@@ -204,7 +205,7 @@
     </div>
   </section>
 
-  <!-- Facts -->
+  <!-- Fun facts -->
   <section id="fun-facts">
     <div class="container">
       <div class="row">
@@ -264,8 +265,7 @@
       <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
 
       <form id="tracking-form" class="tracking__form" autocomplete="off">
-        <input id="trackingNumber" name="guia" class="tracking__input" type="text"
-               placeholder="Número de guía" required />
+        <input id="trackingNumber" name="guia" class="tracking__input" type="text" placeholder="Número de guía" required />
         <button class="tracking__btn" type="submit">Rastrear</button>
       </form>
 
@@ -365,8 +365,7 @@
             </a>
           </li>
           <li class="linkedin hvr-pulse">
-            <a href="https://www.linkedin.com/company/elhalconexpresscargosas" target="_blank"
-              rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/elhalconexpresscargosas" target="_blank" rel="noopener noreferrer">
               <i class="fa fa-linkedin"></i>
             </a>
           </li>
@@ -391,19 +390,36 @@
   <script src="js/owl.carousel.js"></script>
   <script src="js/script.js"></script>
 
-  <!-- Helpers: cerrar menú colapsado al hacer click + reinit ScrollSpy -->
+  <!-- Helpers: cerrar menú colapsado al hacer click + ScrollSpy + dropdown robusto -->
   <script>
-    // Cierra el menú colapsado al hacer click en un enlace
+    // 1) Cerrar el menú colapsado al hacer click en un enlace
     document.addEventListener('click', function(e){
-      if (e.target.matches('#mainNav .nav-link')) {
+      if (e.target.matches('#mainNav .nav-link, #mainNav .dropdown-item')) {
         const c = bootstrap.Collapse.getInstance(document.getElementById('mainNav'));
         if (c) c.hide();
       }
     });
 
-    // Re-init ScrollSpy por si cambia el alto de la navbar
+    // 2) Re-init ScrollSpy
     window.addEventListener('load', function () {
       new bootstrap.ScrollSpy(document.body, { target: '#mainNav', offset: 100 });
+    });
+
+    // 3) Dropdown Servicios: evitar salto por href="#", sin hover-hide
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggler = document.querySelector('.dropdown-services > .dropdown-toggle');
+      if (!toggler) return;
+
+      toggler.addEventListener('click', function (e) {
+        // Evita que suba a la parte superior (href="#")
+        e.preventDefault();
+        bootstrap.Dropdown.getOrCreateInstance(toggler).toggle();
+      });
+
+      // Opcional: impedir doble-click extraño
+      toggler.addEventListener('dblclick', function (e) {
+        e.preventDefault(); e.stopPropagation();
+      });
     });
   </script>
 </body>
