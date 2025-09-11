@@ -391,4 +391,95 @@
 
 })(jQuery, window, document);
 
+// Cerrar el menú colapsado al seleccionar un link (BS5)
+document.addEventListener('DOMContentLoaded', function () {
+  var nav = document.getElementById('mainNav'); // el id que usamos en index.html
+  if (!nav) return;
 
+  var links = nav.querySelectorAll('.nav-link, .dropdown-item');
+  links.forEach(function (a) {
+    a.addEventListener('click', function () {
+      // Solo cerrar si estamos en vista colapsada (hamburguesa visible)
+      var toggler = document.querySelector('.navbar-toggler');
+      if (toggler && window.getComputedStyle(toggler).display !== 'none') {
+        var instance = bootstrap.Collapse.getInstance(nav) || new bootstrap.Collapse(nav, { toggle: false });
+        instance.hide();
+      }
+    });
+  });
+});
+
+// --- Activa el link del menú según la sección visible ---
+document.addEventListener('DOMContentLoaded', function () {
+  // [sección a observar, href del link que debe activarse]
+  const map = [
+    ['slider',    '#menu'],      // "Inicio"
+    ['about',     '#about'],
+    ['cobertura', '#cobertura'],
+    ['tracking',  '#tracking'],
+    ['contact',   '#contact']
+  ];
+
+  const links = map
+    .map(([_, href]) => document.querySelector(`a.nav-link[href="${href}"]`))
+    .filter(Boolean);
+
+  const clear = () => links.forEach(l => l.classList.remove('active'));
+
+  const bySectionId = Object.fromEntries(
+    map.map(([id, href]) => [id, document.querySelector(`a.nav-link[href="${href}"]`)])
+  );
+
+  const obs = new IntersectionObserver((entries) => {
+    // El que tenga más intersección “gana”
+    let top = null, ratio = 0;
+    entries.forEach(e => {
+      if (e.intersectionRatio > ratio) { ratio = e.intersectionRatio; top = e.target.id; }
+    });
+    if (top && bySectionId[top]) {
+      clear();
+      bySectionId[top].classList.add('active');
+    }
+  }, {
+    // Compensa la navbar fija y decide “activo” cuando el bloque ocupa la zona central
+    root: null,
+    rootMargin: '-25% 0px -60% 0px',
+    threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
+  });
+
+  map.forEach(([id]) => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+});
+
+// ===== Dropdown Servicios: anti-doble-click + hover en escritorio =====
+document.addEventListener('DOMContentLoaded', function () {
+  const toggler = document.querySelector('.dropdown-services > .dropdown-toggle');
+  if (!toggler) return;
+
+  // Evita que el doble click lo deje en estado raro
+  toggler.addEventListener('dblclick', function (e) {
+    e.preventDefault(); e.stopPropagation();
+  });
+
+  // Evita salto por href="#" y usa la API de Bootstrap
+  toggler.addEventListener('click', function (e) {
+    e.preventDefault();
+    bootstrap.Dropdown.getOrCreateInstance(toggler).toggle();
+  });
+
+  // Hover (solo ≥992px) para una UX más fina en desktop
+  const desktop = window.matchMedia('(min-width: 992px)');
+  const dd = () => bootstrap.Dropdown.getOrCreateInstance(toggler);
+  const item = toggler.parentElement;
+
+  function bindHover() {
+    if (!desktop.matches) return;
+    item.addEventListener('mouseenter', () => dd().show());
+    item.addEventListener('mouseleave', () => dd().hide());
+  }
+  bindHover();
+  // Si cambias el ancho de ventana, reevalúa (opcional)
+  desktop.addEventListener?.('change', () => dd().hide());
+});
