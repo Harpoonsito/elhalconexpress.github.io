@@ -57,14 +57,52 @@ h6 { font-size: var(--fs-h6); }
 .hvr-pulse:hover,.hvr-pulse:focus,.hvr-pulse:active{ -webkit-animation:hvr-pulse 1s linear infinite; animation:hvr-pulse 1s linear infinite; }
 
 /* =========================
-   Preloader
+   Preloader (Lottie camioncito)
    ========================= */
-#preloader{ background:#FFF; bottom:0; left:0; position:fixed; right:0; top:0; z-index:9999; }
-#pre-status, .preload-placeholder{
-  background-image:url(../preloader.gif); background-position:center; background-repeat:no-repeat;
-  height:296px; left:38%; margin:-20px 0 0 -20px; position:absolute; top:32%; width:296px;
+:root{
+  --preloader-bg: #fff;        /* fondo blanco */
+  --preloader-text: #2E8F88;   /* aguamarina para el texto */
 }
-.preload-placeholder{ background:none; left:0; margin:0; text-align:center; top:65%; }
+
+#preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--preloader-bg);
+  display: grid; place-items: center;
+  opacity: 1; transition: opacity .6s ease;
+}
+#preloader.is-hidden{ opacity: 0; pointer-events: none; }
+
+.preloader--lottie{ text-align: center; }
+.lottie-box{ width: 220px; height: 220px; }  /* ⇠ ajusta tamaño del camión aquí */
+.preloader__text{
+  margin-top: 10px;
+  font: 600 14px/1.2 'Open Sans', Arial, sans-serif;
+  color: var(--preloader-text);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .preloader__text{ display:none; }
+}
+/* Secuencia de salida con fade */
+#preloader.is-ending .lottie-box{
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+/* Ya la tienes, pero le agregamos un pequeño delay para que se note el fade del camión */
+#preloader.is-hidden{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .55s ease .10s; /* .10s de delay para encadenar bonito */
+}
+
+@media (prefers-reduced-motion: reduce){
+  #preloader.is-ending .lottie-box{ transition: none; }
+  #preloader.is-hidden{ transition: none; }
+}
+
+
 
 /* =========================
    Tipografía general

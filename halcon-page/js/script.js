@@ -483,3 +483,60 @@ document.addEventListener('DOMContentLoaded', function () {
   // Si cambias el ancho de ventana, reevalúa (opcional)
   desktop.addEventListener?.('change', () => dd().hide());
 });
+document.addEventListener('DOMContentLoaded', function () {
+  const pre = document.getElementById('preloader');
+  const box = pre?.querySelector('.lottie-box');
+  if (!pre || !box || !window.lottie) return;
+
+  const anim = lottie.loadAnimation({
+    container: box,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'animations/truck.json',
+    rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+  });
+
+  // Secuencia de salida con fade:
+  // 1) camión se desvanece (is-ending)
+  // 2) se desvanece el fondo blanco (is-hidden)
+  const fadeOutSequence = () => {
+    if (pre.classList.contains('is-hidden')) return;  // evita doble ejecución
+    pre.classList.add('is-ending');                   // fade camión
+    setTimeout(() => {
+      pre.classList.add('is-hidden');                 // fade overlay blanco
+      setTimeout(() => { try { anim.destroy(); } catch(e){} pre.remove(); }, 650);
+    }, 200); // encadenado suave
+  };
+
+  // Espera a que termine el ciclo actual de la animación
+  const finishAndFade = () => {
+    try { anim.loop = false; } catch(e){}
+    const fallback = setTimeout(fadeOutSequence, 1500);   // por si no dispara 'complete'
+    anim.addEventListener('complete', () => { clearTimeout(fallback); fadeOutSequence(); }, { once: true });
+  };
+
+  // Al terminar de cargar la página, lanzamos la secuencia
+  window.addEventListener('load', finishAndFade, { once: true });
+
+  // Si falla el JSON, no bloquees
+  anim.addEventListener('data_failed', fadeOutSequence);
+
+  // Failsafe
+  setTimeout(() => { if (!pre.classList.contains('is-hidden')) fadeOutSequence(); }, 8000);
+  // Siempre volver al tope al cargar
+window.addEventListener('load', () => {
+  // Si hay #ancla en la URL, lo quitamos para no saltar a secciones
+  if (location.hash) {
+    history.replaceState(null, document.title, location.pathname + location.search);
+  }
+  window.scrollTo(0, 0);
+}, { once: true });
+
+// Al volver con Back/Forward Cache (iOS/Chrome) fuerza tope
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) window.scrollTo(0, 0);
+});
+});
+
+
