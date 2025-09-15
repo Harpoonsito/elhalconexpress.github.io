@@ -670,3 +670,37 @@ html { scroll-behavior: auto; }
 .slide-siguenos  .carousel-caption { --cap-left: 2%;  --cap-right: 50%; }
 .slide-whatsapp  .carousel-caption { --cap-left: 3.5%;--cap-right: 48%; }
 .slide-volando   .carousel-caption { --cap-left: 1%;  --cap-right: 54%; }
+/* ===== FIX: footer centrado (horarios + botón) ===== */
+
+/* Centra cada columna dentro de su celda del grid */
+.footer-container{
+  justify-items: center; /* centra los elementos en sus columnas */
+}
+
+/* Quita offsets que desbalancean el grid */
+.footer-right{
+  position: static;   /* deja que el grid la coloque */
+  left: auto;
+}
+.footer-left img.logo-super{
+  margin-left: 0;     /* elimina el corrimiento hacia la izquierda */
+  margin-top: 0;      /* opcional: quita el empuje vertical si no lo necesitas */
+}
+
+/* Centra el contenido del bloque del medio */
+.footer-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra horizontalmente todo */
+  text-align: center;    /* centra títulos/textos */
+  max-width: 560px;      /* ancho cómodo del bloque */
+  margin-inline: auto;
+}
+.footer-center .hours{ text-align: center; }
+.footer-center .btn-outline{ margin-inline: auto; }
+
+/* En móvil ya tenías layout en 1 columna, mantenemos el centrado */
+@media (max-width: 991px){
+  .footer-right{ left: 0; }
+  .footer-left img.logo-super{ margin: 10px auto 0; } /* centrado bajo 991px */
+}
