@@ -138,7 +138,7 @@ a:hover, a:focus{ text-decoration:none; }
    Navigation
    ========================= */
 .navbar-default{ background:rgb(248,248,248); border:rgb(255,255,255); padding:5px 5px; }
-a.navbar-brand img{ position:relative; top:9px; }
+a.navbar-brand img{ position:relative; top:3px; }
 #menu{ position:absolute; }
 #menu .nav{ left:25%; position:relative; }
 #menu ul.nav li a{ font-size:15px; color:#3a3a3a; }
@@ -627,7 +627,12 @@ html { scroll-behavior: auto; }
 }
 #menu .navbar-nav > li > .nav-link:hover::before,
 #menu .navbar-nav > li > .nav-link.active::before { transform: scaleX(1); opacity: 1; }
-.navbar-brand img{ position: relative; top: 0; max-height: 46px; width: auto; }
+.navbar-brand img{
+  position: relative;
+  top: -14px; /* sube el logo aún más */
+  max-height: 46px;
+  width: auto;
+}
 
 @media (max-width: 991px){
   .navbar-default { padding: 8px 0; }
