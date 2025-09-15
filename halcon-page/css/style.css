@@ -1,3 +1,79 @@
+html, body {
+  scroll-behavior: smooth;
+}
+/* --- Ajuste visual menú lateral de servicios (Bootstrap 5) --- */
+#svc-menu-card {
+  background: #f8fafc;
+  border: 1px solid #e6edf3;
+  border-radius: 12px;
+  padding: 18px 14px 14px 14px;
+}
+.svc-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #2E8F88;
+  display: inline-block;
+}
+#svc-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+#svc-menu [role="tab"] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(93, 193, 185, 0.08); /* turquesa muy suave y semitransparente */
+  border: 1.5px solid #b2e5e0;
+  border-radius: 8px;
+  color: #2E8F88;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 12px;
+  transition: all 0.15s;
+  box-shadow: none;
+}
+#svc-menu [role="tab"]:hover {
+  background: rgba(93, 193, 185, 0.18);
+  color: #2E8F88;
+  border-color: #5DC1B9;
+}
+#svc-menu [role="tab"].active, #svc-menu [role="tab"].is-active, #svc-menu [role="tab"].show.active {
+  background: #5DC1B9;
+  color: #fff;
+  border-color: #5DC1B9;
+  font-weight: 700;
+  box-shadow: 0 2px 8px 0 rgba(93,193,185,0.10);
+}
+#svc-menu [role="tab"] i.fa {
+  min-width: 18px;
+  text-align: center;
+  font-size: 16px;
+}
+#svc-menu-card .svc-menu-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e6edf3;
+}
+#svc-menu-card .btn-brand {
+  background: #5DC1B9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 0;
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+}
+#svc-menu-card .btn-brand:hover {
+  filter: brightness(0.95);
+}
 /* =========================
    Config tipografía global
    ========================= */

@@ -1,3 +1,36 @@
+// ============== Helpers index.html: scrollRestoration, cerrar menú colapsado, ScrollSpy, dropdown robusto ==============
+// Evita que el navegador restaure la posición de scroll
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// Cerrar el menú colapsado al hacer click en un enlace
+document.addEventListener('click', function (e) {
+  if (e.target.matches('#mainNav .nav-link, #mainNav .dropdown-item')) {
+    const c = bootstrap.Collapse.getInstance(document.getElementById('mainNav'));
+    if (c) c.hide();
+  }
+});
+
+// Re-init ScrollSpy al cargar
+window.addEventListener('load', function () {
+  new bootstrap.ScrollSpy(document.body, { target: '#mainNav', offset: 100 });
+});
+
+// Dropdown Servicios: evitar salto por href="#", sin hover-hide
+document.addEventListener('DOMContentLoaded', function () {
+  const toggler = document.querySelector('.dropdown-services > .dropdown-toggle');
+  if (!toggler) return;
+  toggler.addEventListener('click', function (e) {
+    // Evita que suba a la parte superior (href="#")
+    e.preventDefault();
+    bootstrap.Dropdown.getOrCreateInstance(toggler).toggle();
+  });
+  // Opcional: impedir doble-click extraño
+  toggler.addEventListener('dblclick', function (e) {
+    e.preventDefault(); e.stopPropagation();
+  });
+});
 
 // ============== Preloader (desaparece al cargar) ==============
 window.addEventListener('load', function () {
@@ -11,21 +44,63 @@ window.addEventListener('load', function () {
   }
 });
 
-// ============== Smooth Scroll (solo .scroll) ==============
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('a.scroll').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var samePath = location.pathname.replace(/^\//, '') === a.pathname.replace(/^\//, '');
-      var sameHost = location.hostname === a.hostname;
-      if (!(samePath && sameHost)) return;
-      var target = document.querySelector(a.hash) || document.getElementsByName(a.hash.slice(1))[0];
-      if (target) {
-        e.preventDefault();
-        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 50, behavior: 'smooth' });
-      }
-    });
+// ============== Smooth Scroll y ScrollSpy Bootstrap 5 ==============
+(function () {
+  // Altura dinámica de la navbar fija
+  const headerOffset = () => {
+    const nav = document.querySelector('.navbar.fixed-top');
+    return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+  };
+
+  // Scroll con compensación por la navbar
+  const scrollToHash = (hash) => {
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  // Click en enlaces de la barra (misma página) -> scroll suave
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a.scroll, a.nav-link[href^="#"]');
+    if (!a) return;
+
+    const url = new URL(a.getAttribute('href'), location.href);
+    // Solo anclas de esta misma página
+    const samePage = url.pathname.replace(/\/+$/, '') === location.pathname.replace(/\/+$/, '');
+    if (!url.hash || !samePage) return;
+
+    e.preventDefault();
+
+    // Cierra el menú colapsado en móvil
+    const collapse = document.getElementById('mainNav');
+    const toggler  = document.querySelector('.navbar-toggler');
+    if (collapse && toggler && getComputedStyle(toggler).display !== 'none') {
+      (bootstrap.Collapse.getInstance(collapse) || new bootstrap.Collapse(collapse, {toggle:false})).hide();
+    }
+
+    scrollToHash(url.hash);
+    history.replaceState(null, '', url.hash); // actualiza la URL sin salto
   });
-});
+
+  // Si entras con #ancla o cambias de tamaño, refresca ScrollSpy y ajusta offset
+  const initSpy = () => {
+    const spy = bootstrap.ScrollSpy.getInstance(document.body)
+            || new bootstrap.ScrollSpy(document.body, { target: '#mainNav', offset: headerOffset() + 6 });
+    spy.refresh();
+  };
+
+  window.addEventListener('load', () => {
+    // IMPORTANTE: no hagas window.scrollTo(0,0) aquí si hay hash
+    if (location.hash && document.querySelector(location.hash)) {
+      setTimeout(() => scrollToHash(location.hash), 0);
+    }
+    initSpy();
+  });
+
+  window.addEventListener('resize', () => initSpy());
+})();
 
 // ============== Navbar fija (agrega .on) ==============
 window.addEventListener('scroll', function () {
