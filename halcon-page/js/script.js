@@ -1,395 +1,380 @@
-(function ($, window, document) {
-  'use strict';
 
-  /* ============== Preloader ============== */
-  $(window).on('load', function () {
-    if ($('#pre-status').length)  $('#pre-status').fadeOut();
-    if ($('#preloader').length)   $('#preloader').delay(350).fadeOut('slow');
-  });
+// ============== Preloader (desaparece al cargar) ==============
+window.addEventListener('load', function () {
+  var preStatus = document.getElementById('pre-status');
+  var preloader = document.getElementById('preloader');
+  if (preStatus) preStatus.style.display = 'none';
+  if (preloader) {
+    preloader.style.transition = 'opacity .6s';
+    preloader.style.opacity = 0;
+    setTimeout(function () { preloader.style.display = 'none'; }, 600);
+  }
+});
 
-  /* ============== DOM Ready ============== */
-  $(function () {
-
-    /* ============== Smooth Scroll (solo .scroll) ============== */
-    $('a.scroll').on('click', function (e) {
-      var samePath = location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '');
-      var sameHost = location.hostname === this.hostname;
+// ============== Smooth Scroll (solo .scroll) ==============
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a.scroll').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var samePath = location.pathname.replace(/^\//, '') === a.pathname.replace(/^\//, '');
+      var sameHost = location.hostname === a.hostname;
       if (!(samePath && sameHost)) return;
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
+      var target = document.querySelector(a.hash) || document.getElementsByName(a.hash.slice(1))[0];
+      if (target) {
         e.preventDefault();
-        $('html,body').animate({ scrollTop: target.offset().top - 50 }, 1000);
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 50, behavior: 'smooth' });
       }
     });
+  });
+});
 
-    /* ============== Navbar fija (agrega .on) ============== */
-    $(window).on('scroll', function () {
-      var navHeight = $(window).height() - 100;
-      if ($(window).scrollTop() > navHeight) $('.navbar').addClass('on');
-      else $('.navbar').removeClass('on');
-    });
+// ============== Navbar fija (agrega .on) ==============
+window.addEventListener('scroll', function () {
+  var nav = document.querySelector('.navbar');
+  if (!nav) return;
+  var navHeight = window.innerHeight - 100;
+  if (window.scrollY > navHeight) nav.classList.add('on');
+  else nav.classList.remove('on');
+});
 
-    /* ============== Tooltips (Bootstrap) ============== */
-    if ($.fn.tooltip) $('[data-toggle="tooltip"]').tooltip();
+// ============== Tooltips (Bootstrap 5) ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+});
 
-    /* ============== Owl — SOLO logos de clientes ============== */
-    if ($.fn.owlCarousel && $('#client-slider').length) {
-      $('#client-slider').owlCarousel({
-        itemsCustom: [[0,2],[450,3],[600,3],[700,4],[1000,5],[1200,5],[1400,5],[1600,5]],
-        autoPlay: 3000,
-        pagination: false,
-        navigation: false
-      });
-    }
-
-    /* ============== Contadores #fun-facts ============== */
-    (function () {
-      var funFacts = document.querySelector('#fun-facts');
-      if (!funFacts) return;
-
-      if ('IntersectionObserver' in window) {
-        var obsCounters = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            funFacts.querySelectorAll('.timer').forEach(function (el) {
-              var target = parseInt((el.textContent || '0').replace(/[^\d]/g, ''), 10) || 0;
-              var startTime = null, duration = 2000;
-              el.textContent = '0';
-              function step(ts) {
-                if (!startTime) startTime = ts;
-                var p = Math.min((ts - startTime) / duration, 1);
-                el.textContent = String(Math.ceil(p * target));
-                if (p < 1) requestAnimationFrame(step);
-              }
-              requestAnimationFrame(step);
-            });
-            obsCounters.disconnect();
-          });
-        }, { threshold: 0.3 });
-        obsCounters.observe(funFacts);
-      } else {
+// ============== Contadores #fun-facts ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var funFacts = document.querySelector('#fun-facts');
+  if (!funFacts) return;
+  if ('IntersectionObserver' in window) {
+    var obsCounters = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
         funFacts.querySelectorAll('.timer').forEach(function (el) {
-          el.textContent = (el.textContent || '0').replace(/[^\d]/g, '');
-        });
-      }
-    })();
-
-    /* ============== Animación del mapa por IO ============== */
-    (function () {
-      var mapa = document.getElementById('mapaColombia');
-      if (!mapa || !('IntersectionObserver' in window)) return;
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            mapa.classList.remove('animar'); void mapa.offsetWidth; mapa.classList.add('animar');
-          } else {
-            mapa.classList.remove('animar');
+          var target = parseInt((el.textContent || '0').replace(/[^\d]/g, ''), 10) || 0;
+          var startTime = null, duration = 2000;
+          el.textContent = '0';
+          function step(ts) {
+            if (!startTime) startTime = ts;
+            var p = Math.min((ts - startTime) / duration, 1);
+            el.textContent = String(Math.ceil(p * target));
+            if (p < 1) requestAnimationFrame(step);
           }
+          requestAnimationFrame(step);
         });
-      }, { threshold: 0.5 });
-      obs.observe(mapa);
-    })();
-
-    /* ============== Menú móvil overlay opcional ============== */
-    if ($('.menu-trigger').length && $('.mobilenav').length) {
-      $('.menu-trigger, .mobilenav').on('click', function () {
-        $('.mobilenav').fadeToggle(500);
-        $('.top-menu').toggleClass('top-animate');
-        $('.mid-menu').toggleClass('mid-animate');
-        $('.bottom-menu').toggleClass('bottom-animate');
+        observer.disconnect();
       });
-      $('.mobilenav li, .back-to-top').on('click', function () {
-        var target = $(this).data('rel'); var $t = $(target);
-        if ($t.length) $('html, body').stop().animate({ scrollTop: $t.offset().top }, 900, 'swing');
-      });
-    }
-
-    /* Cerrar menú colapsado tras elegir una opción (navbar Bootstrap) */
-    $('.navbar-collapse').on('click', 'a:not(.dropdown-toggle)', function(){
-      var $collapse = $(this).closest('.navbar-collapse');
-      if ($collapse.hasClass('in')) $collapse.collapse('hide');
+    }, { threshold: 0.3 });
+    obsCounters.observe(funFacts);
+  } else {
+    funFacts.querySelectorAll('.timer').forEach(function (el) {
+      el.textContent = (el.textContent || '0').replace(/[^\d]/g, '');
     });
+  }
+});
 
-    /* ============== Evitar scroll horizontal ============== */
-    $('body').css('overflow-x', 'hidden');
-
-    /* ============== Altura del iframe del mapa (contacto) ============== */
-    function ajustarAlturaMapa() {
-      var info = document.getElementById("info-contacto");
-      var mapa = document.getElementById("mapa");
-      if (!info || !mapa) return;
-      var h = info.offsetHeight;
-      mapa.style.height = (h > 320 ? h : 320) + "px";
-    }
-    $(window).on('load resize', ajustarAlturaMapa);
-    if ('ResizeObserver' in window) {
-      var infoRO = document.getElementById("info-contacto");
-      if (infoRO) new ResizeObserver(ajustarAlturaMapa).observe(infoRO);
-    }
-
-    /* ============== Rastreo de envíos ============== */
-    (function(){
-      var ENDPOINT = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec';
-      var TOKEN    = 'x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
-
-      var $form  = $('#tracking-form');
-      var $input = $('#trackingNumber');
-      var $res   = $('#trackingResult');
-      if (!$form.length || !$input.length || !$res.length) return;
-
-      var $btn = $form.find('button[type="submit"]');
-      var TZ   = 'America/Bogota';
-
-      function formatearFechaLocal(iso) {
-        if (!iso) return '-';
-        var d = new Date(iso);
-        if (isNaN(d)) return String(iso);
-        return new Intl.DateTimeFormat('es-CO', {
-          timeZone: TZ,
-          year: 'numeric', month: '2-digit', day: '2-digit',
-          hour: '2-digit', minute: '2-digit', second: '2-digit',
-          hour12: false
-        }).format(d);
+// ============== Animación del mapa por IO ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var mapa = document.getElementById('mapaColombia');
+  if (!mapa || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        mapa.classList.remove('animar'); void mapa.offsetWidth; mapa.classList.add('animar');
+      } else {
+        mapa.classList.remove('animar');
       }
+    });
+  }, { threshold: 0.5 });
+  obs.observe(mapa);
+});
 
-      function msg(html) { $res.html('<div class="track-msg">' + html + '</div>'); }
+// ============== Menú móvil overlay opcional ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var menuTrigger = document.querySelector('.menu-trigger');
+  var mobileNav = document.querySelector('.mobilenav');
+  if (menuTrigger && mobileNav) {
+    var toggleMenu = function () {
+      if (mobileNav.style.display === 'block') {
+        mobileNav.style.display = 'none';
+      } else {
+        mobileNav.style.display = 'block';
+      }
+      document.querySelectorAll('.top-menu, .mid-menu, .bottom-menu').forEach(function (el) {
+        el.classList.toggle(el.classList[0] + '-animate');
+      });
+    };
+    menuTrigger.addEventListener('click', toggleMenu);
+    mobileNav.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.mobilenav li, .back-to-top').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var target = el.getAttribute('data-rel');
+        if (target) {
+          var t = document.querySelector(target);
+          if (t) window.scrollTo({ top: t.offsetTop, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+});
 
-      function card(r) {
-        var estado = (r.estado || '').toString().trim().toUpperCase();
-        var fecha  = formatearFechaLocal(r.fecha);
-        var waPhone = '573006965535';
-        var waText  = encodeURIComponent('Hola, quiero más información sobre mi envío con número de guía ' + (r.guia || '') + '.');
-        var waLink  = 'https://wa.me/' + waPhone + '?text=' + waText;
+// ============== Cerrar menú colapsado tras elegir una opción (navbar Bootstrap 5) ==============
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.navbar-collapse a:not(.dropdown-toggle)').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var collapse = a.closest('.navbar-collapse');
+      if (collapse && collapse.classList.contains('show')) {
+        var instance = bootstrap.Collapse.getOrCreateInstance(collapse);
+        instance.hide();
+      }
+    });
+  });
+});
 
-        $res.html(
-          '<div class="track-card">' +
-            '<h3>Estado de tu envío</h3>' +
-            '<p><strong>Guía:</strong> ' + (r.guia || '-') + '</p>' +
-            '<p><strong>Cliente:</strong> ' + (r.nombre || '-') + '</p>' +
-            '<p><strong>Estado:</strong> <span class="estado">' + (estado || '-') + '</span></p>' +
-            '<p><strong>Actualizado:</strong> ' + fecha + '</p>' +
-            '<p style="margin-top:12px">' +
-              '<a class="btn-whatsapp" href="' + waLink + '" target="_blank" rel="noopener">Más información por WhatsApp</a>' +
-            '</p>' +
-          '</div>'
+// ============== Evitar scroll horizontal ==============
+document.body.style.overflowX = 'hidden';
+
+// ============== Altura del iframe del mapa (contacto) ==============
+function ajustarAlturaMapa() {
+  var info = document.getElementById("info-contacto");
+  var mapa = document.getElementById("mapa");
+  if (!info || !mapa) return;
+  var h = info.offsetHeight;
+  mapa.style.height = (h > 320 ? h : 320) + "px";
+}
+window.addEventListener('load', ajustarAlturaMapa);
+window.addEventListener('resize', ajustarAlturaMapa);
+if ('ResizeObserver' in window) {
+  var infoRO = document.getElementById("info-contacto");
+  if (infoRO) new ResizeObserver(ajustarAlturaMapa).observe(infoRO);
+}
+
+// ============== Rastreo de envíos ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var form  = document.getElementById('tracking-form');
+  var input = document.getElementById('trackingNumber');
+  var res   = document.getElementById('trackingResult');
+  if (!form || !input || !res) return;
+  var btn = form.querySelector('button[type="submit"]');
+  var TZ   = 'America/Bogota';
+
+  function formatearFechaLocal(iso) {
+    if (!iso) return '-';
+    var d = new Date(iso);
+    if (isNaN(d)) return String(iso);
+    return new Intl.DateTimeFormat('es-CO', {
+      timeZone: TZ,
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    }).format(d);
+  }
+
+  function msg(html) { res.innerHTML = '<div class="track-msg">' + html + '</div>'; }
+
+  function card(r) {
+    var estado = (r.estado || '').toString().trim().toUpperCase();
+    var fecha  = formatearFechaLocal(r.fecha);
+    var waPhone = '573006965535';
+    var waText  = encodeURIComponent('Hola, quiero más información sobre mi envío con número de guía ' + (r.guia || '') + '.');
+    var waLink  = 'https://wa.me/' + waPhone + '?text=' + waText;
+    res.innerHTML =
+      '<div class="track-card">' +
+        '<h3>Estado de tu envío</h3>' +
+        '<p><strong>Guía:</strong> ' + (r.guia || '-') + '</p>' +
+        '<p><strong>Cliente:</strong> ' + (r.nombre || '-') + '</p>' +
+        '<p><strong>Estado:</strong> <span class="estado">' + (estado || '-') + '</span></p>' +
+        '<p><strong>Actualizado:</strong> ' + fecha + '</p>' +
+        '<p style="margin-top:12px">' +
+          '<a class="btn-whatsapp" href="' + waLink + '" target="_blank" rel="noopener">Más información por WhatsApp</a>' +
+        '</p>' +
+      '</div>';
+  }
+
+  async function rastrear(guia) {
+    if (!guia) { msg('<span style="color:#a00">Ingresa un número de guía.</span>'); input.focus(); return; }
+    msg('Buscando…');
+    if (btn) btn.disabled = true;
+    input.readOnly = true;
+    try {
+      var url = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec?guia=' + encodeURIComponent(guia) + '&token=x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
+      var r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
+      if (!r.ok) throw new Error('http ' + r.status);
+      var data = await r.json();
+      if (!data.ok) {
+        msg(
+          data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
+          data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
+                                          'No se pudo consultar. Intenta de nuevo.'
         );
+        return;
       }
+      card(data.resultado || {});
+    } catch (e) {
+      console.error(e);
+      msg('Error de red. Intenta de nuevo.');
+    } finally {
+      if (btn) btn.disabled = false;
+      input.readOnly = false;
+    }
+  }
 
-      async function rastrear(guia) {
-        if (!guia) { msg('<span style="color:#a00">Ingresa un número de guía.</span>'); $input.focus(); return; }
-        msg('Buscando…');
-        if ($btn.length) $btn.prop('disabled', true);
-        $input.prop('readOnly', true);
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    rastrear((input.value || '').trim());
+  });
+});
 
-        try {
-          var url = ENDPOINT + '?guia=' + encodeURIComponent(guia) + '&token=' + TOKEN;
-          var r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
-          if (!r.ok) throw new Error('http ' + r.status);
-          var data = await r.json();
+// ============== /servicios: CHIPS sticky (layout anterior) ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var nav = document.getElementById('services-nav');
+  if (!nav) return;
+  function headerOffset() {
+    var nb = document.querySelector('.navbar.navbar-fixed-top');
+    return (nb ? nb.offsetHeight : 70) || 70;
+  }
+  function offsetTop(el){ var y=0; while(el){ y += el.offsetTop; el = el.offsetParent; } return y; }
+  function goTo(hash){
+    var t = document.getElementById(hash.replace('#',''));
+    if(!t) return;
+    var y = offsetTop(t) - headerOffset();
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+  function setActive(a){
+    nav.querySelectorAll('.svc-chip').forEach(function(ch){ ch.classList.remove('active'); });
+    a.classList.add('active');
+  }
+  nav.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    e.preventDefault();
+    goTo(a.getAttribute('href'));
+    setActive(a);
+    history.replaceState(null,'',a.getAttribute('href'));
+  });
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.svc-block'));
+  window.addEventListener('scroll', function(){
+    var pos = window.scrollY + headerOffset() + 10;
+    var current = sections[0];
+    for (var i=0;i<sections.length;i++){
+      if (sections[i].offsetTop <= pos) current = sections[i];
+    }
+    if (current){
+      var link = nav.querySelector('a[href="#'+current.id+'"]');
+      if (link) setActive(link);
+    }
+  });
+  if (location.hash) setTimeout(function(){ goTo(location.hash); }, 50);
+});
 
-          if (!data.ok) {
-            msg(
-              data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
-              data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
-                                              'No se pudo consultar. Intenta de nuevo.'
-            );
-            return;
-          }
-          card(data.resultado || {});
-        } catch (e) {
-          console.error(e);
-          msg('Error de red. Intenta de nuevo.');
-        } finally {
-          if ($btn.length) $btn.prop('disabled', false);
-          $input.prop('readOnly', false);
-        }
+// ============== /servicios: SIDEBAR con pestañas (sin scroll) ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var menu  = document.getElementById('svc-menu');
+  var panes = document.querySelectorAll('.svc-content .tab-pane');
+  if (!menu || !panes.length) return;
+  menu.addEventListener('click', function(e){
+    var tab = e.target.closest('[role="tab"][data-target]');
+    if (!tab) return;
+    e.preventDefault();
+    activate(tab.getAttribute('data-target'), { updateUrl: true });
+  });
+  document.querySelectorAll('a.svc-trigger[data-target]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      activate(a.getAttribute('data-target'), { updateUrl: true });
+      var dd = a.closest('.dropdown.open');
+      if (dd) {
+        var toggle = dd.querySelector('.dropdown-toggle');
+        if (toggle) bootstrap.Dropdown.getOrCreateInstance(toggle).toggle();
       }
+    });
+  });
+  function activate(targetSelector, opts){
+    opts = opts || {};
+    var target = document.querySelector(targetSelector);
+    if (!target) return;
+    menu.querySelectorAll('[role="tab"][data-target]').forEach(function(btn){
+      var on = btn.getAttribute('data-target') === targetSelector;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      btn.closest('li').classList.toggle('active', on);
+    });
+    panes.forEach(function(p){
+      p.classList.remove('in', 'active');
+      p.setAttribute('aria-hidden','true');
+    });
+    target.classList.add('active');
+    setTimeout(function(){ target.classList.add('in'); }, 10);
+    target.setAttribute('aria-hidden','false');
+    var h2 = target.querySelector('h2') || target;
+    if (h2 && h2.focus) h2.focus({ preventScroll: true });
+    if (opts.updateUrl && history && history.replaceState) {
+      history.replaceState(null, '', targetSelector);
+    }
+  }
+  var initial =
+    (location.hash && document.querySelector(location.hash) ? location.hash : null) ||
+    (menu.querySelector('[role="tab"][data-target]') ? menu.querySelector('[role="tab"][data-target]').getAttribute('data-target') : null) ||
+    '#masivos-nacionales';
+  panes.forEach(function(p){
+    if (!p.hasAttribute('role')) p.setAttribute('role','tabpanel');
+    if (!p.hasAttribute('tabindex')) p.setAttribute('tabindex','0');
+  });
+  activate(initial, { updateUrl: false });
+});
 
-      $form.on('submit', function(e){
-        e.preventDefault();
-        rastrear(($input.val() || '').trim());
-      });
-    })();
+// ============== Marcar activo “Servicios” si estamos en servicios.html ==============
+document.addEventListener('DOMContentLoaded', function () {
+  var isServicios = /(^|\/)servicios\.html(\?|#|$)/i.test(location.href);
+  if (isServicios){
+    document.querySelectorAll('.navbar-nav > li').forEach(function(li){ li.classList.remove('active'); });
+    var ds = document.querySelector('.navbar-nav > li.dropdown-services');
+    if (ds) ds.classList.add('active');
+  }
+});
 
-    /* ============== /servicios: CHIPS sticky (layout anterior) ============== */
-    (function(){
-      var nav = document.getElementById('services-nav');
-      if (!nav) return;
-
-      function headerOffset() {
-        var $nb = $('.navbar.navbar-fixed-top');
-        return ($nb.length ? $nb.outerHeight() : 70) || 70;
-      }
-      function offsetTop(el){ var y=0; while(el){ y += el.offsetTop; el = el.offsetParent; } return y; }
-      function goTo(hash){
-        var t = document.getElementById(hash.replace('#',''));
-        if(!t) return;
-        var y = offsetTop(t) - headerOffset();
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-      function setActive(a){
-        nav.querySelectorAll('.svc-chip').forEach(function(ch){ ch.classList.remove('active'); });
-        a.classList.add('active');
-      }
-
-      nav.addEventListener('click', function(e){
-        var a = e.target.closest('a[href^="#"]');
-        if(!a) return;
-        e.preventDefault();
-        goTo(a.getAttribute('href'));
-        setActive(a);
-        history.replaceState(null,'',a.getAttribute('href'));
-      });
-
-      var sections = Array.prototype.slice.call(document.querySelectorAll('.svc-block'));
-      window.addEventListener('scroll', function(){
-        var pos = window.scrollY + headerOffset() + 10;
-        var current = sections[0];
-        for (var i=0;i<sections.length;i++){
-          if (sections[i].offsetTop <= pos) current = sections[i];
-        }
-        if (current){
-          var link = nav.querySelector('a[href="#'+current.id+'"]');
-          if (link) setActive(link);
-        }
-      });
-
-      if (location.hash) setTimeout(function(){ goTo(location.hash); }, 50);
-    })();
-
-    /* ============== /servicios: SIDEBAR con pestañas (sin scroll) ============== */
-    (function(){
-      var $menu  = $('#svc-menu');
-      var $panes = $('.svc-content .tab-pane');
-      if (!$menu.length || !$panes.length) return;
-
-      // DELEGACIÓN de eventos: captura cualquier botón futuro con data-target
-      $menu.on('click', '[role="tab"][data-target]', function(e){
-        e.preventDefault();             // no navegar
-        var targetSelector = $(this).data('target');
-        activate(targetSelector, { updateUrl: true });
-      });
-
-      // Triggers del dropdown (navbar)
-      $(document).on('click', 'a.svc-trigger[data-target]', function(e){
-        e.preventDefault();
-        activate($(this).data('target'), { updateUrl: true });
-        $('.dropdown.open .dropdown-toggle').dropdown('toggle');
-      });
-
-      // Core: activar panel SIN scroll
-      function activate(targetSelector, opts){
-        opts = opts || {};
-        var $target = $(targetSelector);
-        if (!$target.length) return;
-
-        // Estado en menú
-        $menu.find('[role="tab"][data-target]').each(function(){
-          var $btn = $(this);
-          var on = $btn.data('target') === targetSelector;
-          $btn.toggleClass('is-active', on)
-              .attr('aria-selected', on ? 'true' : 'false')
-              .closest('li').toggleClass('active', on);
-        });
-
-        // Paneles
-        $panes.removeClass('in active').attr('aria-hidden','true');
-        $target.addClass('active');
-        setTimeout(function(){ $target.addClass('in'); }, 10);
-        $target.attr('aria-hidden','false');
-
-        // Foco accesible sin mover página
-        var h2 = $target.find('h2')[0] || $target[0];
-        if (h2 && h2.focus) h2.focus({ preventScroll: true });
-
-        // No navegamos a hash para evitar scroll (opcional: comentar si quieres URL con hash)
-        if (opts.updateUrl && history && history.replaceState) {
-          history.replaceState(null, '', targetSelector);
-        }
-      }
-
-      // Estado inicial robusto
-      var initial =
-        (location.hash && $(location.hash).length ? location.hash : null) ||
-        ($menu.find('[role="tab"][data-target]').first().data('target')) ||
-        '#masivos-nacionales';
-
-      // ARIA mínimo en paneles
-      $panes.each(function(){
-        var $p = $(this);
-        if (!$p.attr('role')) $p.attr('role','tabpanel');
-        if (!$p.attr('tabindex')) $p.attr('tabindex','0');
-      });
-
-      activate(initial, { updateUrl: false });
-    })();
-
-    /* ============== Marcar activo “Servicios” si estamos en servicios.html ============== */
-    (function(){
-      var isServicios = /(^|\/)servicios\.html(\?|#|$)/i.test(location.href);
-      if (isServicios){
-        $('.navbar-nav > li').removeClass('active');
-        $('.navbar-nav > li.dropdown-services').addClass('active');
-      }
-    })();
-
-    /* ===== CTA “Cotizar ahora”: abre correo con servicio activo ===== */
-    (function(){
-      var btn = document.getElementById('quote-btn');
-      if (!btn) return;
-
-      btn.addEventListener('click', function(e){
-        e.preventDefault();
-
-        // 1) Preferimos el H2 del panel activo
-        var activePane = document.querySelector('.svc-content .tab-pane.active');
-        var svcFromPane = activePane && activePane.querySelector('h2')
-                       ? activePane.querySelector('h2').textContent.trim()
-                       : '';
-
-        // 2) Fallback: texto del item activo del menú (botón)
-        var svcFromMenu = '';
-        var actBtn = document.querySelector('#svc-menu [role="tab"].is-active');
-        if (actBtn) svcFromMenu = (actBtn.textContent || '').replace(/\s+/g,' ').trim();
-
-        var svc = svcFromPane || svcFromMenu || 'Servicios';
-
-        var to = 'comercial@elhalconexpress.com';
-        var subject = 'Solicitud de cotización — ' + svc;
-        var body = [
-          'Hola equipo de El Halcón Express,',
-          '',
-          'Quisiera una cotización para: ' + svc,
-          '',
-          'Datos del envío:',
-          '• Origen:',
-          '• Destino:',
-          '• Peso / Volumen:',
-          '• Dimensiones:',
-          '• Valor declarado:',
-          '• Fecha estimada de despacho:',
-          '',
-          'Comentarios:',
-          '',
-          'Nombre:',
-          'Teléfono:'
-        ].join('\n');
-
-        var mailto = 'mailto:' + to
-                   + '?subject=' + encodeURIComponent(subject)
-                   + '&body='    + encodeURIComponent(body);
-
-        window.open(mailto, '_self');
-
-        
-      });
-    })();
-    
-
-  }); // DOM Ready
-
-})(jQuery, window, document);
+// ===== CTA “Cotizar ahora”: abre correo con servicio activo =====
+document.addEventListener('DOMContentLoaded', function () {
+  var btn = document.getElementById('quote-btn');
+  if (!btn) return;
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    var activePane = document.querySelector('.svc-content .tab-pane.active');
+    var svcFromPane = activePane && activePane.querySelector('h2')
+                   ? activePane.querySelector('h2').textContent.trim()
+                   : '';
+    var svcFromMenu = '';
+    var actBtn = document.querySelector('#svc-menu [role="tab"].is-active');
+    if (actBtn) svcFromMenu = (actBtn.textContent || '').replace(/\s+/g,' ').trim();
+    var svc = svcFromPane || svcFromMenu || 'Servicios';
+    var to = 'comercial@elhalconexpress.com';
+    var subject = 'Solicitud de cotización — ' + svc;
+    var body = [
+      'Hola equipo de El Halcón Express,',
+      '',
+      'Quisiera una cotización para: ' + svc,
+      '',
+      'Datos del envío:',
+      '• Origen:',
+      '• Destino:',
+      '• Peso / Volumen:',
+      '• Dimensiones:',
+      '• Valor declarado:',
+      '• Fecha estimada de despacho:',
+      '',
+      'Comentarios:',
+      '',
+      'Nombre:',
+      'Teléfono:'
+    ].join('\n');
+    var mailto = 'mailto:' + to
+               + '?subject=' + encodeURIComponent(subject)
+               + '&body='    + encodeURIComponent(body);
+    window.open(mailto, '_self');
+  });
+});
 
 // Cerrar el menú colapsado al seleccionar un link (BS5)
 document.addEventListener('DOMContentLoaded', function () {
