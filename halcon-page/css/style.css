@@ -20,7 +20,24 @@
 /* =========================
    Base & Tipografía
    ========================= */
-* { margin: 0 auto; }
+* { margin: 0; }
+/* ========== OVERRIDE CAPTION SLIDER ========== */
+#home-carousel .carousel-caption{
+  left: clamp(32px, 3vw, 48px) !important;
+  right: auto !important;
+  width: min(62vw, 920px);
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
+  padding-inline: clamp(24px, 2vw, 40px);
+}
+
+.slide-siguenos  .carousel-caption,
+.slide-whatsapp  .carousel-caption,
+.slide-volando   .carousel-caption{
+  left: clamp(32px, 3vw, 48px) !important;
+  right: auto !important;
+}
 body, p, li, input, textarea, button, label, small {
   font-family: var(--font-body);
 }
