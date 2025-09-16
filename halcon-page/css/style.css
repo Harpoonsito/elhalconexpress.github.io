@@ -1,3 +1,35 @@
+  .dropdown-services { position: relative !important; }
+/* Deshabilitar click en el botón de Servicios, solo hover */
+.dropdown-services > .dropdown-toggle {
+  pointer-events: none;
+  cursor: default !important;
+}
+.dropdown-services:hover > .dropdown-toggle {
+  pointer-events: auto;
+  cursor: pointer !important;
+}
+/* Eliminar recuadro/outline azul en el botón de Servicios */
+.dropdown-services > .dropdown-toggle:focus,
+.dropdown-services > .dropdown-toggle:active,
+.dropdown-services > .dropdown-toggle.show,
+.dropdown-services > .dropdown-toggle[aria-expanded="true"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background: none !important;
+}
+/* Navbar moderno: fondo semitransparente y desenfoque */
+.navbar {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+/* Sombra solo al hacer scroll */
+.navbar.on {
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.13), 0 1.5px 0 0 #5DC1B9;
+}
 html, body {
   scroll-behavior: smooth;
 }
@@ -154,7 +186,7 @@ h6 { font-size: var(--fs-h6); }
    ========================= */
 :root{
   --preloader-bg: #fff;        /* fondo blanco */
-  --preloader-text: #2E8F88;   /* aguamarina para el texto */
+  --preloader-text: #5DC1B9;   /* aguamarina para el texto */
 }
 
 #preloader{
@@ -235,23 +267,36 @@ ul.nav li.active a:before{ opacity:1; }
    - Sin margen superior (0)
    - Añadimos padding-top para la separación visual
    - Puente invisible de 12px bajo el botón (solo desktop) */
-.dropdown-services { position: relative; }
+.dropdown-services { position: relative !important; }
 
 .dropdown-services .dropdown-menu{
   min-width:340px; max-width:420px;
-  margin-top:0;                  /* <- sin hueco */
-  padding:12px 12px 10px;        /* <- separación visual segura */
-  border:1px solid #eee; border-radius:10px;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-  background:#fff;
-
+  margin-top:0;
+  position: absolute !important;
+  left: auto !important;
+  right: 50% !important;
+  top: 100% !important;
+  transform: translateX(50%) translateY(12px) !important;
+  padding:12px 12px 10px;
+  border:none;
+  border-radius:14px;
+  box-shadow:0 8px 32px 0 rgba(0,0,0,.13);
+  background:rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   /* Animación */
-  opacity:0; transform:translateY(6px);
-  transition:opacity .18s ease, transform .18s ease;
+  opacity:0;
+  transition:opacity .28s cubic-bezier(.4,0,.2,1), transform .28s cubic-bezier(.4,0,.2,1);
+}
+.dropdown-services .dropdown-menu.fade-exit {
+  opacity:0 !important;
+  transform:translateY(18px) !important;
+  pointer-events:none;
+  transition:opacity .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1);
 }
 .dropdown-services .dropdown-menu.show{
   opacity:1; transform:translateY(0);
-  display:block;                 /* por si BS la abre por JS */
+  display:block;
 }
 
 .dropdown-services .dropdown-header{
@@ -261,7 +306,16 @@ ul.nav li.active a:before{ opacity:1; }
   display:block; padding:12px 16px; white-space:normal; line-height:1.25; color:#111; border-radius:8px; text-decoration:none;
 }
 .dropdown-services-menu > li > a:hover,
-.dropdown-services-menu > li > a:focus{ background:#f7f9fa; color:#2E8F88; }
+.dropdown-services-menu > li > a:focus {
+  background: none;
+  color: #2E8F88;
+  outline: none;
+  box-shadow: none;
+}
+.dropdown-services-menu > li > a:hover {
+  background: #f7f9fa;
+  color: #2E8F88;
+}
 .dropdown-services-menu .dropdown-cta{ padding:10px 0 12px; text-align:left; }
 .dropdown-services-menu .dropdown-cta > a{
   margin:0 12px; display:block; padding:10px 14px; border:2px solid #5DC1B9; border-radius:999px; color:#2E8F88; font-weight:600; text-align:center;
@@ -271,10 +325,11 @@ ul.nav li.active a:before{ opacity:1; }
 
 /* Flechita */
 .dropdown-services .dropdown-menu::before{
-  content:""; position:absolute; top:-8px; right:26px;
-  width:14px; height:14px; background:#fff;
-  border-left:1px solid #e9ecef; border-top:1px solid #e9ecef;
-  transform: rotate(45deg);
+  content:""; position:absolute; top:-8px; left:50%;
+  width:14px; height:14px; background:rgba(255,255,255,0.92);
+  border:none;
+  box-shadow:0 2px 8px 0 rgba(0,0,0,.10);
+  transform: translateX(-50%) rotate(45deg);
 }
 
 /* Desktop: mantener abierto al pasar del botón al menú

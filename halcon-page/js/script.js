@@ -17,18 +17,39 @@ window.addEventListener('load', function () {
   new bootstrap.ScrollSpy(document.body, { target: '#mainNav', offset: 100 });
 });
 
-// Dropdown Servicios: evitar salto por href="#", sin hover-hide
+// Dropdown Servicios: solo hover, sin click, animación suave
 document.addEventListener('DOMContentLoaded', function () {
   const toggler = document.querySelector('.dropdown-services > .dropdown-toggle');
-  if (!toggler) return;
+  const menu = document.querySelector('.dropdown-services .dropdown-menu');
+  if (!toggler || !menu) return;
+  // Prevenir cualquier click en el botón
   toggler.addEventListener('click', function (e) {
-    // Evita que suba a la parte superior (href="#")
     e.preventDefault();
-    bootstrap.Dropdown.getOrCreateInstance(toggler).toggle();
+    return false;
   });
-  // Opcional: impedir doble-click extraño
   toggler.addEventListener('dblclick', function (e) {
     e.preventDefault(); e.stopPropagation();
+    return false;
+  });
+  // Animación de salida al perder hover
+  let hideTimeout;
+  toggler.parentElement.addEventListener('mouseleave', function () {
+    if (menu.classList.contains('show')) {
+      menu.classList.add('fade-exit');
+      hideTimeout = setTimeout(() => {
+        menu.classList.remove('fade-exit');
+        toggler.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('show');
+      }, 200);
+    }
+  });
+  toggler.parentElement.addEventListener('mouseenter', function () {
+    clearTimeout(hideTimeout);
+    if (!menu.classList.contains('show')) {
+      menu.classList.add('show');
+      toggler.setAttribute('aria-expanded', 'true');
+      menu.classList.remove('fade-exit');
+    }
   });
 });
 
