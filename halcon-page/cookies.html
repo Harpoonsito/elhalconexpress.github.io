@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies | El Halcón Express Cargo SAS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/responsive.css">
+</head>
+<body>
+  <main class="container" style="max-width: 900px; margin: 48px auto 32px; padding: 24px 0;">
+    <h1>Política de Cookies</h1>
+    <hr>
+    <div>
+      <!-- Pega aquí tu texto de política de cookies -->
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-bottom">
+      <ul class="legal-links">
+        <li><a href="privacidad.html">Política de Privacidad</a></li>
+        <li><a href="terminos.html">Términos y Condiciones</a></li>
+        <li><a href="cookies.html">Política de Cookies</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div id="cookie-banner" class="cookie-banner">
+    <span>
+      Usamos cookies para mejorar tu experiencia. Consulta nuestra <a href="cookies.html" target="_blank">Política de Cookies</a>.
+    </span>
+    <button id="accept-cookies" class="btn btn-brand btn-sm">Aceptar</button>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('accept-cookies');
+      if (banner && btn) {
+        if (localStorage.getItem('cookiesAccepted')) {
+          banner.style.display = 'none';
+        }
+        btn.addEventListener('click', function() {
+          localStorage.setItem('cookiesAccepted', 'yes');
+          banner.style.display = 'none';
+        });
+      }
+    });
+  </script>
+  <style>
+    .footer-bottom .legal-links {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .footer-bottom .legal-links li {
+      display: inline;
+    }
+    .footer-bottom .legal-links a {
+      color: #bfc9cc;
+      text-decoration: underline;
+      font-size: 14px;
+      transition: color .2s, background .2s;
+      padding: 2px 8px;
+      border-radius: 6px;
+      outline: none;
+    }
+    .footer-bottom .legal-links a:hover,
+    .footer-bottom .legal-links a:focus {
+      color: #5DC1B9;
+      background: #f2f6f7;
+    }
+    .cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: #f2f6f7;
+      color: #222;
+      padding: 16px 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      z-index: 99999;
+      font-size: 15px;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+      border-top: 2px solid #5DC1B9;
+    }
+    .cookie-banner a {
+      color: #2E8F88;
+      text-decoration: underline;
+      transition: color .2s;
+    }
+    .cookie-banner a:hover,
+    .cookie-banner a:focus {
+      color: #5DC1B9;
+    }
+    .cookie-banner .btn {
+      margin-left: 12px;
+      background: #bfc9cc;
+      color: #222;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 7px 18px;
+      transition: background .2s, color .2s;
+    }
+    .cookie-banner .btn:hover,
+    .cookie-banner .btn:focus {
+      background: #5DC1B9;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
+    }
+  </style>
+</body>
+</html>
