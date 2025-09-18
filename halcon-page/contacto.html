@@ -23,14 +23,30 @@
 </head>
 <body class="contact-page">
 
-  <!-- Header compacto reutilizando tu marca -->
-  <header class="cp-header">
-    <div class="container cp-container">
-    <a class="cp-brand" href="index.html" aria-label="Volver al inicio">
-        <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
-        <span>Inicio</span>
-      </a>
-    </div>
+  <!-- Navigation igual a servicios/index -->
+  <header id="menu">
+    <nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Navegación principal">
+      <div class="container">
+        <!-- Brand + mobile toggle -->
+        <a class="navbar-brand" href="index.html#menu" aria-label="Inicio">
+          <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#menu">Inicio</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <!-- Hero -->
