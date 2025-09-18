@@ -168,10 +168,7 @@ h6 { font-size: var(--fs-h6); }
    Selección de texto
    ========================= */
 ::selection { background: #247075; color: #fff; }
-::-webkit-selection { background-color: #247075; color: #FFF; }
-::-ms-selection { background-color: #247075; color: #FFF; }
-::-o-selection { background-color: #247075; color: #FFF; }
-::-moz-selection { background-color: #247075; color: #FFF; }
+::-moz-selection { background: #247075; color: #fff; }
 
 /* =========================
    Hover animation
