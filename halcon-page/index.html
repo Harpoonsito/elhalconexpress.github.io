@@ -70,39 +70,34 @@
 
             <!-- ▼ Dropdown de Servicios (BS5) -->
             <li class="nav-item dropdown dropdown-services">
-              <a id="servicesDropdown" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" role="button" aria-haspopup="true" aria-expanded="false">
-                Servicios <span class="nav-plus" aria-hidden="true">+</span>
-              </a>
-
-              <ul class="dropdown-menu dropdown-services-menu" aria-labelledby="servicesDropdown">
-                <li>
-                  <h6 class="dropdown-header">Explora nuestros servicios</h6>
-                </li>
-
-                <!-- Enlaces: van a servicios.html; allí el JS activa la pestaña indicada -->
-                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#masivos-nacionales">Masivos
-                    Nacionales</a></li>
-                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#carga-consolidada">Carga
-                    Consolidada y Semimasiva</a></li>
-                <li><a class="dropdown-item svc-trigger" href="servicios.html"
-                    data-target="#distribucion-urbana">Distribución Urbana</a></li>
-                <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#comercio-exterior">Comercio
-                    Exterior</a></li>
-                <li><a class="dropdown-item svc-trigger" href="servicios.html"
-                    data-target="#servicios-complementarios">Servicios Complementarios</a></li>
-
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li class="dropdown-cta">
-                  <a href="servicios.html">
-                    <i class="fa fa-external-link" aria-hidden="true"></i>
-                    Ver página completa de servicios
-                  </a>
-                  <small>Se abrirá una página independiente</small>
-                </li>
-              </ul>
+              <!-- Solo un enlace a servicios en móvil, dropdown en escritorio -->
+              <a id="servicesDropdown" href="servicios.html" class="nav-link d-lg-none">Servicios</a>
+              <div class="d-none d-lg-block">
+                <a id="servicesDropdown" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside" role="button" aria-haspopup="true" aria-expanded="false">
+                  Servicios <span class="nav-plus" aria-hidden="true">+</span>
+                </a>
+                <ul class="dropdown-menu dropdown-services-menu" aria-labelledby="servicesDropdown">
+                  <li>
+                    <h6 class="dropdown-header">Explora nuestros servicios</h6>
+                  </li>
+                  <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
+                  <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
+                  <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#distribucion-urbana">Distribución Urbana</a></li>
+                  <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#comercio-exterior">Comercio Exterior</a></li>
+                  <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#servicios-complementarios">Servicios Complementarios</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li class="dropdown-cta">
+                    <a href="servicios.html">
+                      <i class="fa fa-external-link" aria-hidden="true"></i>
+                      Ver página completa de servicios
+                    </a>
+                    <small>Se abrirá una página independiente</small>
+                  </li>
+                </ul>
+              </div>
             </li>
             <!-- ▲ Fin dropdown -->
 

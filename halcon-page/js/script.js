@@ -18,37 +18,53 @@ window.addEventListener('load', function () {
 });
 
 // Dropdown Servicios: solo hover, sin click, animación suave
+// Dropdown Servicios: hover en escritorio, click en móvil
 document.addEventListener('DOMContentLoaded', function () {
   const toggler = document.querySelector('.dropdown-services > .dropdown-toggle');
   const menu = document.querySelector('.dropdown-services .dropdown-menu');
   if (!toggler || !menu) return;
-  // Prevenir cualquier click en el botón
+  function isMobile() {
+    return window.innerWidth <= 991;
+  }
+  // En móvil: click abre/cierra
   toggler.addEventListener('click', function (e) {
-    e.preventDefault();
-    return false;
-  });
-  toggler.addEventListener('dblclick', function (e) {
-    e.preventDefault(); e.stopPropagation();
-    return false;
-  });
-  // Animación de salida al perder hover
-  let hideTimeout;
-  toggler.parentElement.addEventListener('mouseleave', function () {
-    if (menu.classList.contains('show')) {
-      menu.classList.add('fade-exit');
-      hideTimeout = setTimeout(() => {
-        menu.classList.remove('fade-exit');
-        toggler.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('show');
-      }, 200);
+    if (isMobile()) {
+      e.preventDefault();
+      const expanded = toggler.getAttribute('aria-expanded') === 'true';
+      toggler.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      menu.classList.toggle('show', !expanded);
+    } else {
+      e.preventDefault();
     }
   });
-  toggler.parentElement.addEventListener('mouseenter', function () {
-    clearTimeout(hideTimeout);
-    if (!menu.classList.contains('show')) {
-      menu.classList.add('show');
-      toggler.setAttribute('aria-expanded', 'true');
+  // En escritorio: hover abre/cierra
+  if (!isMobile()) {
+    let hideTimeout;
+    toggler.parentElement.addEventListener('mouseleave', function () {
+      if (menu.classList.contains('show')) {
+        menu.classList.add('fade-exit');
+        hideTimeout = setTimeout(() => {
+          menu.classList.remove('fade-exit');
+          toggler.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('show');
+        }, 200);
+      }
+    });
+    toggler.parentElement.addEventListener('mouseenter', function () {
+      clearTimeout(hideTimeout);
+      if (!menu.classList.contains('show')) {
+        menu.classList.add('show');
+        toggler.setAttribute('aria-expanded', 'true');
+        menu.classList.remove('fade-exit');
+      }
+    });
+  }
+  // Cierra el menú al cambiar de tamaño de pantalla
+  window.addEventListener('resize', function () {
+    if (isMobile()) {
       menu.classList.remove('fade-exit');
+      toggler.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('show');
     }
   });
 });
