@@ -9,32 +9,50 @@
 
   <!-- Nosotros -->
   <url>
-    <loc>https://elhalconexpress.com/nosotros</loc>
+    <loc>https://elhalconexpress.com/nosotros.html</loc>
     <priority>0.8</priority>
   </url>
 
   <!-- Servicios -->
   <url>
-    <loc>https://elhalconexpress.com/servicios</loc>
+    <loc>https://elhalconexpress.com/servicios.html</loc>
     <priority>0.8</priority>
   </url>
 
   <!-- Cobertura -->
   <url>
-    <loc>https://elhalconexpress.com/cobertura</loc>
+    <loc>https://elhalconexpress.com/cobertura.html</loc>
     <priority>0.7</priority>
   </url>
 
   <!-- Rastrear Envío -->
   <url>
-    <loc>https://elhalconexpress.com/rastrear-envio</loc>
+    <loc>https://elhalconexpress.com/rastrear-envio.html</loc>
     <priority>0.7</priority>
   </url>
 
   <!-- Contacto -->
   <url>
-    <loc>https://elhalconexpress.com/contacto</loc>
+    <loc>https://elhalconexpress.com/contacto.html</loc>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Privacidad -->
+  <url>
+    <loc>https://elhalconexpress.com/privacidad.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Cookies -->
+  <url>
+    <loc>https://elhalconexpress.com/cookies.html</loc>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Términos -->
+  <url>
+    <loc>https://elhalconexpress.com/terminos.html</loc>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
