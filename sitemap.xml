@@ -1,58 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <!-- Página principal -->
   <url>
     <loc>https://elhalconexpress.com/</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Nosotros -->
-  <url>
-    <loc>https://elhalconexpress.com/nosotros.html</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Servicios -->
+  <!-- Servicios (página clave) -->
   <url>
     <loc>https://elhalconexpress.com/servicios.html</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Cobertura -->
-  <url>
-    <loc>https://elhalconexpress.com/cobertura.html</loc>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Rastrear Envío -->
-  <url>
-    <loc>https://elhalconexpress.com/rastrear-envio.html</loc>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Contacto -->
-  <url>
-    <loc>https://elhalconexpress.com/contacto.html</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Privacidad -->
+  <!-- Legales -->
   <url>
     <loc>https://elhalconexpress.com/privacidad.html</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- Cookies -->
-  <url>
-    <loc>https://elhalconexpress.com/cookies.html</loc>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Términos -->
   <url>
     <loc>https://elhalconexpress.com/terminos.html</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://elhalconexpress.com/cookies.html</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
 
 </urlset>
