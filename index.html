@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="es-CO" dir="ltr">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="El Halcón Express Cargo SAS: transporte urbano y nacional de carga en Colombia, logística empresarial, servicios programados, envíos asegurados y atención inmediata por WhatsApp. Bogotá.">
+  <meta name="description" content="El Halcón Express Cargo SAS: transporte urbano y nacional de carga en Colombia, logística empresarial, servicios programados, envíos asegurados y atención inmediata por WhatsApp. Bogotá.">
   <meta name="author" content="El Halcón Express Cargo SAS">
   <meta name="theme-color" content="#5DC1B9">
 
   <link rel="canonical" href="https://elhalconexpress.com/">
   <link rel="icon" type="image/png" href="images/Logo/Favicon%202.png">
-
   <title>El Halcón Express Cargo SAS</title>
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +29,7 @@
   <!-- ==================== SEO extra (OG, Twitter y JSON-LD) ==================== -->
   <meta name="robots" content="index,follow">
 
-  <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="El Halcón Express Cargo SAS | Transporte de carga y logística en Colombia">
   <meta property="og:description" content="Transporte urbano y nacional de carga en Colombia. Envíos asegurados, distribución urbana, carga consolidada y atención por WhatsApp.">
@@ -73,7 +68,7 @@
   }
   </script>
 
-  <!-- SiteNavigationElement (solo destacamos “Servicios”) -->
+  <!-- SiteNavigationElement (solo “Servicios”) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,10 +77,17 @@
     "url": ["https://elhalconexpress.com/servicios.html"]
   }
   </script>
-  <!-- ========================================================================== -->
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100" tabindex="0" style="position: relative;">
+<body
+  data-bs-spy="scroll"
+  data-bs-target="#mainNav"
+  data-bs-offset="100"
+  data-bs-root-margin="0px 0px -60%"
+  data-bs-smooth-scroll="true"
+  tabindex="0"
+  style="position: relative;"
+>
   <!-- Preloader (Lottie) -->
   <div id="preloader" role="status" aria-live="polite">
     <div class="preloader--lottie">
@@ -99,7 +101,7 @@
     <nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Navegación principal">
       <div class="container">
         <!-- Brand + mobile toggle -->
-        <a class="navbar-brand" href="/#menu" aria-label="Inicio">
+        <a class="navbar-brand" href="#menu" aria-label="Inicio">
           <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
         </a>
 
@@ -112,7 +114,8 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link scroll active" href="/#menu">Inicio</a>
+              <!-- QUITAMOS 'active' y evitamos el slash inicial -->
+              <a class="nav-link scroll" href="#menu">Inicio</a>
             </li>
 
             <li class="nav-item"><a class="nav-link scroll" href="#about">Nosotros</a></li>
@@ -127,9 +130,7 @@
                   Servicios <span class="nav-plus" aria-hidden="true">+</span>
                 </a>
                 <ul class="dropdown-menu dropdown-services-menu" aria-labelledby="servicesDropdown">
-                  <li>
-                    <h6 class="dropdown-header">Explora nuestros servicios</h6>
-                  </li>
+                  <li><h6 class="dropdown-header">Explora nuestros servicios</h6></li>
                   <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#masivos-nacionales">Masivos Nacionales</a></li>
                   <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#carga-consolidada">Carga Consolidada y Semimasiva</a></li>
                   <li><a class="dropdown-item svc-trigger" href="servicios.html" data-target="#distribucion-urbana">Distribución Urbana</a></li>
@@ -315,8 +316,7 @@
       <p><span><strong>I</strong></span>ngresa tu número de guía para conocer el estado de tu envío.</p>
 
       <form id="tracking-form" class="tracking__form" autocomplete="off">
-        <input id="trackingNumber" name="guia" class="tracking__input" type="text" placeholder="Número de guía"
-          required />
+        <input id="trackingNumber" name="guia" class="tracking__input" type="text" placeholder="Número de guía" required />
         <button class="tracking__btn" type="submit">Rastrear</button>
       </form>
 
@@ -328,7 +328,6 @@
   <section id="contact">
     <div class="container">
 
-      <!-- Envoltorio en fila para el encabezado -->
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="heading">
@@ -373,10 +372,8 @@
 
         <!-- Mapa -->
         <div class="col-md-6 col-sm-6">
-          <iframe id="mapa"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.4580962000875!2d-74.09964495786069!3d4.6090226832635945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f998e96061e97%3A0x61d368a5c3ce4fbc!2sEl%20Halc%C3%B3n%20Express%20Cargo%20SAS!5e0!3m2!1ses-419!2sco!4v1755204216427!5m2!1ses-419!2sco"
-            width="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe id="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.4580962000875!2d-74.09964495786069!3d4.6090226832635945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f998e96061e97%3A0x61d368a5c3ce4fbc!2sEl%20Halc%C3%B3n%20Express%20Cargo%20SAS!5e0!3m2!1ses-419!2sco!4v1755204216427!5m2!1ses-419!2sco"
+            width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -452,18 +449,28 @@
   </div>
 
   <!-- JS -->
-  <!-- Bootstrap 5 bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/script.js"></script>
+
+  <!-- ScrollSpy: re-inicializa para evitar que “Inicio” quede pegado -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+      // Inicializa/actualiza ScrollSpy
+      const ss = bootstrap.ScrollSpy.getInstance(document.body) ||
+                 new bootstrap.ScrollSpy(document.body, {
+                   target: '#mainNav',
+                   rootMargin: '0px 0px -60%'
+                 });
+      // Recalcula al terminar de cargar recursos y en resize
+      window.addEventListener('load', () => ss.refresh());
+      window.addEventListener('resize', () => ss.refresh());
+
+      // Lógica banner cookies
       var banner = document.getElementById('cookie-banner');
       var btn = document.getElementById('accept-cookies');
       if (banner && btn) {
-        if (localStorage.getItem('cookiesAccepted')) {
-          banner.style.display = 'none';
-        }
+        if (localStorage.getItem('cookiesAccepted')) banner.style.display = 'none';
         btn.addEventListener('click', function() {
           localStorage.setItem('cookiesAccepted', 'yes');
           banner.style.display = 'none';
@@ -471,6 +478,7 @@
       }
     });
   </script>
+
   <style>
     .footer-bottom .legal-links {
       list-style: none;
@@ -492,48 +500,24 @@
       outline: none;
     }
     .footer-bottom .legal-links a:hover,
-    .footer-bottom .legal-links a:focus {
-      color: #5DC1B9;
-      background: #f2f6f7;
-    }
+    .footer-bottom .legal-links a:focus { color: #5DC1B9; background: #f2f6f7; }
+
     .cookie-banner {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      background: #f2f6f7;
-      color: #222;
-      padding: 16px 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      z-index: 99999;
-      font-size: 15px;
-      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: #f2f6f7; color: #222; padding: 16px 12px;
+      display: flex; justify-content: center; align-items: center; gap: 18px;
+      z-index: 99999; font-size: 15px; box-shadow: 0 -2px 12px rgba(0,0,0,.08);
       border-top: 2px solid #5DC1B9;
     }
-    .cookie-banner a {
-      color: #2E8F88;
-      text-decoration: underline;
-      transition: color .2s;
-    }
-    .cookie-banner a:hover,
-    .cookie-banner a:focus { color: #5DC1B9; }
+    .cookie-banner a { color: #2E8F88; text-decoration: underline; transition: color .2s; }
+    .cookie-banner a:hover, .cookie-banner a:focus { color: #5DC1B9; }
     .cookie-banner .btn {
-      margin-left: 12px;
-      background: #bfc9cc;
-      color: #222;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 7px 18px;
+      margin-left: 12px; background: #bfc9cc; color: #222; border: none;
+      border-radius: 8px; font-size: 15px; font-weight: 600; padding: 7px 18px;
       transition: background .2s, color .2s;
     }
-    .cookie-banner .btn:hover,
-    .cookie-banner .btn:focus {
-      background: #5DC1B9;
-      color: #fff;
-    }
+    .cookie-banner .btn:hover, .cookie-banner .btn:focus { background: #5DC1B9; color: #fff; }
+
     @media (max-width: 600px) {
       .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
     }
