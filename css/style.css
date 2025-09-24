@@ -926,3 +926,48 @@ html { scroll-behavior: auto; }
   .footer-right{ left: 0; }
   .footer-left img.logo-super{ margin: 10px auto 0; } /* centrado bajo 991px */
 }
+ /* El ancla no queda tras la navbar */
+    :root { --nav-h: 90px; }
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+    .footer-bottom .legal-links {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .footer-bottom .legal-links li { display: inline; }
+    .footer-bottom .legal-links a {
+      color: #bfc9cc;
+      text-decoration: underline;
+      font-size: 14px;
+      transition: color .2s, background .2s;
+      padding: 2px 8px;
+      border-radius: 6px;
+      outline: none;
+    }
+    .footer-bottom .legal-links a:hover,
+    .footer-bottom .legal-links a:focus { color: #5DC1B9; background: #f2f6f7; }
+
+    .cookie-banner {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: #f2f6f7; color: #222; padding: 16px 12px;
+      display: flex; justify-content: center; align-items: center; gap: 18px;
+      z-index: 99999; font-size: 15px; box-shadow: 0 -2px 12px rgba(0,0,0,.08);
+      border-top: 2px solid #5DC1B9;
+    }
+    .cookie-banner a { color: #2E8F88; text-decoration: underline; transition: color .2s; }
+    .cookie-banner a:hover, .cookie-banner a:focus { color: #5DC1B9; }
+    .cookie-banner .btn {
+      margin-left: 12px; background: #bfc9cc; color: #222; border: none;
+      border-radius: 8px; font-size: 15px; font-weight: 600; padding: 7px 18px;
+      transition: background .2s, color .2s;
+    }
+    .cookie-banner .btn:hover, .cookie-banner .btn:focus { background: #5DC1B9; color: #fff; }
+
+    @media (max-width: 600px) {
+      .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
+    }

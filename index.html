@@ -79,15 +79,7 @@
   </script>
 </head>
 
-<body
-  data-bs-spy="scroll"
-  data-bs-target="#mainNav"
-  data-bs-offset="100"
-  data-bs-root-margin="0px 0px -60%"
-  data-bs-smooth-scroll="true"
-  tabindex="0"
-  style="position: relative;"
->
+<body tabindex="0" style="position: relative;">
   <!-- Preloader (Lottie) -->
   <div id="preloader" role="status" aria-live="polite">
     <div class="preloader--lottie">
@@ -113,17 +105,13 @@
         <!-- Links -->
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <!-- QUITAMOS 'active' y evitamos el slash inicial -->
-              <a class="nav-link scroll" href="#menu">Inicio</a>
-            </li>
-
+            <li class="nav-item"><a class="nav-link scroll" href="#menu">Inicio</a></li>
             <li class="nav-item"><a class="nav-link scroll" href="#about">Nosotros</a></li>
 
             <!-- ▼ Dropdown de Servicios (BS5) -->
             <li class="nav-item dropdown dropdown-services">
-              <!-- Solo un enlace a servicios en móvil, dropdown en escritorio -->
-              <a id="servicesDropdown" href="servicios.html" class="nav-link d-lg-none">Servicios</a>
+              <!-- En móvil: enlace directo; en escritorio: dropdown -->
+              <a id="servicesDropdownMobile" href="servicios.html" class="nav-link d-lg-none">Servicios</a>
               <div class="d-none d-lg-block">
                 <a id="servicesDropdown" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                   data-bs-auto-close="outside" role="button" aria-haspopup="true" aria-expanded="false">
@@ -149,7 +137,7 @@
             </li>
             <!-- ▲ Fin dropdown -->
 
-            <li class="nav-item"><a class="nav-link scroll" href="#cobertura">Cobertura</a></li>
+            <li class="nav-item"><a class="nav-link scroll" href="#coverage">Cobertura</a></li>
             <li class="nav-item"><a class="nav-link scroll" href="#tracking">Rastrear Envío</a></li>
             <li class="nav-item"><a class="nav-link scroll" href="#contact">Contacto</a></li>
           </ul>
@@ -294,7 +282,7 @@
   </section>
 
   <!-- Cobertura -->
-  <section id="cobertura" class="cobertura">
+  <section id="coverage" class="cobertura">
     <h2>COBERTURA NACIO<span>NAL</span></h2>
     <div class="line"></div>
     <p><span><strong>O</strong></span>frecemos cobertura a nivel nacional en Colombia, conectando personas, negocios y
@@ -430,7 +418,7 @@
       </div>
     </div>
 
-    <div class="footer-bottom">
+  <div class="footer-bottom">
       <p>© 2025 El Halcón Express Cargo SAS - NIT 901663959 - Todos los derechos reservados</p>
       <ul class="legal-links">
         <li><a href="privacidad.html">Política de Privacidad</a></li>
@@ -452,75 +440,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/script.js"></script>
-
-  <!-- ScrollSpy: re-inicializa para evitar que “Inicio” quede pegado -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Inicializa/actualiza ScrollSpy
-      const ss = bootstrap.ScrollSpy.getInstance(document.body) ||
-                 new bootstrap.ScrollSpy(document.body, {
-                   target: '#mainNav',
-                   rootMargin: '0px 0px -60%'
-                 });
-      // Recalcula al terminar de cargar recursos y en resize
-      window.addEventListener('load', () => ss.refresh());
-      window.addEventListener('resize', () => ss.refresh());
-
-      // Lógica banner cookies
-      var banner = document.getElementById('cookie-banner');
-      var btn = document.getElementById('accept-cookies');
-      if (banner && btn) {
-        if (localStorage.getItem('cookiesAccepted')) banner.style.display = 'none';
-        btn.addEventListener('click', function() {
-          localStorage.setItem('cookiesAccepted', 'yes');
-          banner.style.display = 'none';
-        });
-      }
-    });
-  </script>
-
-  <style>
-    .footer-bottom .legal-links {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0 0 0;
-      display: flex;
-      gap: 18px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .footer-bottom .legal-links li { display: inline; }
-    .footer-bottom .legal-links a {
-      color: #bfc9cc;
-      text-decoration: underline;
-      font-size: 14px;
-      transition: color .2s, background .2s;
-      padding: 2px 8px;
-      border-radius: 6px;
-      outline: none;
-    }
-    .footer-bottom .legal-links a:hover,
-    .footer-bottom .legal-links a:focus { color: #5DC1B9; background: #f2f6f7; }
-
-    .cookie-banner {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      background: #f2f6f7; color: #222; padding: 16px 12px;
-      display: flex; justify-content: center; align-items: center; gap: 18px;
-      z-index: 99999; font-size: 15px; box-shadow: 0 -2px 12px rgba(0,0,0,.08);
-      border-top: 2px solid #5DC1B9;
-    }
-    .cookie-banner a { color: #2E8F88; text-decoration: underline; transition: color .2s; }
-    .cookie-banner a:hover, .cookie-banner a:focus { color: #5DC1B9; }
-    .cookie-banner .btn {
-      margin-left: 12px; background: #bfc9cc; color: #222; border: none;
-      border-radius: 8px; font-size: 15px; font-weight: 600; padding: 7px 18px;
-      transition: background .2s, color .2s;
-    }
-    .cookie-banner .btn:hover, .cookie-banner .btn:focus { background: #5DC1B9; color: #fff; }
-
-    @media (max-width: 600px) {
-      .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
-    }
-  </style>
 </body>
 </html>
