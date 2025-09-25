@@ -9,8 +9,13 @@ Esta licencia cubre **todo el material visual y de marca** presente en este repo
 - Carpetas típicas de ejemplo: `images/`, `images/social/`, `images/Logo/`, `assets/`.
 
 ## Usos permitidos
-- Ver y utilizar los activos **exclusivamente** dentro de este proyecto/sitio.
-- Contribuir a este repositorio respetando esta licencia y sin extraer los activos para otros proyectos.
+- El uso de estos activos es **exclusivo** de El Halcón Express Cargo SAS y de personal/contratistas autorizados, únicamente para operar y mantener **este sitio/proyecto**.
+- Se permite descargar y almacenar copias locales **solo** para fines operativos de este mismo sitio y sus copias de seguridad internas.
+- Se permite crear variantes internas de los activos **únicamente** para este sitio. Queda prohibida cualquier reutilización externa, publicación o redistribución.
+
+## Contribuciones de terceros
+- **No se aceptan** contribuciones (pull requests, issues con archivos adjuntos, etc.) que modifiquen, agreguen o reemplacen activos visuales, logotipos, tipografías o el **diseño del sitio**.
+- Cualquier envío no solicitado de activos será rechazado y, si es necesario, eliminado del historial del repositorio.
 
 ## Prohibiciones (sin autorización escrita de El Halcón Express Cargo SAS)
 - Copiar, modificar, redistribuir, revender o usar los activos con fines comerciales **fuera** de este proyecto.
