@@ -1,4 +1,8 @@
 User-agent: *
-Allow: /
+Disallow: /tracking/
+Disallow: /api/
+Disallow: /buscar-guia
+# Opcional: bloquear áreas administrativas si existen
+Disallow: /admin/
 
-Sitemap: https://elhalconexpress.com/sitemap.xml
+Sitemap: https://www.elhalconexpress.com/sitemap.xml
