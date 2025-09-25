@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de Privacidad | El Halcón Express Cargo SAS</title>
+  <meta name="description" content="Política de Privacidad y Tratamiento de Datos de El Halcón Express Cargo SAS.">
+  <meta name="theme-color" content="#5DC1B9">
+  <meta name="robots" content="index,follow">
 
-  <!-- Estilos propios -->
-    <link rel="icon" type="image/png" href="images/Logo/Favicon%202.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/responsive.css">
+  <!-- Canonical y favicon -->
+  <link rel="canonical" href="https://elhalconexpress.com/privacidad/">
+  <link rel="icon" type="image/png" href="/images/Logo/Favicon%202.png">
 
-  <!-- Bootstrap 5 para mantener el mismo look & feel -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Open Graph / Twitter (opcional pero recomendado) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Política de Privacidad | El Halcón Express Cargo SAS">
+  <meta property="og:description" content="Conoce cómo recolectamos, usamos y protegemos tus datos personales.">
+  <meta property="og:url" content="https://elhalconexpress.com/privacidad/">
+  <meta property="og:image" content="https://elhalconexpress.com/images/Logo/Logo%20Halc%C3%B3n%20peque%C3%B1o.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Política de Privacidad",
+    "url":"https://elhalconexpress.com/privacidad/",
+    "description":"Política de Privacidad y Tratamiento de Datos de El Halcón Express Cargo SAS."
+  }
+  </script>
+
+  <!-- Bootstrap + estilos del sitio -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  <!-- Normaliza si alguien entra a /privacidad/index.html -->
+  <script>
+    (function () {
+      if (/\/privacidad\/index\.html$/i.test(location.pathname)) {
+        history.replaceState(null, '', '/privacidad/' + location.search + location.hash);
+      }
+    })();
+  </script>
 </head>
 <body>
+
   <!-- Navbar superior -->
   <header id="menu">
     <nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Navegación principal">
       <div class="container">
-        <a class="navbar-brand" href="index.html#menu" aria-label="Inicio">
-          <img src="images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
+        <a class="navbar-brand" href="/#menu" aria-label="Inicio">
+          <img src="/images/Logo/Logo Halcón pequeño.png" alt="El Halcón Express">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
           aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
@@ -27,24 +60,24 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html#menu">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#menu">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="/servicios/">Servicios</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <div style="height: 70px;"></div> <!-- Espaciador para navbar fija -->
+  <!-- Espaciador para navbar fija -->
+  <div style="height: 70px;"></div>
 
   <main class="container my-5" style="max-width: 900px; margin: 48px auto 32px; padding: 24px 0;">
     <style>
       @media (max-width: 991px) {
-        main.container {
-          padding-left: 18px !important;
-          padding-right: 18px !important;
-        }
+        main.container { padding-left: 18px !important; padding-right: 18px !important; }
       }
     </style>
+
     <h1 class="text-center mb-4">Política de Privacidad y Tratamiento de Datos</h1>
     <hr class="mb-5" style="border-top: 2px solid #5DC1B9; opacity: 1;">
 
@@ -98,7 +131,7 @@
       <h2 class="h5 mt-4">6. Cookies y servicios de terceros</h2>
       <p>
         Nuestro sitio puede usar cookies propias y de terceros (p. ej., <em>Google Maps</em>). Más detalles en la
-        <a href="cookies.html">Política de Cookies</a>.
+        <a href="/cookies/">Política de Cookies</a>.
       </p>
 
       <h2 class="h5 mt-4">7. Derechos de los titulares (ARCO)</h2>
@@ -106,7 +139,7 @@
       <p>
         Para ejercerlos, escríbenos a <a href="mailto:logistica@elhalconexpress.com">logistica@elhalconexpress.com</a>
         con el asunto <em>“Solicitud de datos personales”</em>, indicando tu nombre, documento e indicaciones sobre el derecho que deseas ejercer.
-        También puedes contactarnos por WhatsApp al <a href="https://wa.me/573006965535" target="_blank">+57 300 696 5535</a>.
+        También puedes contactarnos por WhatsApp al <a href="https://wa.me/573006965535" target="_blank" rel="noopener">+57 300 696 5535</a>.
         Responderemos dentro de los plazos legales.
       </p>
 
@@ -142,21 +175,23 @@
   <footer class="footer">
     <div class="footer-bottom">
       <ul class="legal-links">
-        <li><a href="privacidad.html" aria-current="page">Política de Privacidad</a></li>
-        <li><a href="terminos.html">Términos y Condiciones</a></li>
-        <li><a href="cookies.html">Política de Cookies</a></li>
+        <li><a href="/privacidad/" aria-current="page">Política de Privacidad</a></li>
+        <li><a href="/terminos/">Términos y Condiciones</a></li>
+        <li><a href="/cookies/">Política de Cookies</a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Banner de cookies (mismo diseño del resto del sitio) -->
+  <!-- Banner de cookies -->
   <div id="cookie-banner" class="cookie-banner">
     <span>
-      Usamos cookies para mejorar tu experiencia. Consulta nuestra <a href="cookies.html" target="_blank">Política de Cookies</a>.
+      Usamos cookies para mejorar tu experiencia. Consulta nuestra <a href="/cookies/" target="_blank">Política de Cookies</a>.
     </span>
     <button id="accept-cookies" class="btn btn-brand btn-sm">Aceptar</button>
   </div>
 
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script>
     // Banner cookies
     document.addEventListener('DOMContentLoaded', function() {
@@ -173,7 +208,6 @@
       }
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <style>
     /* Texto consistente con las otras páginas legales */
