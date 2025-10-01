@@ -109,36 +109,55 @@
   })();
 
   // -------- Activo por sección (solo home) --------
-  document.addEventListener('DOMContentLoaded', function () {
-    if (window.__NAV_LOCKED__) return;
-    const map = [
-      ['slider',   '#menu'],
-      ['about',    '#about'],
-      ['coverage', '#coverage'], // id correcto
-      ['tracking', '#tracking'],
-      ['contact',  '#contact']
-    ];
-    const bySectionId = Object.fromEntries(
-      map.map(([id, href]) => [id, document.querySelector(`#mainNav .nav-link[href="${href}"]`)])
-    );
-    const observed = map.map(([id]) => document.getElementById(id)).filter(Boolean);
-    if (!observed.length) return;
-    const io = new IntersectionObserver((entries) => {
-      let best = null, ratio = 0;
-      for (const e of entries) if (e.isIntersecting && e.intersectionRatio > ratio) { ratio = e.intersectionRatio; best = e; }
-      if (best && bySectionId[best.target.id]) {
-        clearActive();
-        bySectionId[best.target.id].classList.add('active');
-      }
-    }, { root: null, rootMargin: '-25% 0px -60% 0px', threshold: [0.25, 0.5, 0.75, 1] });
-    observed.forEach(sec => io.observe(sec));
-    window.addEventListener('hashchange', () => {
-      if (window.__NAV_LOCKED__) return;
-      setActiveByHref(location.hash || '#menu');
-    }, { passive: true });
-  });
-
-  // -------- Navbar .on tras scroll --------
+          document.addEventListener('DOMContentLoaded', function () {
+    if (window.__NAV_LOCKED__) return;
+    const sections = [
+      ['slider',   '#menu'],
+      ['about',    '#about'],
+      ['coverage', '#coverage'],
+      ['tracking', '#tracking'],
+      ['contact',  '#contact']
+    ].map(([id, href]) => {
+      const section = document.getElementById(id);
+      return section ? { href, section } : null;
+    }).filter(Boolean);
+    if (!sections.length) return;
+    sections.sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+    const headerOffset = () => {
+      const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+      return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+    };
+    let currentHref = null;
+    const updateActive = () => {
+      const scrollPos = window.scrollY + headerOffset() + 8;
+      let active = sections[0];
+      for (const item of sections) {
+        if (item.section.offsetTop <= scrollPos) active = item;
+      }
+      if (active && active.href !== currentHref) {
+        currentHref = active.href;
+        setActiveByHref(active.href);
+      }
+    };
+    let ticking = false;
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        updateActive();
+      });
+    };
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    window.addEventListener('load', requestUpdate);
+    requestUpdate();
+    window.addEventListener('hashchange', () => {
+      if (window.__NAV_LOCKED__) return;
+      setActiveByHref(location.hash || '#menu');
+    }, { passive: true });
+  });
+// -------- Navbar .on tras scroll --------
   window.addEventListener('scroll', function () {
     const nav = document.querySelector('.navbar');
     if (!nav) return;
