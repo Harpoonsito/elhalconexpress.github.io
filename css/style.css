@@ -1,4 +1,4 @@
-/* --- Fix: alineación botón Servicios en escritorio --- */
+﻿/* --- Fix: alineaciÃ³n botÃ³n Servicios en escritorio --- */
 @media (min-width: 992px) {
   .navbar-nav {
     align-items: center !important;
@@ -21,7 +21,7 @@
     gap: 2px;
   }
 }
-/* --- NAVBAR: Mejoras móviles y centrado --- */
+/* --- NAVBAR: Mejoras mÃ³viles y centrado --- */
 @media (max-width: 991px) {
   .navbar-nav {
     width: 100%;
@@ -56,7 +56,7 @@
   }
 }
 
-/* --- Dropdown Servicios: funcional en móvil --- */
+/* --- Dropdown Servicios: funcional en mÃ³vil --- */
 @media (max-width: 991px) {
   .dropdown-services .dropdown-menu {
     position: static !important;
@@ -93,7 +93,7 @@
   }
 }
   .dropdown-services { position: relative !important; }
-/* Deshabilitar click en el botón de Servicios, solo hover */
+/* Deshabilitar click en el botÃ³n de Servicios, solo hover */
 .dropdown-services > .dropdown-toggle {
   pointer-events: none;
   cursor: default !important;
@@ -102,7 +102,7 @@
   pointer-events: auto;
   cursor: pointer !important;
 }
-/* Eliminar recuadro/outline azul en el botón de Servicios */
+/* Eliminar recuadro/outline azul en el botÃ³n de Servicios */
 .dropdown-services > .dropdown-toggle:focus,
 .dropdown-services > .dropdown-toggle:active,
 .dropdown-services > .dropdown-toggle.show,
@@ -127,7 +127,7 @@
 html, body {
   scroll-behavior: smooth;
 }
-/* --- Ajuste visual menú lateral de servicios (Bootstrap 5) --- */
+/* --- Ajuste visual menÃº lateral de servicios (Bootstrap 5) --- */
 #svc-menu-card {
   background: #f8fafc;
   border: 1px solid #e6edf3;
@@ -201,13 +201,13 @@ html, body {
   filter: brightness(0.95);
 }
 /* =========================
-   Config tipografía global
+   Config tipografÃ­a global
    ========================= */
 :root{
   --font-body: 'Open Sans', Arial, sans-serif;
   --font-headings: 'Poppins', 'Open Sans', Arial, sans-serif;
 
-  /* Tamaños globales de h1..h6 */
+  /* TamaÃ±os globales de h1..h6 */
   --fs-h1: 51px;
   --fs-h2: 35px;
   --fs-h3: 23px;
@@ -215,12 +215,12 @@ html, body {
   --fs-h5: 18px;
   --fs-h6: 16px;
 
-  /* Grosor global de todos los títulos */
+  /* Grosor global de todos los tÃ­tulos */
   --fw-headings: 600;
 }
 
 /* =========================
-   Base & Tipografía
+   Base & TipografÃ­a
    ========================= */
 * { margin: 0; }
 /* ========== OVERRIDE CAPTION SLIDER ========== */
@@ -243,7 +243,7 @@ html, body {
 body, p, li, input, textarea, button, label, small {
   font-family: var(--font-body);
 }
-/* Títulos en Poppins */
+/* TÃ­tulos en Poppins */
 h1, h2, h3, h4, h5, h6, .title, .column-title {
   font-family: var(--font-headings);
   font-weight: var(--fw-headings);
@@ -255,11 +255,11 @@ h3 { font-size: var(--fs-h3); }
 h4 { font-size: var(--fs-h4); }
 h5 { font-size: var(--fs-h5); }
 h6 { font-size: var(--fs-h6); }
-/* Enlaces del menú con Open Sans */
+/* Enlaces del menÃº con Open Sans */
 .navbar-default .navbar-nav > li > a { font-family: var(--font-body); font-weight: 400; }
 
 /* =========================
-   Selección de texto
+   SelecciÃ³n de texto
    ========================= */
 ::selection { background: #247075; color: #fff; }
 ::-moz-selection { background: #247075; color: #fff; }
@@ -289,7 +289,7 @@ h6 { font-size: var(--fs-h6); }
 #preloader.is-hidden{ opacity: 0; pointer-events: none; }
 
 .preloader--lottie{ text-align: center; }
-.lottie-box{ width: 220px; height: 220px; }  /* ⇠ ajusta tamaño del camión aquí */
+.lottie-box{ width: 220px; height: 220px; }  /* â‡  ajusta tamaÃ±o del camiÃ³n aquÃ­ */
 .preloader__text{
   margin-top: 10px;
   font: 600 14px/1.2 'Open Sans', Arial, sans-serif;
@@ -306,7 +306,7 @@ h6 { font-size: var(--fs-h6); }
   transition: opacity .35s ease, transform .35s ease;
 }
 
-/* Ya la tienes, pero le agregamos un pequeño delay para que se note el fade del camión */
+/* Ya la tienes, pero le agregamos un pequeÃ±o delay para que se note el fade del camiÃ³n */
 #preloader.is-hidden{
   opacity: 0;
   pointer-events: none;
@@ -321,7 +321,7 @@ h6 { font-size: var(--fs-h6); }
 
 
 /* =========================
-   Tipografía general
+   TipografÃ­a general
    ========================= */
 p{ font-size:15px; color:#111; font-weight:400; line-height:25px; text-align:center; }
 h1{ color:#fff; text-transform:uppercase; }
@@ -350,14 +350,14 @@ a.navbar-brand{ padding:0; margin-top:-3px; }
 ul.nav li.active a:before{ opacity:1; }
 
 /* =========================
-   Dropdown “Servicios”
+   Dropdown â€œServiciosâ€
    ========================= */
 .navbar-default .navbar-nav > li.dropdown > a .nav-plus{ color:#e85a4f; font-weight:700; margin-left:4px; }
 
-/* PARA EVITAR EL “HUECO” ENTRE BOTÓN Y MENÚ:
+/* PARA EVITAR EL â€œHUECOâ€ ENTRE BOTÃ“N Y MENÃš:
    - Sin margen superior (0)
-   - Añadimos padding-top para la separación visual
-   - Puente invisible de 12px bajo el botón (solo desktop) */
+   - AÃ±adimos padding-top para la separaciÃ³n visual
+   - Puente invisible de 12px bajo el botÃ³n (solo desktop) */
 .dropdown-services { position: relative !important; }
 
 .dropdown-services .dropdown-menu{
@@ -375,7 +375,7 @@ ul.nav li.active a:before{ opacity:1; }
   background:rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  /* Animación */
+  /* AnimaciÃ³n */
   opacity:0;
   transition:opacity .28s cubic-bezier(.4,0,.2,1), transform .28s cubic-bezier(.4,0,.2,1);
 }
@@ -423,8 +423,8 @@ ul.nav li.active a:before{ opacity:1; }
   transform: translateX(-50%) rotate(45deg);
 }
 
-/* Desktop: mantener abierto al pasar del botón al menú
-   y puente invisible de 12px bajo el botón */
+/* Desktop: mantener abierto al pasar del botÃ³n al menÃº
+   y puente invisible de 12px bajo el botÃ³n */
 @media (min-width: 992px){
   .dropdown-services:hover > .dropdown-menu{ display:block; }
   .dropdown-services::after{
@@ -448,7 +448,7 @@ ul.nav li.active a:before{ opacity:1; }
 }
 .home-carousel-left{ left:-32px; } .home-carousel-right{ right:-32px; }
 #home-carousel:hover .home-carousel-left{ left:0; } #home-carousel:hover .home-carousel-right{ right:0; }
-/* Aparición animada */
+/* ApariciÃ³n animada */
 #home-carousel .carousel-item h1, #home-carousel .carousel-item h2, #home-carousel .carousel-item p { opacity:0; transform:scale(.5); }
 #home-carousel .carousel-item h1 { transition: all .5s ease-in-out .15s; }
 #home-carousel .carousel-item h2 { transition: all .5s ease-in-out .30s; }
@@ -512,7 +512,7 @@ ul.nav li.active a:before{ opacity:1; }
 @media (min-width:768px) and (max-width:991px){ .features-sec > [class*="col-"]:nth-child(2n+1){ clear:both; } }
 @media (max-width:767px){ .features-sec > [class*="col-"]:nth-child(2n+1){ clear:both; } }
 
-/* ===== Página Servicios: sidebar + contenido ===== */
+/* ===== PÃ¡gina Servicios: sidebar + contenido ===== */
 .svc-hero{ padding:60px 20px 20px; text-align:center; background:#f8f8f8; }
 .svc-hero .lead{ max-width:820px; margin:8px auto 0; color:#111; }
 
@@ -697,7 +697,7 @@ html{ scroll-behavior:auto; }
 .svc-cta-card{ position: static !important; }
 .svc-cta-fixed{ position: static !important; }
 
-/* Menú lateral: espaciado y foco */
+/* MenÃº lateral: espaciado y foco */
 .svc-menu li{ border-top: 1px solid #e6ecef; margin-bottom: 6px; }
 .svc-menu [role="tab"]{
   display:block; width:100%; text-align:left; background:#fff;
@@ -708,12 +708,12 @@ html{ scroll-behavior:auto; }
 .svc-menu [role="tab"]:hover{ border-color:#5DC1B9; background:#f8fdfd; color:#2E8F88; box-shadow:0 0 6px rgba(93,193,185,.28); }
 .svc-menu [role="tab"]:focus{ outline:0; box-shadow:0 0 0 3px rgba(93,193,185,.35); }
 
-/* ====== Reset responsive “seguros” ====== */
+/* ====== Reset responsive â€œsegurosâ€ ====== */
 img { max-width: 100%; height: auto; }
 iframe { max-width: 100%; }
 html, body { overflow-x: hidden; }
 
-/* Carrusel: evita alturas fijas gigantes en móviles */
+/* Carrusel: evita alturas fijas gigantes en mÃ³viles */
 #home-carousel .carousel-item { min-height: 420px; height: 60vh; }
 @media (max-width: 991px){
   #home-carousel .carousel-item { height: 56vh; }
@@ -723,7 +723,7 @@ html, body { overflow-x: hidden; }
   .social-links i { font-size: 36px; margin: 0 12px; }
 }
 
-/* Navbar móvil */
+/* Navbar mÃ³vil */
 @media (max-width: 991px){
   #menu { position: static; }
   .navbar-default { padding: 6px 0; }
@@ -731,7 +731,7 @@ html, body { overflow-x: hidden; }
   .navbar-brand img { max-height: 40px; }
 }
 
-/* “Sobre nosotros” responsive */
+/* â€œSobre nosotrosâ€ responsive */
 .about-section .row { gap: 24px; }
 .about-section .column { max-width: 100%; }
 @media (min-width: 768px){
@@ -747,7 +747,7 @@ html, body { overflow-x: hidden; }
   #fun-facts .row > div { width: 100%; float: none; }
 }
 
-/* Cobertura: táctiles */
+/* Cobertura: tÃ¡ctiles */
 @media (hover: none){
   .mapa-container img:hover { transform: none; box-shadow: none; }
   .mapa-container img { cursor: default; }
@@ -770,7 +770,7 @@ html, body { overflow-x: hidden; }
   .social-icon { justify-content: center; }
 }
 
-/* ====== Página Servicios (sidebar + tabs) ====== */
+/* ====== PÃ¡gina Servicios (sidebar + tabs) ====== */
 @media (min-width: 992px){
   #svc-menu-card{ position: sticky; top: 90px; z-index: 2; }
 }
@@ -787,12 +787,12 @@ html, body { overflow-x: hidden; }
 #svc-menu-card .btn-brand{ display:block; width:100%; }
 #svc-menu-card .tab-content .tab-pane { min-height: 1px; }
 
-/* Dropdown Servicios: quepa en pantallas pequeñas */
+/* Dropdown Servicios: quepa en pantallas pequeÃ±as */
 @media (max-width: 480px){
   .dropdown-services-menu{ min-width: 260px; max-width: 90vw; }
 }
 
-/* Botones y tipografía móvil chica */
+/* Botones y tipografÃ­a mÃ³vil chica */
 @media (max-width: 480px){
   h1 { font-size: 28px; }
   h2 { font-size: 22px; }
@@ -851,7 +851,7 @@ html { scroll-behavior: auto; }
 #menu .navbar-nav > li > .nav-link.active::before { transform: scaleX(1); opacity: 1; }
 .navbar-brand img{
   position: relative;
-  top: -14px; /* sube el logo aún más */
+  top: -14px; /* sube el logo aÃºn mÃ¡s */
   max-height: 46px;
   width: auto;
 }
@@ -873,7 +873,7 @@ html { scroll-behavior: auto; }
 #home-carousel:hover .home-carousel-left { left: 0; }
 #home-carousel:hover .home-carousel-right { right: 0; }
 
-/* ====== Slider: posición del caption (solo escritorio) ====== */
+/* ====== Slider: posiciÃ³n del caption (solo escritorio) ====== */
 :root{
   --cap-left: 2%;
   --cap-right: 46%;
@@ -892,7 +892,7 @@ html { scroll-behavior: auto; }
 .slide-siguenos  .carousel-caption { --cap-left: 2%;  --cap-right: 50%; }
 .slide-whatsapp  .carousel-caption { --cap-left: 3.5%;--cap-right: 48%; }
 .slide-volando   .carousel-caption { --cap-left: 1%;  --cap-right: 54%; }
-/* ===== FIX: footer centrado (horarios + botón) ===== */
+/* ===== FIX: footer centrado (horarios + botÃ³n) ===== */
 
 /* Centra cada columna dentro de su celda del grid */
 .footer-container{
@@ -914,14 +914,14 @@ html { scroll-behavior: auto; }
   display: flex;
   flex-direction: column;
   align-items: center;   /* centra horizontalmente todo */
-  text-align: center;    /* centra títulos/textos */
-  max-width: 560px;      /* ancho cómodo del bloque */
+  text-align: center;    /* centra tÃ­tulos/textos */
+  max-width: 560px;      /* ancho cÃ³modo del bloque */
   margin-inline: auto;
 }
 .footer-center .hours{ text-align: center; }
 .footer-center .btn-outline{ margin-inline: auto; }
 
-/* En móvil ya tenías layout en 1 columna, mantenemos el centrado */
+/* En mÃ³vil ya tenÃ­as layout en 1 columna, mantenemos el centrado */
 @media (max-width: 991px){
   .footer-right{ left: 0; }
   .footer-left img.logo-super{ margin: 10px auto 0; } /* centrado bajo 991px */
@@ -971,3 +971,58 @@ html { scroll-behavior: auto; }
     @media (max-width: 600px) {
       .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
     }
+
+@media (max-width: 575.98px){
+  .slide-siguenos{
+    background-position: 68% center !important;
+  }
+  .slide-whatsapp{
+    background-position: 70% center !important;
+  }
+  .slide-volando{
+    background-position: 76% center !important;
+  }
+
+  .slide-siguenos .carousel-caption,
+  .slide-whatsapp .carousel-caption,
+  .slide-volando .carousel-caption{
+    margin-top: -28px;
+    padding: 0 18px;
+    text-align: center;
+  }
+  .slide-siguenos .carousel-caption .row,
+  .slide-whatsapp .carousel-caption .row,
+  .slide-volando .carousel-caption .row{
+    justify-content: center;
+  }
+  .slide-siguenos .carousel-caption .col-12,
+  .slide-whatsapp .carousel-caption .col-12,
+  .slide-volando .carousel-caption .col-12{
+    width: 100%;
+  }
+  .slide-siguenos .carousel-caption h1,
+  .slide-whatsapp .carousel-caption h1,
+  .slide-volando .carousel-caption h1{
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .slide-siguenos .carousel-caption h2,
+  .slide-whatsapp .carousel-caption h2,
+  .slide-volando .carousel-caption h2{
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .slide-siguenos .social-links,
+  .slide-whatsapp .social-links{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .slide-siguenos .social-links i,
+  .slide-whatsapp .social-links i{
+    font-size: 32px;
+    margin: 0;
+  }
+}
