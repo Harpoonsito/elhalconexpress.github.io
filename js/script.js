@@ -312,10 +312,16 @@
     const btn = form.querySelector('button[type="submit"]');
     const TZ  = 'America/Bogota';
 
-    const formatearFechaLocal = (iso) => {
-      if (!iso) return '-';
-      const d = new Date(iso);
-      if (isNaN(d)) return String(iso);
+    const formatearFechaLocal = (f) => {
+      if (!f && f !== 0) return '-';
+      let d;
+      if (typeof f === 'number') {
+        // Convierte serial de Google Sheets a fecha
+        d = new Date(Math.round((f - 25569) * 86400 * 1000));
+      } else {
+        d = new Date(f);
+      }
+      if (isNaN(d)) return String(f);
       return new Intl.DateTimeFormat('es-CO', {
         timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit',
         hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
@@ -348,21 +354,29 @@
       msg('Buscando…');
       if (btn) btn.disabled = true;
       input.readOnly = true;
+
       try {
-        const url = 'https://script.google.com/macros/s/AKfycbynAcFY19fLjkAhGgBV4B0HdOZMeSlJ51UmV9VlXA3Qdd8gBz_nXGz94gy3LZGBYoEO/exec?guia='
-                    + encodeURIComponent(guia)
-                    + '&token=x6Zy2iY_7mQvK4R9bP1tN8UwV3fH5cJ0Lr2Sx9AaE7gMd4Tq';
-        const r = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
-        if (!r.ok) throw new Error('http ' + r.status);
+        const r = await fetch('/rastreo/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ guia })
+        });
+
         const data = await r.json();
+
         if (!data.ok) {
           msg(
-            data.error === 'not_found'    ? 'No encontramos ese número de guía.' :
-            data.error === 'unauthorized' ? 'Acceso no autorizado (token inválido).' :
-                                            'No se pudo consultar. Intenta de nuevo.'
+            data.error === 'invalid_guia'   ? 'La guía no tiene el formato correcto.' :
+            data.error === 'not_found'      ? 'No encontramos ese número de guía.' :
+            data.error === 'rate_limited'   ? 'Demasiadas consultas. Intenta en un minuto.' :
+            data.error === 'forbidden'      ? 'Origen no autorizado.' :
+            data.error === 'upstream_error' ? 'No se pudo consultar el servidor.' :
+                                              'No se pudo consultar. Intenta de nuevo.'
           );
           return;
         }
+
+        // pintar tarjeta
         card(data.resultado || {});
       } catch (e) {
         console.error(e);
