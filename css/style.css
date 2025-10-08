@@ -979,6 +979,32 @@ html { scroll-behavior: auto; }
       .cookie-banner { flex-direction: column; gap: 8px; font-size: 14px; }
     }
 
+.legal-protection {
+  background: #f5f9fa;
+  padding: 64px 0;
+}
+.legal-protection p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1f1f1f;
+}
+.legal-protection .legal-list {
+  margin: 24px 0 28px;
+  padding-left: 1.3rem;
+  list-style: disc;
+}
+.legal-protection .legal-list li {
+  margin-bottom: 10px;
+}
+.legal-protection a {
+  color: #2E8F88;
+  text-decoration: underline;
+}
+.legal-protection a:hover,
+.legal-protection a:focus {
+  color: #5DC1B9;
+}
+
 @media (max-width: 575.98px){
   .slide-siguenos{
     background-position: 68% center !important;
