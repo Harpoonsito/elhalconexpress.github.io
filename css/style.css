@@ -587,7 +587,7 @@ ul.nav li.active a:before{ opacity:1; }
 #fun-facts{ background:#f8f8f8; padding:3% 0%; }
 #fun-facts .fun-fact{ border-right:1px solid #ddd; }
 #fun-facts .col-md-3:last-child .fun-fact{ border-right:0; }
-#fun-facts .fun-fact i{ margin-right:5px; color:#666; }
+#fun-facts .fun-fact i{ margin-right:5px; color:#666; } 
 #fun-facts .fun-fact h6{ color:#555; font-weight:bolder; }
 #fun-facts .fun-fact .timer::after{ content:'+'; margin-left:4px; }
 .blog-info i.fa{ float:left; margin-right:10px; color:#777; }
