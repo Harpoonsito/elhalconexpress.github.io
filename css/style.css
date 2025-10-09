@@ -1006,17 +1006,19 @@ html { scroll-behavior: auto; }
   color: #5DC1B9;
 }
 
-@media (max-width: 575.98px){
-  .slide-siguenos{
-    background-position: 68% center !important;
+@media (max-width: 767.98px){
+  #home-carousel .slide-siguenos{
+    background-position: 85% center !important;
   }
-  .slide-whatsapp{
-    background-position: 70% center !important;
+  #home-carousel .slide-whatsapp{
+    background-position: 88% center !important;
   }
-  .slide-volando{
-    background-position: 76% center !important;
+  #home-carousel .slide-volando{
+    background-position: 90% center !important;
   }
+}
 
+@media (max-width: 575.98px){
   .slide-siguenos .carousel-caption,
   .slide-whatsapp .carousel-caption,
   .slide-volando .carousel-caption{
