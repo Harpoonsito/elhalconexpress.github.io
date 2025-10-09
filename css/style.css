@@ -589,7 +589,7 @@ ul.nav li.active a:before{ opacity:1; }
 #fun-facts .col-md-3:last-child .fun-fact{ border-right:0; }
 #fun-facts .fun-fact i{ margin-right:5px; color:#666; } 
 #fun-facts .fun-fact h6{ color:#555; font-weight:bolder; }
-#fun-facts .fun-fact .timer::after{ content:'+'; margin-left:4px; }
+#fun-facts .fun-fact .timer::after{ content:'+'; margin-left:4px; display:inline-block; }
 .blog-info i.fa{ float:left; margin-right:10px; color:#777; }
 
 /* =========================
@@ -1007,14 +1007,10 @@ html { scroll-behavior: auto; }
 }
 
 @media (max-width: 767.98px){
-  #home-carousel .slide-siguenos{
-    background-position: 85% center !important;
-  }
-  #home-carousel .slide-whatsapp{
-    background-position: 88% center !important;
-  }
+  #home-carousel .slide-siguenos,
+  #home-carousel .slide-whatsapp,
   #home-carousel .slide-volando{
-    background-position: 90% center !important;
+    background-position: right center !important;
   }
 }
 
