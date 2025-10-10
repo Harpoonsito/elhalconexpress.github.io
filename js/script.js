@@ -81,12 +81,18 @@
       const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
       return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
     };
-    const scrollToHash = (hash) => {
+    const scrollToHash = (hash, { behavior = 'smooth' } = {}) => {
       if (!hash) return;
       const el = document.querySelector(hash);
       if (!el) return;
       const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: y, behavior });
+    };
+    const performScroll = (hash) => {
+      if (!hash) return;
+      scrollToHash(hash);
+      history.replaceState(null, '', hash);
+      if (!window.__NAV_LOCKED__) setActiveByHref(hash);
     };
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a.scroll, a.nav-link[href^="#"]');
@@ -95,9 +101,23 @@
       const samePage = url.pathname.replace(/\/+$/, '') === location.pathname.replace(/\/+$/, '');
       if (!url.hash || !samePage) return;
       e.preventDefault();
-      scrollToHash(url.hash);
-      history.replaceState(null, '', url.hash);
-      if (!window.__NAV_LOCKED__) setActiveByHref(url.hash);
+      const collapse = document.getElementById('mainNav');
+      const toggler = document.querySelector('.navbar-toggler');
+      const mobileMenuOpen =
+        collapse &&
+        collapse.classList.contains('show') &&
+        toggler &&
+        getComputedStyle(toggler).display !== 'none';
+      if (mobileMenuOpen) {
+        const handleHidden = () => {
+          collapse.removeEventListener('hidden.bs.collapse', handleHidden);
+          requestAnimationFrame(() => performScroll(url.hash));
+        };
+        collapse.addEventListener('hidden.bs.collapse', handleHidden, { once: true });
+        (bootstrap.Collapse.getInstance(collapse) || new bootstrap.Collapse(collapse, { toggle: false })).hide();
+      } else {
+        performScroll(url.hash);
+      }
     });
     window.addEventListener('load', () => {
       if (location.hash && document.querySelector(location.hash)) {
