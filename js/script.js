@@ -471,4 +471,92 @@
     });
   });
 
+  // -------- Slider: pista de deslizamiento móvil --------
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.getElementById('home-carousel');
+    if (!carousel) return;
+    const hint = carousel.querySelector('.swipe-hint');
+    if (!hint) return;
+
+    const mediaQuery = window.matchMedia('(max-width: 575.98px)');
+    const RESHOW_DELAY = 900;
+    let reshowTimer = null;
+
+    const isHintActive = () =>
+      mediaQuery.matches &&
+      getComputedStyle(hint).display !== 'none';
+
+    const clearReshowTimer = () => {
+      if (reshowTimer) {
+        clearTimeout(reshowTimer);
+        reshowTimer = null;
+      }
+    };
+
+    const hideHint = () => {
+      hint.classList.remove('is-visible');
+    };
+
+    const showHint = () => {
+      if (!isHintActive() || document.hidden) return;
+      hint.classList.add('is-visible');
+    };
+
+    const scheduleReshow = (delay = RESHOW_DELAY) => {
+      clearReshowTimer();
+      if (!isHintActive()) return;
+      reshowTimer = window.setTimeout(() => {
+        reshowTimer = null;
+        showHint();
+      }, delay);
+    };
+
+    const pauseHint = () => {
+      clearReshowTimer();
+      if (!hint.classList.contains('is-visible')) return;
+      hideHint();
+    };
+
+    const handlePointerStart = (evt) => {
+      if (evt && evt.pointerType && evt.pointerType !== 'touch') return;
+      if (!isHintActive()) return;
+      pauseHint();
+    };
+
+    const handlePointerEnd = (evt) => {
+      if (evt && evt.pointerType && evt.pointerType !== 'touch') return;
+      if (!isHintActive()) return;
+      scheduleReshow();
+    };
+
+    carousel.addEventListener('touchstart', pauseHint, { passive: true });
+    carousel.addEventListener('touchend', () => scheduleReshow(), { passive: true });
+    carousel.addEventListener('touchcancel', () => scheduleReshow(), { passive: true });
+    carousel.addEventListener('pointerdown', handlePointerStart, { passive: true });
+    carousel.addEventListener('pointerup', handlePointerEnd, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        pauseHint();
+      } else {
+        scheduleReshow(400);
+      }
+    });
+
+    mediaQuery.addEventListener?.('change', (event) => {
+      clearReshowTimer();
+      if (event.matches) {
+        scheduleReshow(150);
+      } else {
+        hideHint();
+      }
+    });
+
+    if (isHintActive()) {
+      showHint();
+    } else {
+      scheduleReshow(150);
+    }
+  });
+
 })();
