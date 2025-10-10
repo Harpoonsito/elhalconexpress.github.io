@@ -480,6 +480,9 @@ ul.nav li.active a:before{ opacity:1; }
   transition:opacity .32s ease, transform .32s ease;
   will-change: opacity, transform;
 }
+.slide-siguenos .carousel-caption h2{
+  text-overflow: ellipsis;
+}
 .swipe-hint.is-visible{
   opacity:1;
   transform:translate(-50%, 0) scale(1);
@@ -1116,12 +1119,13 @@ html { scroll-behavior: auto; }
   .slide-siguenos .carousel-caption h2,
   .slide-whatsapp .carousel-caption h2,
   .slide-volando .carousel-caption h2{
-    font-size: 32px;
+    font-size: clamp(22px, 7vw, 30px);
     line-height: 1.1;
     margin-bottom: 18px;
   }
   .slide-siguenos .carousel-caption h2{
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    letter-spacing: 1.3px;
   }
   .slide-siguenos .social-links,
   .slide-whatsapp .social-links{
@@ -1129,6 +1133,12 @@ html { scroll-behavior: auto; }
     justify-content: center;
     gap: 16px;
   }
+  .home-carousel-left,
+  .home-carousel-right{
+    display: none !important;
+  }
+  #home-carousel:hover .home-carousel-left{ left:-32px; }
+  #home-carousel:hover .home-carousel-right{ right:-32px; }
   .slide-siguenos .social-links i,
   .slide-whatsapp .social-links i{
     font-size: 32px;
