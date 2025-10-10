@@ -46,6 +46,9 @@
     background: #fff;
     border-radius: 0 0 18px 18px;
     box-shadow: 0 8px 32px 0 rgba(0,0,0,0.10);
+    margin-top: 0;
+  }
+  .navbar-collapse.show{
     margin-top: 8px;
   }
   .navbar-brand img {
