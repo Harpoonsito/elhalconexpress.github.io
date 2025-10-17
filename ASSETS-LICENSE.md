@@ -6,7 +6,7 @@ Esta licencia cubre **todo el material visual y de marca** presente en este repo
 - Imágenes, fotografías, ilustraciones, íconos, mockups y composiciones.
 - Logotipos, isotipos, tipografías con licencia (si aplica) y el **look & feel** (diseño de página, maquetación, paleta y estilos).
 - Archivos maestros/fuente (p. ej., PSD, AI, Figma/FIG, Sketch) y todos los derivados.
-- Carpetas típicas de ejemplo: `images/`, `images/social/`, `images/Logo/`, `assets/`.
+- Carpetas típicas de ejemplo: `images/`, `images/social/`, `images/logo/`, `assets/`.
 
 ## Usos permitidos
 - El uso de estos activos es **exclusivo** de El Halcón Express Cargo SAS y de personal/contratistas autorizados, únicamente para operar y mantener **este sitio/proyecto**.
