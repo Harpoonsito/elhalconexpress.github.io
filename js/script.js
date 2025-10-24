@@ -129,54 +129,102 @@
   })();
 
   // -------- Activo por sección (solo home) --------
-          document.addEventListener('DOMContentLoaded', function () {
-    if (window.__NAV_LOCKED__) return;
-    const sections = [
-      ['slider',   '#menu'],
-      ['about',    '#about'],
-      ['coverage', '#coverage'],
-      ['tracking', '#tracking'],
-      ['contact',  '#contact']
-    ].map(([id, href]) => {
-      const section = document.getElementById(id);
-      return section ? { href, section } : null;
-    }).filter(Boolean);
-    if (!sections.length) return;
-    sections.sort((a, b) => a.section.offsetTop - b.section.offsetTop);
-    const headerOffset = () => {
-      const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
-      return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-    };
-    let currentHref = null;
-    const updateActive = () => {
-      const scrollPos = window.scrollY + headerOffset() + 8;
-      let active = sections[0];
-      for (const item of sections) {
-        if (item.section.offsetTop <= scrollPos) active = item;
-      }
-      if (active && active.href !== currentHref) {
-        currentHref = active.href;
-        setActiveByHref(active.href);
-      }
-    };
-    let ticking = false;
-    const requestUpdate = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-        updateActive();
-      });
-    };
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-    window.addEventListener('load', requestUpdate);
-    requestUpdate();
-    window.addEventListener('hashchange', () => {
-      if (window.__NAV_LOCKED__) return;
-      setActiveByHref(location.hash || '#menu');
-    }, { passive: true });
-  });
+          document.addEventListener('DOMContentLoaded', function () {
+
+    if (window.__NAV_LOCKED__) return;
+
+    const sections = [
+
+      ['slider',   '#menu'],
+
+      ['about',    '#about'],
+
+      ['coverage', '#coverage'],
+
+      ['tracking', '#tracking'],
+
+      ['contact',  '#contact']
+
+    ].map(([id, href]) => {
+
+      const section = document.getElementById(id);
+
+      return section ? { href, section } : null;
+
+    }).filter(Boolean);
+
+    if (!sections.length) return;
+
+    sections.sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+
+    const headerOffset = () => {
+
+      const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+
+      return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+
+    };
+
+    let currentHref = null;
+
+    const updateActive = () => {
+
+      const scrollPos = window.scrollY + headerOffset() + 8;
+
+      let active = sections[0];
+
+      for (const item of sections) {
+
+        if (item.section.offsetTop <= scrollPos) active = item;
+
+      }
+
+      if (active && active.href !== currentHref) {
+
+        currentHref = active.href;
+
+        setActiveByHref(active.href);
+
+      }
+
+    };
+
+    let ticking = false;
+
+    const requestUpdate = () => {
+
+      if (ticking) return;
+
+      ticking = true;
+
+      requestAnimationFrame(() => {
+
+        ticking = false;
+
+        updateActive();
+
+      });
+
+    };
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+
+    window.addEventListener('resize', requestUpdate);
+
+    window.addEventListener('load', requestUpdate);
+
+    requestUpdate();
+
+    window.addEventListener('hashchange', () => {
+
+      if (window.__NAV_LOCKED__) return;
+
+      setActiveByHref(location.hash || '#menu');
+
+    }, { passive: true });
+
+  });
+
 // -------- Navbar .on tras scroll --------
   window.addEventListener('scroll', function () {
     const nav = document.querySelector('.navbar');
@@ -469,25 +517,17 @@
   document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('quote-btn');
     if (!btn) return;
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
+    btn.addEventListener('click', function () {
       const activePane = document.querySelector('.svc-content .tab-pane.active');
       const svcFromPane = activePane?.querySelector('h2')?.textContent.trim() || '';
       const actBtn = document.querySelector('#svc-menu .nav-link.active'); // Bootstrap marca .active
       const svcFromMenu = actBtn ? (actBtn.textContent || '').replace(/\s+/g,' ').trim() : '';
-      const svc = svcFromPane || svcFromMenu || 'Servicios';
-      const to = 'comercial@elhalconexpress.com';
-      const subject = 'Solicitud de cotización — ' + svc;
-      const body = [
-        'Hola equipo de El Halcón Express,','',
-        'Quisiera una cotización para: ' + svc,'',
-        'Datos del envío:',
-        '• Origen:','• Destino:','• Peso / Volumen:','• Dimensiones:','• Valor declarado:','• Fecha estimada de despacho:','',
-        'Comentarios:','',
-        'Nombre:','Teléfono:'
-      ].join('\n');
-      const mailto = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      window.open(mailto, '_self');
+      const svc = (svcFromPane || svcFromMenu || '').trim();
+      const params = new URLSearchParams();
+      if (svc) params.set('servicio', svc);
+      const query = params.toString();
+      const target = '/contacto/' + (query ? '?' + query : '') + '#cp-form';
+      btn.href = target;
     });
   });
 

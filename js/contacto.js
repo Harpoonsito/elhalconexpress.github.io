@@ -128,6 +128,20 @@
   document.addEventListener('DOMContentLoaded', function(){
     loadDraft();
 
+    var qsService = new URLSearchParams(location.search).get('servicio');
+    if (qsService){
+      var svcField = $('#cp-service');
+      if (svcField){
+        var targetText = qsService.trim();
+        var match = Array.from(svcField.options).find(function(opt){
+          return opt.textContent.trim().localeCompare(targetText, undefined, { sensitivity: 'base' }) === 0;
+        });
+        if (match){
+          svcField.value = match.value || match.textContent.trim();
+        }
+      }
+    }
+
     $all('#cp-form .cp-control, #cp-form textarea, #cp-form #cp-consent').forEach(function(el){
       el.addEventListener('input', function(){ setError(el,''); saveDraft(); });
       el.addEventListener('blur', function(){ validateField(el); });
