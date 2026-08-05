@@ -560,6 +560,73 @@ ul.nav li.active a:before{ opacity:1; }
 .about-section .column-title{ color:#9feae1; font-size:22px; margin-bottom:10px; text-align:center; }
 
 /* =========================
+   Estadísticas (home)
+   ========================= */
+.stats-section{ text-align:center; padding:70px 20px; background:#f8fafb; }
+.stats-section .subtitle{ letter-spacing:2px; font-size:14px; margin-bottom:10px; color:#2E8F88; }
+.stats-section .title{ font-size:40px; font-weight:bold; margin:10px 0 20px; }
+.stats-section .divider{ width:300px; border:1px solid #82BFB7; margin:0 auto 40px; }
+.stats-section__grid{ row-gap:24px; justify-content:center; }
+
+.stat-card{
+  display:flex; flex-direction:column; align-items:center; height:100%;
+  background:#fff; border-radius:14px; padding:32px 18px 26px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.stat-card:hover{ transform:translateY(-6px); box-shadow:0 12px 28px rgba(0,0,0,.12); }
+.stat-card__icon{
+  width:64px; height:64px; margin-bottom:16px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg, #5DC1B9, #2E8F88);
+}
+.stat-card__icon i{ font-size:26px; color:#fff; }
+.stat-card__number{
+  font-size:38px; font-weight:800; margin:0 0 6px; line-height:1.1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-card__number, .stat-card__number .js-counter{ color:#4f4d49; }
+.stat-card__number::after{ content:'+'; color:#5DC1B9; }
+.stat-card__label{ font-size:15px; font-weight:700; text-transform:uppercase; color:#333; margin:0 0 8px; }
+.stat-card__desc{ font-size:13px; line-height:20px; color:#666; margin:0; }
+
+/* =========================
+   Nuestros Servicios (home)
+   ========================= */
+.services-home{ text-align:center; padding:70px 20px; }
+.services-home .subtitle{ letter-spacing:2px; font-size:14px; margin-bottom:10px; color:#2E8F88; }
+.services-home .title{ font-size:40px; font-weight:bold; margin:10px 0 20px; }
+.services-home .divider{ width:300px; border:1px solid #82BFB7; margin:0 auto; }
+.services-home__lead{ max-width:640px; margin:20px auto 40px; }
+.services-home__grid{ row-gap:30px; justify-content:center; }
+
+.service-card{
+  display:flex; flex-direction:column; height:100%;
+  background:#fff; border:1px solid #e6edf3; border-radius:14px; overflow:hidden;
+  text-decoration:none; box-shadow:0 2px 10px rgba(0,0,0,.06);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.service-card:hover, .service-card:focus{
+  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(0,0,0,.13);
+  text-decoration:none;
+}
+.service-card__img{
+  height:150px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg, #5DC1B9, #2E8F88);
+}
+.service-card__img i{ font-size:46px; color:#fff; transition:transform .4s ease; }
+.service-card:hover .service-card__img i{ transform:scale(1.15) rotateY(360deg); }
+.service-card__body{ padding:22px 20px 26px; flex:1; display:flex; flex-direction:column; }
+.service-card__title{ font-size:19px; margin:0 0 10px; text-transform:none; }
+.service-card__desc{ font-size:14px; line-height:22px; flex:1; }
+.service-card__cta{
+  margin-top:14px; font-weight:600; color:#2E8F88; display:inline-flex; align-items:center; gap:6px;
+}
+.service-card__cta i{ transition:transform .3s ease; }
+.service-card:hover .service-card__cta i{ transform:translateX(4px); }
+
+/* =========================
    Final (bg-sec)
    ========================= */
 .bg-sec{ background:#5DC1B9; margin-top:10px; padding:1% 0%; }
@@ -824,6 +891,28 @@ html, body { overflow-x: hidden; }
   .about-section .column { max-width: 320px; }
 }
 
+/* Estadísticas responsive */
+@media (max-width: 767px){
+  .stats-section{ padding:50px 16px; }
+  .stats-section .title{ font-size:28px; }
+  .stats-section .divider{ width:80%; }
+  .stat-card{ padding:22px 12px 18px; }
+  .stat-card__icon{ width:52px; height:52px; margin-bottom:12px; }
+  .stat-card__icon i{ font-size:20px; }
+  .stat-card__number{ font-size:26px; }
+  .stat-card__label{ font-size:12.5px; }
+  .stat-card__desc{ display:none; }
+}
+
+/* Nuestros Servicios responsive */
+@media (max-width: 767px){
+  .services-home{ padding:50px 16px; }
+  .services-home .title{ font-size:28px; }
+  .services-home .divider{ width:80%; }
+  .service-card__img{ height:120px; }
+  .service-card__img i{ font-size:36px; }
+}
+
 /* Fun facts responsive */
 #fun-facts .col-md-3 { border-right: 0 !important; }
 @media (min-width: 768px) and (max-width: 991px){
@@ -924,6 +1013,7 @@ html { scroll-behavior: auto; }
 #menu .navbar-nav { left: 0 !important; position: relative; }
 #menu .navbar-nav > li > .nav-link {
   padding: 15px 15px; font-size: 15px; color: #7d7a7a; text-decoration: none;
+  transition: color .25s ease;
 }
 #menu .navbar-nav > li > .nav-link:hover,
 #menu .navbar-nav > li > .nav-link.active { color: #38e1db; }

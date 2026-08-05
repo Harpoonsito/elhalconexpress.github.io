@@ -44,9 +44,14 @@
   })();
 
   // -------- Cerrar menú colapsado (BS5) al click en un link del navbar --------
+  // Los enlaces con ancla en la misma página (a.scroll / nav-link[href^="#"]) los
+  // cierra y sincroniza el propio smoothScroll (necesita esperar a que el menú
+  // termine de colapsar antes de medir la altura del header). Aquí solo se
+  // encargan el resto: ítems del dropdown de Servicios y enlaces a otras páginas.
   document.addEventListener('click', function (e) {
     const link = e.target.closest('#mainNav .nav-link, #mainNav .dropdown-item');
     if (!link) return;
+    if (link.matches('a.scroll, a.nav-link[href^="#"]')) return;
     const collapse = document.getElementById('mainNav');
     const toggler  = document.querySelector('.navbar-toggler');
     if (collapse && toggler && getComputedStyle(toggler).display !== 'none') {
@@ -75,18 +80,87 @@
     desktop.addEventListener?.('change', () => dd().hide());
   });
 
+  // -------- Utilidades de scroll suave (nativo, sin librerías) --------
+  // Compensa la altura real del header (fixed/sticky) en cualquier tamaño de pantalla.
+  const getHeaderOffset = () => {
+    const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+    return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+  };
+
+  const prefersReducedMotion = () =>
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+  // Token de animación: permite cancelar/ceder el control si el usuario interviene
+  // o si se dispara una nueva navegación antes de que termine la anterior.
+  let scrollAnimId = 0;
+  let programmaticScroll = false;
+
+  const animateScrollTo = (targetY, onDone) => {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+
+    if (Math.abs(distance) < 1 || prefersReducedMotion()) {
+      window.scrollTo(0, targetY);
+      programmaticScroll = false;
+      if (onDone) onDone();
+      return;
+    }
+
+    // Duración sutil y proporcional a la distancia, siempre entre 500 y 800 ms.
+    const duration = Math.min(800, Math.max(500, Math.abs(distance) * 0.4));
+    const myId = ++scrollAnimId;
+    programmaticScroll = true;
+    let startTime = null;
+
+    const step = (ts) => {
+      if (myId !== scrollAnimId) return; // otra animación tomó el control
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        programmaticScroll = false;
+        if (onDone) onDone();
+      }
+    };
+    requestAnimationFrame(step);
+  };
+
+  // Si el usuario toma el control manualmente (rueda, touch, teclado), se cede
+  // la animación en curso en vez de pelear con su gesto.
+  ['wheel', 'touchstart', 'keydown'].forEach((evt) => {
+    window.addEventListener(evt, () => {
+      if (programmaticScroll) { scrollAnimId++; programmaticScroll = false; }
+    }, { passive: true });
+  });
+
+  // -------- Botón "Servicios" (desktop): además de desplegar, lleva a la sección --------
+  document.addEventListener('DOMContentLoaded', function () {
+    const desktopToggle = document.getElementById('servicesDropdown');
+    if (!desktopToggle) return;
+    desktopToggle.addEventListener('click', function () {
+      if (window.__NAV_LOCKED__) return;
+      const target = document.getElementById('services-home');
+      if (!target) return;
+      const y = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset());
+      animateScrollTo(y);
+      history.replaceState(null, '', '#services-home');
+      clearActive();
+      desktopToggle.classList.add('active');
+    });
+  });
+
   // -------- Smooth Scroll con compensación de navbar --------
   (function smoothScroll() {
-    const headerOffset = () => {
-      const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
-      return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-    };
-    const scrollToHash = (hash, { behavior = 'smooth' } = {}) => {
+    const scrollToHash = (hash) => {
       if (!hash) return;
       const el = document.querySelector(hash);
       if (!el) return;
-      const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
-      window.scrollTo({ top: y, behavior });
+      const y = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset());
+      animateScrollTo(y);
     };
     const performScroll = (hash) => {
       if (!hash) return;
@@ -121,6 +195,7 @@
     });
     window.addEventListener('load', () => {
       if (location.hash && document.querySelector(location.hash)) {
+        if (!window.__NAV_LOCKED__) setActiveByHref(location.hash);
         setTimeout(() => scrollToHash(location.hash), 0);
       } else if (!window.__NAV_LOCKED__) {
         setActiveByHref('#menu');
@@ -157,19 +232,15 @@
 
     sections.sort((a, b) => a.section.offsetTop - b.section.offsetTop);
 
-    const headerOffset = () => {
-
-      const nav = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
-
-      return nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-
-    };
-
     let currentHref = null;
 
     const updateActive = () => {
 
-      const scrollPos = window.scrollY + headerOffset() + 8;
+      // Mientras dura una navegación animada por click, el estado activo ya
+      // quedó fijado en el destino: no recalcular para evitar parpadeos.
+      if (programmaticScroll) return;
+
+      const scrollPos = window.scrollY + getHeaderOffset() + 8;
 
       let active = sections[0];
 
