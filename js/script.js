@@ -357,35 +357,6 @@
     }
   });
 
-  // -------- Contadores fun-facts --------
-  document.addEventListener('DOMContentLoaded', function () {
-    const funFacts = document.querySelector('#fun-facts');
-    if (!funFacts) return;
-    if ('IntersectionObserver' in window) {
-      const obsCounters = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          funFacts.querySelectorAll('.timer').forEach(function (el) {
-            const target = parseInt((el.textContent || '0').replace(/[^\d]/g, ''), 10) || 0;
-            let startTime = null; const duration = 2000;
-            el.textContent = '0';
-            function step(ts) {
-              if (!startTime) startTime = ts;
-              const p = Math.min((ts - startTime) / duration, 1);
-              el.textContent = String(Math.ceil(p * target));
-              if (p < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-          });
-          observer.disconnect();
-        });
-      }, { threshold: 0.3 });
-      obsCounters.observe(funFacts);
-    } else {
-      funFacts.querySelectorAll('.timer').forEach(el => { el.textContent = (el.textContent || '0').replace(/[^\d]/g, ''); });
-    }
-  });
-
   // -------- Animación del mapa --------
   document.addEventListener('DOMContentLoaded', function () {
     const mapa = document.getElementById('mapaColombia');
